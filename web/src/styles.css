@@ -2199,8 +2199,8 @@ a.match-side-name:hover { color: var(--gold); }
   display: block;
   width: 100vw;
   margin-left: calc(50% - 50vw);
+  /* 全宽、按原图 3:2 比例：任何窗口宽度都完整显示整张照片，不裁切 */
   aspect-ratio: 3 / 2;
-  max-height: 1000px;
   overflow: hidden;
   background: #0d0b09;
   color: #f6f1e7;
@@ -2212,7 +2212,7 @@ a.match-side-name:hover { color: var(--gold); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 40%;
+  object-position: 50% 50%;
   filter: saturate(1.02) brightness(0.97);
   transition: filter 0.28s var(--ease);
 }
@@ -2531,7 +2531,6 @@ a.match-side-name:hover { color: var(--gold); }
   .search-panel { max-height: 60vh; }
 
   /* 窄屏：整幅照片仍是背景，文字压在下方，加重底部墨色渐变保证可读 */
-  .champ-strip { max-height: none; }
   .champ-strip::after {
     background:
       linear-gradient(
