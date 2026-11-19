@@ -209,25 +209,27 @@ export default function Overview({ meta }: { meta: Meta }) {
         </div>
 
         <Reveal delay={120}>
-          <div className="hero-media">
-            <div className="hero-media-bg" style={{ backgroundImage: "url(" + heroSplash + ")" }} />
-            <div className="hero-media-body">
-              <p className="media-eyebrow">总决赛 · {finals?.date ?? "2026-11-14"}</p>
+          <figure className="hero-figure">
+            <div className="hero-figure-media">
+              {heroSplash ? <img src={heroSplash} alt="总决赛冠军英雄原画" /> : null}
+            </div>
+            <figcaption className="hero-caption">
+              <p className="caption-kicker">总决赛 · {finals?.date ?? "2026-11-14"}</p>
               {finalsView ? (
                 <>
-                  <p className="media-teams">
+                  <p className="caption-teams">
                     {finalsView.first.name} vs {finalsView.second.name}
                   </p>
-                  <p className="media-score">
+                  <p className="caption-score">
                     {finalsView.first.score} – {finalsView.second.score}
                   </p>
-                  <p className="media-note">
+                  <p className="caption-meta">
                     {finalsView.games} 局 · 补丁 {finals?.patch ?? "16.20"} · 冠军 {finalsView.first.name}
                   </p>
                 </>
               ) : null}
-            </div>
-          </div>
+            </figcaption>
+          </figure>
         </Reveal>
       </section>
 
@@ -321,16 +323,18 @@ export default function Overview({ meta }: { meta: Meta }) {
             {ov.topPicks.slice(0, 4).map((c) => {
               const splash = meta.champions[c.name]?.splash;
               return (
-                <div className="tile" key={c.name}>
-                  {splash ? <img src={splash} alt={c.nameZh + " 原画"} /> : null}
-                  <div className="tile-body">
+                <figure className="tile" key={c.name}>
+                  <div className="tile-media">
+                    {splash ? <img src={splash} alt={c.nameZh + " 原画"} /> : null}
+                  </div>
+                  <figcaption className="tile-body">
                     <p className="tile-name">{c.nameZh}</p>
                     <p className="tile-en">{c.name}</p>
                     <p className="tile-meta">
                       {c.picks} 次出场 · 胜率 {c.winRate === null ? "—" : fmtPct(c.winRate)}
                     </p>
-                  </div>
-                </div>
+                  </figcaption>
+                </figure>
               );
             })}
           </div>

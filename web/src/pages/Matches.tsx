@@ -35,21 +35,21 @@ function SeriesItem({ s, meta }: { s: Series; meta: Meta }) {
         </span>
         <span className="series-teams">
           <span className={"side" + (a > b ? " won" : a < b ? " lost" : "")}>
+            <span>{team0}</span>
             {logo0 ? (
               <img className="team-logo sm" src={logo0} alt={team0} loading="lazy" />
             ) : (
               <span className="team-logo team-logo-fallback sm">{chip0}</span>
             )}
-            <span>{team0}</span>
           </span>
           <span className="vs">vs</span>
           <span className={"side right" + (b > a ? " won" : b < a ? " lost" : "")}>
-            <span>{team1}</span>
             {logo1 ? (
               <img className="team-logo sm" src={logo1} alt={team1} loading="lazy" />
             ) : (
               <span className="team-logo team-logo-fallback sm">{chip1}</span>
             )}
+            <span>{team1}</span>
           </span>
         </span>
         <span className="series-score">
