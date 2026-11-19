@@ -1,0 +1,92 @@
+{
+ "Anyone s Legend": {
+  "logo": "/assets/teams/anyone-s-legend.png",
+  "api_name": "Anyone's Legend",
+  "code": "AL"
+ },
+ "Bilibili Gaming": {
+  "logo": "/assets/teams/bilibili-gaming.png",
+  "api_name": "BILIBILI GAMING",
+  "code": "BLG"
+ },
+ "CTBC Flying Oyster": {
+  "logo": "/assets/teams/ctbc-flying-oyster.png",
+  "api_name": "CTBC Flying Oyster",
+  "code": "CFO"
+ },
+ "Cloud9": {
+  "logo": "/assets/teams/cloud9.png",
+  "api_name": "Cloud9 Kia",
+  "code": "C9"
+ },
+ "Dplus KIA": {
+  "logo": "/assets/teams/dplus-kia.png",
+  "api_name": "Dplus KIA",
+  "code": "DK"
+ },
+ "FURIA": {
+  "logo": "/assets/teams/furia.png",
+  "api_name": "FURIA",
+  "code": "FUR"
+ },
+ "G2 Esports": {
+  "logo": "/assets/teams/g2-esports.png",
+  "api_name": "G2 Esports",
+  "code": "G2"
+ },
+ "Gen.G": {
+  "logo": "/assets/teams/gen-g.png",
+  "api_name": "Gen.G Esports",
+  "code": "GEN"
+ },
+ "Hanwha Life Esports": {
+  "logo": "/assets/teams/hanwha-life-esports.png",
+  "api_name": "Hanwha Life Esports",
+  "code": "HLE"
+ },
+ "Invictus Gaming": {
+  "logo": "/assets/teams/invictus-gaming.png",
+  "api_name": "Invictus Gaming",
+  "code": "IG"
+ },
+ "Karmine Corp": {
+  "logo": "/assets/teams/karmine-corp.png",
+  "api_name": "Karmine Corp",
+  "code": "KC"
+ },
+ "LYON": {
+  "logo": "/assets/teams/lyon.png",
+  "api_name": "LYON",
+  "code": "LYON"
+ },
+ "MVK Esports": {
+  "logo": "/assets/teams/mvk-esports.png",
+  "api_name": "MVK Esports",
+  "code": "MVK"
+ },
+ "Movistar KOI": {
+  "logo": "/assets/teams/movistar-koi.png",
+  "api_name": "Movistar KOI",
+  "code": "MKOI"
+ },
+ "T1": {
+  "logo": "/assets/teams/t1.png",
+  "api_name": "T1",
+  "code": "T1"
+ },
+ "Team Liquid": {
+  "logo": "/assets/teams/team-liquid.png",
+  "api_name": "Team Liquid Honda First",
+  "code": "TLF"
+ },
+ "Team Secret Whales": {
+  "logo": "/assets/teams/team-secret-whales.png",
+  "api_name": "Team Secret Whales",
+  "code": "TSW"
+ },
+ "Top Esports": {
+  "logo": "/assets/teams/top-esports.png",
+  "api_name": "TOP ESPORTS",
+  "code": "TES"
+ }
+}

@@ -20,6 +20,11 @@ data/raw/*
 .vscode/
 .idea/
 
+# asset pipeline temp files (regenerable)
+public/assets/teams_api.json
+public/assets/_preview/
+tools/assets/fetch.log
+
 # build output
 dist/
 *.local

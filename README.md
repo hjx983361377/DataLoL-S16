@@ -12,6 +12,14 @@ data/
   raw/                    146 份原始 HTML 快照（85 MB，git 忽略，可重解析）
 tools/
   collector/              采集器：抓取 → 解析 → 校验（详见其 README）
+  assets/fetch_assets.py  静态素材本地化：英雄 / 装备 / 技能 / 队伍 logo
+public/assets/
+  champions/              107 个出场英雄头像（DataDragon 16.20.1）
+  items/                  193 个出场装备图标
+  spells/                 9 个召唤师技能图标
+  teams/                  18 支队伍 logo（lolesports API；Los Grandes 暂无）
+  data/champion_map.json  gol.gg 名 → DataDragon key / Riot id / 中文名 / 图标路径
+  data/team_map.json      gol.gg 队名 → logo 路径
 ~~~
 
 ## 数据管线
@@ -29,6 +37,15 @@ python collect.py --season S16 --prefix "Worlds 2026"
 ~~~
 
 依赖 Python 3.10+ 与 beautifulsoup4、lxml。整条管线离线可跑，build/validate 不联网。
+
+## 静态素材（public/assets）
+
+~~~bash
+python tools/assets/fetch_assets.py            # 图标 + 元数据，约 11 MB，已本地化
+python tools/assets/fetch_assets.py --splash   # 追加英雄原画，约 +15 MB
+~~~
+
+素材一次性下到本地，站点断网也能跑。**注意**：`data/games.json` 里的 `id` 是 gol.gg 自己的英雄编号（不是 Riot id，例如 Olaf 在 gol.gg 是 66、在 Riot 是 2），所以图标一律通过 `name` 归一化后用 `champion_map.json` 查，别拿 `id` 直接对 DataDragon。
 
 ## 单局数据契约（data/games.json）
 
