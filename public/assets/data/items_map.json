@@ -1,0 +1,774 @@
+{
+"1001": {
+"en": "Boots",
+"name": "鞋子"
+},
+"1004": {
+"en": "Faerie Charm",
+"name": "仙女护符"
+},
+"1006": {
+"en": "Rejuvenation Bead",
+"name": "治疗宝珠"
+},
+"1011": {
+"en": "Giant's Belt",
+"name": "巨人腰带"
+},
+"1018": {
+"en": "Cloak of Agility",
+"name": "灵巧披风"
+},
+"1026": {
+"en": "Blasting Wand",
+"name": "爆裂魔杖"
+},
+"1028": {
+"en": "Ruby Crystal",
+"name": "红水晶"
+},
+"1029": {
+"en": "Cloth Armor",
+"name": "布甲"
+},
+"1031": {
+"en": "Chain Vest",
+"name": "锁子甲"
+},
+"1033": {
+"en": "Null-Magic Mantle",
+"name": "抗魔斗篷"
+},
+"1036": {
+"en": "Long Sword",
+"name": "长剑"
+},
+"1037": {
+"en": "Pickaxe",
+"name": "十字镐"
+},
+"1038": {
+"en": "B. F. Sword",
+"name": "暴风之剑"
+},
+"1042": {
+"en": "Dagger",
+"name": "短剑"
+},
+"1043": {
+"en": "Recurve Bow",
+"name": "反曲之弓"
+},
+"1052": {
+"en": "Amplifying Tome",
+"name": "增幅典籍"
+},
+"1053": {
+"en": "Vampiric Scepter",
+"name": "吸血鬼节杖"
+},
+"1054": {
+"en": "Doran's Shield",
+"name": "多兰之盾"
+},
+"1055": {
+"en": "Doran's Blade",
+"name": "多兰之刃"
+},
+"1056": {
+"en": "Doran's Ring",
+"name": "多兰之戒"
+},
+"1057": {
+"en": "Negatron Cloak",
+"name": "负极斗篷"
+},
+"1058": {
+"en": "Needlessly Large Rod",
+"name": "无用大棒"
+},
+"1082": {
+"en": "Dark Seal",
+"name": "黑暗封印"
+},
+"1083": {
+"en": "Cull",
+"name": "萃取"
+},
+"1086": {
+"en": "Doran's Bow",
+"name": "多兰之弓"
+},
+"1120": {
+"en": "Doran's Helm",
+"name": "多兰之盔"
+},
+"1206": {
+"en": "Mid Lane Quest Reward",
+"name": "中路任务奖励"
+},
+"1208": {
+"en": "Support Quest Reward",
+"name": "辅助任务奖励"
+},
+"1209": {
+"en": "Jungle Quest Reward",
+"name": "打野任务奖励"
+},
+"1220": {
+"en": "Unleashed Teleport (Top Lane Quest Reward)",
+"name": "解封的传送 (上路任务奖励)"
+},
+"1221": {
+"en": "Top Lane Quest Reward",
+"name": "上路任务奖励"
+},
+"2019": {
+"en": "Steel Sigil",
+"name": "钢铁印章"
+},
+"2020": {
+"en": "The Brutalizer",
+"name": "残暴之力"
+},
+"2021": {
+"en": "Tunneler",
+"name": "掘道钻头"
+},
+"2022": {
+"en": "Glowing Mote",
+"name": "荧尘"
+},
+"2031": {
+"en": "Refillable Potion",
+"name": "复用型药水"
+},
+"2055": {
+"en": "Control Ward",
+"name": "控制守卫"
+},
+"2065": {
+"en": "Shurelya's Battlesong",
+"name": "舒瑞娅的战歌"
+},
+"2139": {
+"en": "Elixir of Sorcery",
+"name": "巫术合剂"
+},
+"2420": {
+"en": "Seeker's Armguard",
+"name": "探索者的护臂"
+},
+"2421": {
+"en": "Shattered Armguard",
+"name": "碎裂的护臂"
+},
+"2422": {
+"en": "Slightly Magical Footwear",
+"name": "有点神奇之鞋"
+},
+"2502": {
+"en": "Unending Despair",
+"name": "无终恨意"
+},
+"2503": {
+"en": "Blackfire Torch",
+"name": "黯炎火炬"
+},
+"2504": {
+"en": "Kaenic Rookern",
+"name": "败魔"
+},
+"2508": {
+"en": "Fated Ashes",
+"name": "命定灰烬"
+},
+"2510": {
+"en": "Dusk and Dawn",
+"name": "黄昏与黎明"
+},
+"2512": {
+"en": "Fiendhunter Bolts",
+"name": "猎魔人弩箭"
+},
+"2517": {
+"en": "Endless Hunger",
+"name": "无穷饥渴"
+},
+"2520": {
+"en": "Bastionbreaker",
+"name": "破垒者"
+},
+"2522": {
+"en": "Actualizer",
+"name": "实现器"
+},
+"2523": {
+"en": "Hexoptics C44",
+"name": "海克斯镜片 C44"
+},
+"2524": {
+"en": "Bandlepipes",
+"name": "班德尔音管"
+},
+"2525": {
+"en": "Protoplasm Harness",
+"name": "原生质护带"
+},
+"2530": {
+"en": "Diadem of Songs",
+"name": "歌之权冠"
+},
+"3006": {
+"en": "Berserker's Greaves",
+"name": "狂战士胫甲"
+},
+"3008": {
+"en": "Gluttonous Greaves",
+"name": "暴食胫甲"
+},
+"3009": {
+"en": "Boots of Swiftness",
+"name": "轻灵之靴"
+},
+"3020": {
+"en": "Sorcerer's Shoes",
+"name": "法师之靴"
+},
+"3024": {
+"en": "Glacial Buckler",
+"name": "冰川圆盾"
+},
+"3026": {
+"en": "Guardian Angel",
+"name": "守护天使"
+},
+"3031": {
+"en": "Infinity Edge",
+"name": "无尽之刃"
+},
+"3032": {
+"en": "Yun Tal Wildarrows",
+"name": "育恩塔尔荒野箭"
+},
+"3033": {
+"en": "Mortal Reminder",
+"name": "凡性的提醒"
+},
+"3035": {
+"en": "Last Whisper",
+"name": "最后的轻语"
+},
+"3036": {
+"en": "Lord Dominik's Regards",
+"name": "多米尼克领主的致意"
+},
+"3040": {
+"en": "Seraph's Embrace",
+"name": "炽天使之拥"
+},
+"3041": {
+"en": "Mejai's Soulstealer",
+"name": "梅贾的窃魂卷"
+},
+"3042": {
+"en": "Muramana",
+"name": "魔切"
+},
+"3046": {
+"en": "Phantom Dancer",
+"name": "幻影之舞"
+},
+"3047": {
+"en": "Plated Steelcaps",
+"name": "铁板靴"
+},
+"3050": {
+"en": "Zeke's Convergence",
+"name": "基克的聚合"
+},
+"3051": {
+"en": "Hearthbound Axe",
+"name": "缚炉之斧"
+},
+"3053": {
+"en": "Sterak's Gage",
+"name": "斯特拉克的挑战护手"
+},
+"3057": {
+"en": "Sheen",
+"name": "耀光"
+},
+"3065": {
+"en": "Spirit Visage",
+"name": "振奋盔甲"
+},
+"3066": {
+"en": "Winged Moonplate",
+"name": "带翼的月板甲"
+},
+"3067": {
+"en": "Kindlegem",
+"name": "燃烧宝石"
+},
+"3068": {
+"en": "Sunfire Aegis",
+"name": "日炎圣盾"
+},
+"3070": {
+"en": "Tear of the Goddess",
+"name": "女神之泪"
+},
+"3071": {
+"en": "Black Cleaver",
+"name": "黑色切割者"
+},
+"3072": {
+"en": "Bloodthirster",
+"name": "饮血剑"
+},
+"3073": {
+"en": "Experimental Hexplate",
+"name": "海克斯注力刚壁"
+},
+"3074": {
+"en": "Ravenous Hydra",
+"name": "贪欲九头蛇"
+},
+"3075": {
+"en": "Thornmail",
+"name": "荆棘之甲"
+},
+"3076": {
+"en": "Bramble Vest",
+"name": "棘刺背心"
+},
+"3078": {
+"en": "Trinity Force",
+"name": "三相之力"
+},
+"3082": {
+"en": "Warden's Mail",
+"name": "守望者铠甲"
+},
+"3084": {
+"en": "Heartsteel",
+"name": "心之钢"
+},
+"3085": {
+"en": "Runaan's Hurricane",
+"name": "卢安娜的飓风"
+},
+"3086": {
+"en": "Zeal",
+"name": "狂热"
+},
+"3087": {
+"en": "Statikk Shiv",
+"name": "斯塔缇克电刃"
+},
+"3089": {
+"en": "Rabadon's Deathcap",
+"name": "灭世者的死亡之帽"
+},
+"3091": {
+"en": "Wit's End",
+"name": "智慧末刃"
+},
+"3094": {
+"en": "Rapid Firecannon",
+"name": "疾射火炮"
+},
+"3095": {
+"en": "Stormrazor",
+"name": "岚切"
+},
+"3100": {
+"en": "Lich Bane",
+"name": "巫妖之祸"
+},
+"3102": {
+"en": "Banshee's Veil",
+"name": "女妖面纱"
+},
+"3107": {
+"en": "Redemption",
+"name": "救赎"
+},
+"3108": {
+"en": "Fiendish Codex",
+"name": "恶魔法典"
+},
+"3109": {
+"en": "Knight's Vow",
+"name": "骑士之誓"
+},
+"3110": {
+"en": "Frozen Heart",
+"name": "冰霜之心"
+},
+"3111": {
+"en": "Mercury's Treads",
+"name": "水银之靴"
+},
+"3113": {
+"en": "Aether Wisp",
+"name": "以太精魂"
+},
+"3114": {
+"en": "Forbidden Idol",
+"name": "禁忌雕像"
+},
+"3115": {
+"en": "Nashor's Tooth",
+"name": "纳什之牙"
+},
+"3116": {
+"en": "Rylai's Crystal Scepter",
+"name": "瑞莱的冰晶节杖"
+},
+"3118": {
+"en": "Malignance",
+"name": "残疫"
+},
+"3121": {
+"en": "Fimbulwinter",
+"name": "末日寒冬"
+},
+"3123": {
+"en": "Executioner's Calling",
+"name": "死刑宣告"
+},
+"3124": {
+"en": "Guinsoo's Rageblade",
+"name": "鬼索的狂暴之刃"
+},
+"3133": {
+"en": "Caulfield's Warhammer",
+"name": "考尔菲德的战锤"
+},
+"3134": {
+"en": "Serrated Dirk",
+"name": "锯齿短匕"
+},
+"3135": {
+"en": "Void Staff",
+"name": "虚空之杖"
+},
+"3137": {
+"en": "Cryptbloom",
+"name": "蜕生"
+},
+"3139": {
+"en": "Mercurial Scimitar",
+"name": "水银弯刀"
+},
+"3140": {
+"en": "Quicksilver Sash",
+"name": "水银饰带"
+},
+"3142": {
+"en": "Youmuu's Ghostblade",
+"name": "幽梦之灵"
+},
+"3143": {
+"en": "Randuin's Omen",
+"name": "兰顿之兆"
+},
+"3145": {
+"en": "Hextech Alternator",
+"name": "海克斯科技发电机"
+},
+"3146": {
+"en": "Hextech Gunblade",
+"name": "海克斯科技枪刃"
+},
+"3147": {
+"en": "Haunting Guise",
+"name": "幽魂面具"
+},
+"3152": {
+"en": "Hextech Rocketbelt",
+"name": "海克斯科技火箭腰带"
+},
+"3153": {
+"en": "Blade of The Ruined King",
+"name": "破败王者之刃"
+},
+"3155": {
+"en": "Hexdrinker",
+"name": "海克斯饮魔刀"
+},
+"3156": {
+"en": "Maw of Malmortius",
+"name": "玛莫提乌斯之噬"
+},
+"3157": {
+"en": "Zhonya's Hourglass",
+"name": "中娅沙漏"
+},
+"3158": {
+"en": "Ionian Boots of Lucidity",
+"name": "明朗之靴"
+},
+"3161": {
+"en": "Spear of Shojin",
+"name": "朔极之矛"
+},
+"3165": {
+"en": "Morellonomicon",
+"name": "莫雷洛秘典"
+},
+"3170": {
+"en": "Swiftmarch",
+"name": "迅速进军"
+},
+"3171": {
+"en": "Crimson Lucidity",
+"name": "猩红明朗"
+},
+"3172": {
+"en": "Gunmetal Greaves",
+"name": "炮铜胫甲"
+},
+"3173": {
+"en": "Chainlaced Crushers",
+"name": "带链碾碎者"
+},
+"3174": {
+"en": "Armored Advance",
+"name": "装甲战靴"
+},
+"3175": {
+"en": "Spellslinger's Shoes",
+"name": "灵能使之靴"
+},
+"3179": {
+"en": "Umbral Glaive",
+"name": "黯影阔剑"
+},
+"3181": {
+"en": "Hullbreaker",
+"name": "破舰者"
+},
+"3190": {
+"en": "Locket of the Iron Solari",
+"name": "钢铁烈阳之匣"
+},
+"3211": {
+"en": "Spectre's Cowl",
+"name": "幽魂斗篷"
+},
+"3222": {
+"en": "Mikael's Blessing",
+"name": "米凯尔的祝福"
+},
+"3302": {
+"en": "Terminus",
+"name": "界弓"
+},
+"3340": {
+"en": "Stealth Ward",
+"name": "侦察守卫"
+},
+"3363": {
+"en": "Farsight Alteration",
+"name": "远见改造"
+},
+"3364": {
+"en": "Oracle Lens",
+"name": "神谕透镜"
+},
+"3504": {
+"en": "Ardent Censer",
+"name": "炽热香炉"
+},
+"3508": {
+"en": "Essence Reaver",
+"name": "夺萃之镰"
+},
+"3742": {
+"en": "Dead Man's Plate",
+"name": "亡者的板甲"
+},
+"3748": {
+"en": "Titanic Hydra",
+"name": "巨型九头蛇"
+},
+"3802": {
+"en": "Lost Chapter",
+"name": "遗失的章节"
+},
+"3814": {
+"en": "Edge of Night",
+"name": "夜之锋刃"
+},
+"3869": {
+"en": "Celestial Opposition",
+"name": "星界据守"
+},
+"3870": {
+"en": "Dream Maker",
+"name": "圆梦使者"
+},
+"3871": {
+"en": "Zaz'Zak's Realmspike",
+"name": "扎兹沙克的溃口"
+},
+"3876": {
+"en": "Solstice Sleigh",
+"name": "摩天雪橇"
+},
+"3877": {
+"en": "Bloodsong",
+"name": "血鸣"
+},
+"3916": {
+"en": "Oblivion Orb",
+"name": "湮灭宝珠"
+},
+"4005": {
+"en": "Imperial Mandate",
+"name": "帝国指令"
+},
+"4401": {
+"en": "Force of Nature",
+"name": "自然之力"
+},
+"4628": {
+"en": "Horizon Focus",
+"name": "视界专注"
+},
+"4629": {
+"en": "Cosmic Drive",
+"name": "星界驱驰"
+},
+"4630": {
+"en": "Blighting Jewel",
+"name": "枯萎珠宝"
+},
+"4632": {
+"en": "Verdant Barrier",
+"name": "翠绿屏障"
+},
+"4633": {
+"en": "Riftmaker",
+"name": "裂隙制造者"
+},
+"4642": {
+"en": "Bandleglass Mirror",
+"name": "班德尔玻璃镜"
+},
+"4645": {
+"en": "Shadowflame",
+"name": "影焰"
+},
+"4646": {
+"en": "Stormsurge",
+"name": "风暴狂涌"
+},
+"6333": {
+"en": "Death's Dance",
+"name": "死亡之舞"
+},
+"6610": {
+"en": "Sundered Sky",
+"name": "焚天"
+},
+"6616": {
+"en": "Staff of Flowing Water",
+"name": "流水法杖"
+},
+"6617": {
+"en": "Moonstone Renewer",
+"name": "月石再生器"
+},
+"6620": {
+"en": "Echoes of Helia",
+"name": "海力亚的回响"
+},
+"6621": {
+"en": "Dawncore",
+"name": "黎明核心"
+},
+"6631": {
+"en": "Stridebreaker",
+"name": "挺进破坏者"
+},
+"6653": {
+"en": "Liandry's Torment",
+"name": "兰德里的折磨"
+},
+"6655": {
+"en": "Luden's Echo",
+"name": "卢登的回声"
+},
+"6657": {
+"en": "Rod of Ages",
+"name": "时光之杖"
+},
+"6662": {
+"en": "Iceborn Gauntlet",
+"name": "冰脉护手"
+},
+"6664": {
+"en": "Hollow Radiance",
+"name": "璀璨回响"
+},
+"6665": {
+"en": "Jak'Sho, The Protean",
+"name": "千变者贾修"
+},
+"6670": {
+"en": "Noonquiver",
+"name": "正午箭袋"
+},
+"6672": {
+"en": "Kraken Slayer",
+"name": "海妖杀手"
+},
+"6673": {
+"en": "Immortal Shieldbow",
+"name": "不朽盾弓"
+},
+"6675": {
+"en": "Navori Flickerblade",
+"name": "纳沃利烁刃"
+},
+"6676": {
+"en": "The Collector",
+"name": "收集者"
+},
+"6692": {
+"en": "Eclipse",
+"name": "星蚀"
+},
+"6694": {
+"en": "Serylda's Grudge",
+"name": "赛瑞尔达的怨恨"
+},
+"6695": {
+"en": "Serpent's Fang",
+"name": "巨蛇之牙"
+},
+"6697": {
+"en": "Hubris",
+"name": "狂妄"
+},
+"6698": {
+"en": "Profane Hydra",
+"name": "亵渎九头蛇"
+},
+"6699": {
+"en": "Voltaic Cyclosword",
+"name": "电震涡流剑"
+},
+"8010": {
+"en": "Bloodletter's Curse",
+"name": "放血者的诅咒"
+},
+"8020": {
+"en": "Abyssal Mask",
+"name": "深渊面具"
+}
+}

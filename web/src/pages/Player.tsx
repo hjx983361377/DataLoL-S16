@@ -174,7 +174,10 @@ export default function Player({ meta }: { meta: Meta }) {
         <ul className="log-list">
           {log.map((g) => (
             <li key={g.game.game_id}>
-              <Link className="log-row" to={"/match/" + g.game.series_id}>
+              <Link
+                className="log-row"
+                to={"/match/" + g.game.series_id + "?g=" + g.game.game_id}
+              >
                 <span className="log-date">{g.game.date.slice(5)}</span>
                 <span className="stage-tag">{stageLabel(g.game.tournament, g.game.stage)}</span>
                 <span className="log-opponent">

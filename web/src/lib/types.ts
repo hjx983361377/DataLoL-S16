@@ -88,8 +88,14 @@ export interface PlayerMeta {
   summoner?: string;
 }
 
+export interface ItemMeta {
+  name: string;
+  en: string;
+}
+
 export interface Meta {
   champions: Record<string, ChampionMeta>;
   teams: Record<string, TeamMeta>;
   players: Record<string, PlayerMeta>;
+  items: Record<string, ItemMeta>;
 }

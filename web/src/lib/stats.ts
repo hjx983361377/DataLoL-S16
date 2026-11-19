@@ -563,3 +563,54 @@ export function findPlayerKey(meta: Meta, slug: string): string | null {
   }
   return null;
 }
+
+/* ---------- 单场详情页 ---------- */
+
+export function findSeries(seriesId: number): Series | null {
+  return series.find((s) => s.series_id === seriesId) ?? null;
+}
+
+export function seriesGames(seriesId: number): Game[] {
+  return games.filter((g) => g.series_id === seriesId).sort((a, b) => a.game_id - b.game_id);
+}
+
+export function fmtGold(gold: number): string {
+  return gold.toLocaleString("en-US");
+}
+
+export const SPELL_CN: Record<string, string> = {
+  SummonerFlash: "闪现",
+  SummonerTeleport: "传送",
+  SummonerSmite: "惩戒",
+  SummonerHeal: "治疗",
+  SummonerExhaust: "虚弱",
+  SummonerBarrier: "屏障",
+  SummonerHaste: "疾跑",
+  SummonerBoost: "净化",
+  SummonerDot: "点燃"
+};
+
+export const EVENT_CN: Record<string, string> = {
+  "First blood": "一血",
+  "First Tower": "一塔",
+  "Rift Herald": "峡谷先锋",
+  Nashor: "纳什男爵",
+  "Elder Drake": "远古巨龙",
+  "Infernal Drake": "炼火龙",
+  "Chemtech Drake": "化学科技龙",
+  "Hextech Drake": "海克斯龙",
+  "Mountain Drake": "山脉龙",
+  "Ocean Drake": "海洋龙",
+  "Cloud Drake": "云端龙"
+};
+
+/** 把 dragon_types 归并成「化学科技龙 ×2、炼火龙」这种读法。 */
+export function dragonSummary(types: string[]): string {
+  const counts = new Map<string, number>();
+  for (const t of types) counts.set(t, (counts.get(t) ?? 0) + 1);
+  if (counts.size === 0) return "—";
+  return [...counts.entries()]
+    .map(([t, n]) => (EVENT_CN[t] ?? t) + (n > 1 ? " ×" + n : ""))
+    .join("、");
+}
+

@@ -6,6 +6,7 @@ import Overview from "./pages/Overview";
 import Matches from "./pages/Matches";
 import Players from "./pages/Players";
 import Player from "./pages/Player";
+import Match from "./pages/Match";
 
 export default function App() {
   const [meta, setMeta] = useState<Meta | null>(null);
@@ -64,13 +65,14 @@ export default function App() {
             <Route path="/matches" element={<Matches meta={meta} />} />
             <Route path="/players" element={<Players meta={meta} />} />
             <Route path="/player/:slug" element={<Player meta={meta} />} />
+            <Route path="/match/:seriesId" element={<Match meta={meta} />} />
             <Route
               path="*"
               element={
                 <div className="page">
                   <div className="state">
-                    <h2>这一页还在做</h2>
-                    <p>目前上线了赛事总览、比赛列表与选手榜。单场详情页在下一版。</p>
+                    <h2>这一页不存在</h2>
+                    <p>目前上线了赛事总览、比赛列表、选手榜与单场详情。</p>
                     <Link className="link-arrow" to="/">
                       回到赛事总览
                     </Link>
