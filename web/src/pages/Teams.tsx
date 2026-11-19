@@ -8,6 +8,7 @@ function TeamCard({ team, roster }: { team: TeamSummary; roster: PlayerRow[] }) 
   return (
     <Link className="team-card" to={"/team/" + team.slug}>
       <div className="team-card-head">
+        <span className="team-card-rank">{String(team.rank).padStart(2, "0")}</span>
         {team.logo ? (
           <img className="team-card-logo" src={team.logo} alt={team.name} loading="lazy" />
         ) : (
@@ -71,16 +72,16 @@ export default function Teams({ meta }: { meta: Meta }) {
     <div className="page">
       <section className="page-head">
         <p className="eyebrow rise d1">2026 全球总决赛</p>
-        <h1 className="rise d2">队伍</h1>
+        <h1 className="rise d2">战队巡礼</h1>
         <p className="section-note rise d3">
-          19 支参赛队伍，{mainEvent} 支进入主赛事。按系列赛胜率排序，点卡片查看赛程、阵容与英雄数据。
+          19 支参赛队伍，{mainEvent} 支进入主赛事。名次按赛事轮次排定，冠军、亚军、四强、八强依次往后，同一轮次内比系列赛胜场、局差与胜率。点卡片查看赛程、阵容与英雄数据。
         </p>
       </section>
 
       <section className="section rise d4">
         <div className="subhead">
           <h2 className="section-title">参赛队伍</h2>
-          <span>按系列赛胜率排序</span>
+          <span>按赛事名次排序</span>
         </div>
         <div className="team-grid">
           {teams.map((t) => (

@@ -662,6 +662,8 @@ export interface TeamSummary {
   seconds: number;
   run: string;
   runNote: string;
+  /** 赛事名次（1 起），由 buildTeams 统一排定。 */
+  rank: number;
   seriesRows: TeamSeriesRow[];
   picks: TeamChampionRow[];
   bans: TeamChampionRow[];
@@ -812,6 +814,7 @@ export function buildTeam(meta: Meta, name: string): TeamSummary | null {
     seconds,
     run,
     runNote,
+    rank: 0,
     seriesRows,
     picks: champRows(picks, meta, true),
     bans: champRows(bans, meta, false)
@@ -824,8 +827,21 @@ export function teamRoster(meta: Meta, name: string): PlayerRow[] {
     .sort((a, b) => roleIndex(a.role) - roleIndex(b.role) || b.games - a.games);
 }
 
-/** 把 dragon_types 归并成「化学科技龙 ×2、炼火龙」这种读法。 */
-/** 全部队伍，按系列赛胜率、胜场、局胜率、队名排序。 */
+/** 赛事名次分档：冠军、亚军、四强、八强、瑞士轮、入围赛依次靠后。 */
+const PLACEMENT_RANK: Record<string, number> = {
+  冠军: 1,
+  亚军: 2,
+  四强: 3,
+  八强: 4,
+  瑞士轮: 5,
+  入围赛: 6
+};
+
+export function placementRank(run: string): number {
+  return PLACEMENT_RANK[run] ?? 9;
+}
+
+/** 全部队伍，按赛事名次排定：先看走到哪一轮，同轮次内比系列赛胜场、局差、局胜率。 */
 export function buildTeams(meta: Meta): TeamSummary[] {
   const names = [...new Set([...Object.keys(meta.teams), ...series.flatMap((s) => s.teams)])];
   return names
@@ -833,13 +849,16 @@ export function buildTeams(meta: Meta): TeamSummary[] {
     .filter((t): t is TeamSummary => t !== null)
     .sort(
       (a, b) =>
-        b.seriesWinRate - a.seriesWinRate ||
+        placementRank(a.run) - placementRank(b.run) ||
         b.seriesWins - a.seriesWins ||
+        b.wins - b.losses - (a.wins - a.losses) ||
         b.winRate - a.winRate ||
         a.name.localeCompare(b.name)
-    );
+    )
+    .map((t, i) => ({ ...t, rank: i + 1 }));
 }
 
+/** 把 dragon_types 归并成「化学科技龙 ×2、炼火龙」这种读法。 */
 export function dragonSummary(types: string[]): string {
   const counts = new Map<string, number>();
   for (const t of types) counts.set(t, (counts.get(t) ?? 0) + 1);

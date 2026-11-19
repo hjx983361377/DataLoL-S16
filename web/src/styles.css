@@ -1849,6 +1849,16 @@ a.match-side-name:hover { color: var(--gold); }
 
 .team-card-head { display: flex; align-items: center; gap: 10px; }
 
+.team-card-rank {
+  flex: 0 0 auto;
+  width: 16px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
 .team-card-logo {
   width: 30px;
   height: 30px;
@@ -1921,7 +1931,9 @@ a.match-side-name:hover { color: var(--gold); }
 @media (max-width: 720px) {
   .team-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .team-card { padding: 15px 15px 14px; gap: 12px; }
-  .nav { gap: 11px; }
-  .nav a { font-size: 12.5px; }
-  .brand-text { font-size: 14px; }
+  .topbar-inner { padding-left: 16px; padding-right: 16px; gap: 10px; }
+  .nav { gap: 8px; }
+  .nav a { font-size: 12px; }
+  .brand-text { font-size: 13.5px; }
+  .brand-mark { font-size: 16px; }
 }

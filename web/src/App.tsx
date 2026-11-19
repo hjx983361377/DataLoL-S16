@@ -41,7 +41,7 @@ export default function App() {
               赛事总览
             </NavLink>
             <NavLink to="/matches">比赛列表</NavLink>
-            <NavLink to="/teams">队伍</NavLink>
+            <NavLink to="/teams">战队巡礼</NavLink>
             <NavLink to="/players">选手榜</NavLink>
           </nav>
         </div>
@@ -77,7 +77,7 @@ export default function App() {
                 <div className="page">
                   <div className="state">
                     <h2>这一页不存在</h2>
-                    <p>目前上线了赛事总览、比赛列表、队伍、选手榜，以及单场与选手详情页。</p>
+                    <p>目前上线了赛事总览、比赛列表、战队巡礼、选手榜，以及单场、战队与选手详情页。</p>
                     <Link className="link-arrow" to="/">
                       回到赛事总览
                     </Link>
@@ -96,7 +96,7 @@ export default function App() {
             <div className="footer-links">
               <Link to="/">赛事总览</Link>
               <Link to="/matches">比赛列表</Link>
-              <Link to="/teams">队伍</Link>
+              <Link to="/teams">战队巡礼</Link>
               <Link to="/players">选手榜</Link>
               <a href="https://github.com/hjx983361377/DataLoL-S16" target="_blank" rel="noreferrer">
                 数据仓库
