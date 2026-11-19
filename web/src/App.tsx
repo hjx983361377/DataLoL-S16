@@ -60,10 +60,10 @@ export default function App() {
             aria-label="Bilibili Gaming 夺得 2026 全球总决赛冠军，查看夺冠纪念"
           >
             <picture>
-              <source media="(max-width: 720px)" srcSet="/assets/brand/blg-trophy-mobile.jpg" />
+              <source media="(max-width: 720px)" srcSet="/assets/brand/blg-champions-hero-mobile.jpg" />
               <img
                 className="champ-strip-art"
-                src="/assets/brand/blg-trophy.jpg"
+                src="/assets/brand/blg-champions-hero.jpg"
                 alt="Bilibili Gaming 在 2026 全球总决赛举起召唤师杯"
                 loading="eager"
                 decoding="async"
@@ -91,7 +91,7 @@ export default function App() {
                   </svg>
                 </span>
               </span>
-              <span className="champ-strip-credit">图：摄影师一村 / 虎扑</span>
+              <span className="champ-strip-credit">图：懂球帝图集 · 官方摄影</span>
             </span>
           </Link>
         )}
