@@ -1,5 +1,5 @@
 import { games, series } from "./data";
-import type { Game, Meta, Series } from "./types";
+import type { Game, Meta, Series, TeamBlock } from "./types";
 
 export const STAGE_ORDER = [
   "ROUND1",
@@ -867,4 +867,322 @@ export function dragonSummary(types: string[]): string {
     .map(([t, n]) => (EVENT_CN[t] ?? t) + (n > 1 ? " ×" + n : ""))
     .join("、");
 }
+
+/* ---------- 英雄页 ---------- */
+
+export interface ChampionRoleRow {
+  role: string;
+  picks: number;
+  wins: number;
+  winRate: number;
+}
+
+export interface ChampionTeamRow {
+  name: string;
+  slug: string;
+  logo: string | null;
+  picks: number;
+  wins: number;
+  winRate: number | null;
+  bans: number;
+}
+
+export interface ChampionPlayerRow {
+  key: string;
+  name: string;
+  team: string;
+  teamCode: string;
+  logo: string | null;
+  role: string;
+  photo: string | null;
+  picks: number;
+  wins: number;
+  winRate: number;
+  kda: number | null;
+}
+
+export interface ChampionGameRow {
+  game: Game;
+  team: string;
+  teamLogo: string | null;
+  opponent: string;
+  opponentLogo: string | null;
+  player: string | null;
+  playerHref: string | null;
+  win: boolean;
+  k: number;
+  d: number;
+  a: number;
+  cs: number;
+  role: string | null;
+}
+
+export interface ChampionSummary {
+  name: string;
+  slug: string;
+  nameZh: string;
+  title: string;
+  key: string;
+  icon: string;
+  splash: string;
+  picks: number;
+  wins: number;
+  losses: number;
+  winRate: number | null;
+  bans: number;
+  presenceGames: number;
+  presenceRate: number;
+  bluePicks: number;
+  redPicks: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  cs: number;
+  seconds: number;
+  kda: number | null;
+  csPerMin: number;
+  avgPickOrder: number;
+  roles: ChampionRoleRow[];
+  teams: ChampionTeamRow[];
+  players: ChampionPlayerRow[];
+  games: ChampionGameRow[];
+}
+
+/** 英雄 URL 用 Riot 内部 key（LeeSin、KSante…），全小写。 */
+export function championSlug(meta: Meta, name: string): string {
+  const info = meta.champions[name];
+  return (info?.key ?? name).toLowerCase();
+}
+
+interface ChampionAcc {
+  picks: number;
+  wins: number;
+  bans: number;
+  bluePicks: number;
+  redPicks: number;
+  presence: Set<number>;
+  kills: number;
+  deaths: number;
+  assists: number;
+  cs: number;
+  seconds: number;
+  order: number;
+  roles: Map<string, { picks: number; wins: number }>;
+  teams: Map<string, { picks: number; wins: number; bans: number }>;
+  players: Map<
+    string,
+    { name: string; team: string; picks: number; wins: number; kills: number; deaths: number; assists: number }
+  >;
+  games: ChampionGameRow[];
+}
+
+export function buildChampions(meta: Meta): ChampionSummary[] {
+  const acc = new Map<string, ChampionAcc>();
+  const entry = (name: string): ChampionAcc => {
+    let e = acc.get(name);
+    if (!e) {
+      e = {
+        picks: 0,
+        wins: 0,
+        bans: 0,
+        bluePicks: 0,
+        redPicks: 0,
+        presence: new Set<number>(),
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        cs: 0,
+        seconds: 0,
+        order: 0,
+        roles: new Map(),
+        teams: new Map(),
+        players: new Map(),
+        games: []
+      };
+      acc.set(name, e);
+    }
+    return e;
+  };
+
+  for (const game of games) {
+    const sides = Object.fromEntries(game.teams.map((t) => [t.side, t])) as Record<
+      "blue" | "red",
+      TeamBlock | undefined
+    >;
+
+    for (const side of ["blue", "red"] as const) {
+      const team = sides[side];
+      const teamName = team?.name ?? side;
+      const teamLogo = team ? meta.teams[team.name]?.logo ?? null : null;
+      const other = game.teams.find((t) => t.side !== side);
+      const otherLogo = other ? meta.teams[other.name]?.logo ?? null : null;
+      const win = Boolean(team?.win);
+
+      game.picks[side].forEach((ref, idx) => {
+        const e = entry(ref.name);
+        const player = game.players.find((p) => p.team === side && p.champion === ref.name) ?? null;
+        const role = player ? meta.players[playerKey(teamName, player.name)]?.role ?? null : null;
+
+        e.picks += 1;
+        e.wins += win ? 1 : 0;
+        e.order += idx + 1;
+        if (side === "blue") e.bluePicks += 1;
+        else e.redPicks += 1;
+        e.presence.add(game.game_id);
+
+        if (player) {
+          e.kills += player.kda[0];
+          e.deaths += player.kda[1];
+          e.assists += player.kda[2];
+          e.cs += player.cs;
+          e.seconds += game.duration_seconds;
+        }
+
+        if (role) {
+          const r = e.roles.get(role) ?? { picks: 0, wins: 0 };
+          r.picks += 1;
+          r.wins += win ? 1 : 0;
+          e.roles.set(role, r);
+        }
+
+        const t = e.teams.get(teamName) ?? { picks: 0, wins: 0, bans: 0 };
+        t.picks += 1;
+        t.wins += win ? 1 : 0;
+        e.teams.set(teamName, t);
+
+        if (player) {
+          const pk = playerKey(teamName, player.name);
+          const p = e.players.get(pk) ?? {
+            name: player.name,
+            team: teamName,
+            picks: 0,
+            wins: 0,
+            kills: 0,
+            deaths: 0,
+            assists: 0
+          };
+          p.picks += 1;
+          p.wins += win ? 1 : 0;
+          p.kills += player.kda[0];
+          p.deaths += player.kda[1];
+          p.assists += player.kda[2];
+          e.players.set(pk, p);
+        }
+
+        e.games.push({
+          game,
+          team: teamName,
+          teamLogo,
+          opponent: other?.name ?? "?",
+          opponentLogo: otherLogo,
+          player: player?.name ?? null,
+          playerHref: player ? "/player/" + playerSlug(teamName, player.name) : null,
+          win,
+          k: player?.kda[0] ?? 0,
+          d: player?.kda[1] ?? 0,
+          a: player?.kda[2] ?? 0,
+          cs: player?.cs ?? 0,
+          role
+        });
+      });
+
+      for (const ref of game.bans[side]) {
+        const e = entry(ref.name);
+        e.bans += 1;
+        e.presence.add(game.game_id);
+        const t = e.teams.get(teamName) ?? { picks: 0, wins: 0, bans: 0 };
+        t.bans += 1;
+        e.teams.set(teamName, t);
+      }
+    }
+  }
+
+  return [...acc.entries()]
+    .map(([name, e]) => {
+      const info = meta.champions[name];
+      const roles: ChampionRoleRow[] = [...e.roles.entries()]
+        .map(([role, r]) => ({
+          role,
+          picks: r.picks,
+          wins: r.wins,
+          winRate: r.picks ? r.wins / r.picks : 0
+        }))
+        .sort((a, b) => b.picks - a.picks || roleIndex(a.role) - roleIndex(b.role));
+      const teams: ChampionTeamRow[] = [...e.teams.entries()]
+        .map(([tname, t]) => ({
+          name: tname,
+          slug: teamSlug(tname),
+          logo: meta.teams[tname]?.logo ?? null,
+          picks: t.picks,
+          wins: t.wins,
+          winRate: t.picks ? t.wins / t.picks : null,
+          bans: t.bans
+        }))
+        .sort((a, b) => b.picks - a.picks || b.bans - a.bans || a.name.localeCompare(b.name));
+      const players: ChampionPlayerRow[] = [...e.players.entries()]
+        .map(([pk, p]) => {
+          const pi = meta.players[pk];
+          return {
+            key: pk,
+            name: p.name,
+            team: p.team,
+            teamCode: meta.teams[p.team]?.code ?? p.team.slice(0, 3).toUpperCase(),
+            logo: meta.teams[p.team]?.logo ?? null,
+            role: pi?.role ?? "",
+            photo: pi?.photo ?? null,
+            picks: p.picks,
+            wins: p.wins,
+            winRate: p.picks ? p.wins / p.picks : 0,
+            kda: ratio(p.kills, p.deaths, p.assists)
+          };
+        })
+        .sort((a, b) => b.picks - a.picks || b.winRate - a.winRate || a.name.localeCompare(b.name));
+      const logRows = [...e.games].sort((a, b) =>
+        a.game.date < b.game.date ? 1 : a.game.date > b.game.date ? -1 : b.game.game_id - a.game.game_id
+      );
+      return {
+        name,
+        slug: (info?.key ?? name).toLowerCase(),
+        nameZh: info?.name_zh ?? name,
+        title: info?.name_zh_title ?? "",
+        key: info?.key ?? name,
+        icon: info?.icon ?? "",
+        splash: info?.splash ?? "",
+        picks: e.picks,
+        wins: e.wins,
+        losses: e.picks - e.wins,
+        winRate: e.picks ? e.wins / e.picks : null,
+        bans: e.bans,
+        presenceGames: e.presence.size,
+        presenceRate: games.length ? e.presence.size / games.length : 0,
+        bluePicks: e.bluePicks,
+        redPicks: e.redPicks,
+        kills: e.kills,
+        deaths: e.deaths,
+        assists: e.assists,
+        cs: e.cs,
+        seconds: e.seconds,
+        kda: ratio(e.kills, e.deaths, e.assists),
+        csPerMin: e.seconds ? e.cs / (e.seconds / 60) : 0,
+        avgPickOrder: e.picks ? e.order / e.picks : 0,
+        roles,
+        teams,
+        players,
+        games: logRows
+      };
+    })
+    .sort(
+      (a, b) =>
+        b.picks - a.picks ||
+        b.bans - a.bans ||
+        b.presenceGames - a.presenceGames ||
+        a.name.localeCompare(b.name)
+    );
+}
+
+export function findChampion(meta: Meta, slug: string): ChampionSummary | null {
+  const target = slug.toLowerCase();
+  return buildChampions(meta).find((c) => c.slug === target) ?? null;
+}
+
 

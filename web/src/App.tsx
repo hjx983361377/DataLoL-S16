@@ -9,6 +9,8 @@ import Player from "./pages/Player";
 import Match from "./pages/Match";
 import Team from "./pages/Team";
 import Teams from "./pages/Teams";
+import Champions from "./pages/Champions";
+import Champion from "./pages/Champion";
 
 export default function App() {
   const [meta, setMeta] = useState<Meta | null>(null);
@@ -43,6 +45,7 @@ export default function App() {
             <NavLink to="/matches">比赛列表</NavLink>
             <NavLink to="/teams">战队巡礼</NavLink>
             <NavLink to="/players">选手榜</NavLink>
+            <NavLink to="/champions">英雄榜</NavLink>
           </nav>
         </div>
       </header>
@@ -71,13 +74,15 @@ export default function App() {
             <Route path="/match/:seriesId" element={<Match meta={meta} />} />
             <Route path="/teams" element={<Teams meta={meta} />} />
             <Route path="/team/:slug" element={<Team meta={meta} />} />
+            <Route path="/champions" element={<Champions meta={meta} />} />
+            <Route path="/champion/:slug" element={<Champion meta={meta} />} />
             <Route
               path="*"
               element={
                 <div className="page">
                   <div className="state">
                     <h2>这一页不存在</h2>
-                    <p>目前上线了赛事总览、比赛列表、战队巡礼、选手榜，以及单场、战队与选手详情页。</p>
+                    <p>目前上线了赛事总览、比赛列表、战队巡礼、选手榜、英雄榜，以及单场、战队、选手与英雄详情页。</p>
                     <Link className="link-arrow" to="/">
                       回到赛事总览
                     </Link>
@@ -98,6 +103,7 @@ export default function App() {
               <Link to="/matches">比赛列表</Link>
               <Link to="/teams">战队巡礼</Link>
               <Link to="/players">选手榜</Link>
+              <Link to="/champions">英雄榜</Link>
               <a href="https://github.com/hjx983361377/DataLoL-S16" target="_blank" rel="noreferrer">
                 数据仓库
               </a>

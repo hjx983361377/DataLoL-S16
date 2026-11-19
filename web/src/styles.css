@@ -841,7 +841,15 @@ ul { list-style: none; padding: 0; }
   color: var(--ink-2);
 }
 
-.footer-links { display: flex; gap: 22px; font-size: 13px; color: var(--ink-3); }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.footer-links a { white-space: nowrap; }
 .footer-links a:hover { color: var(--ink); }
 
 .footer-fine {
@@ -1938,3 +1946,97 @@ a.match-side-name:hover { color: var(--gold); }
   .brand-text { font-size: 13.5px; }
   .brand-mark { font-size: 16px; }
 }
+
+/* ---------- champions ---------- */
+
+.champ-cell { color: inherit; }
+
+.champ-cell:hover .champ-cell-name { color: var(--gold); }
+
+.champion-name-en {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.champion-hero { grid-template-columns: minmax(0, 1fr); }
+
+.champion-art {
+  margin: clamp(22px, 2.6vw, 34px) 0 0;
+}
+
+.champion-art img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.55 / 1;
+  object-fit: cover;
+  object-position: 50% 24%;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+}
+
+.champion-hero .player-facts .role-tag { font-size: 11.5px; }
+
+.champion-roles { max-width: 620px; }
+
+.champion-log .log-champ { color: var(--ink-2); }
+
+.log-team-body { display: flex; flex-direction: column; line-height: 1.32; min-width: 0; }
+
+.log-team-player {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+.champion-teams-table .team-cell { color: inherit; }
+.champion-teams-table .team-cell:hover span:last-child { color: var(--gold); }
+
+.champion-players-table .player-cell { gap: 9px; }
+.champion-players-table .player-cell-name { font-size: 14.5px; }
+.champion-players-table .player-cell-team { font-size: 11px; }
+
+@media (max-width: 900px) {
+  .champions-table th:nth-child(3), .champions-table td:nth-child(3) { display: none; }
+  .champion-players-table th:nth-child(3), .champion-players-table td:nth-child(3) { display: none; }
+}
+
+@media (max-width: 720px) {
+  .champion-art img { aspect-ratio: 3 / 1.5; }
+  .champion-name-en { margin-top: 6px; }
+
+  .champion-log {
+    grid-template-areas: "date opponent result kda" "date champ champ champ";
+  }
+  .champion-log .log-opponent { font-size: 14px; color: var(--ink); }
+  .champion-log .log-champ { font-size: 12.5px; color: var(--ink-2); }
+  .champion-log .log-champ::before { content: "vs "; font-size: 11.5px; color: var(--ink-3); }
+
+  .champions-table th:nth-child(5), .champions-table td:nth-child(5),
+  .champions-table th:nth-child(8), .champions-table td:nth-child(8) { display: none; }
+  .champions-table .rate-bar { display: none; }
+  .champions-table th.num, .champions-table td.num { padding-left: 12px; }
+  .champions-table .champ-cell { gap: 8px; }
+  .champions-table .champ-cell-name { font-size: 14px; }
+
+  .champion-players-table th:nth-child(5), .champion-players-table td:nth-child(5),
+  .champion-players-table th:nth-child(6), .champion-players-table td:nth-child(6) { display: none; }
+  .champion-players-table .rate-bar { display: none; }
+  .champion-players-table .player-cell-team { display: none; }
+
+  .champion-teams-table th:nth-child(5), .champion-teams-table td:nth-child(5) { display: none; }
+}
+
+@media (max-width: 480px) {
+  .topbar-inner { padding-left: 14px; padding-right: 14px; gap: 8px; }
+  .brand { gap: 7px; }
+  .brand-mark { font-size: 15px; }
+  .brand-text { font-size: 12px; letter-spacing: 0.01em; }
+  .nav { gap: 6px; }
+  .nav a { font-size: 11.5px; letter-spacing: 0; padding: 4px 0; }
+}
+

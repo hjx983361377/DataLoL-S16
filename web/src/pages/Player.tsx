@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import type { Meta } from "../lib/types";
 import {
   buildPlayers,
+  championSlug,
   findPlayerKey,
   fmtDuration,
   fmtPct,
@@ -142,13 +143,13 @@ export default function Player({ meta }: { meta: Meta }) {
               {champions.map((c) => (
                 <tr key={c.name}>
                   <td>
-                    <span className="champ-cell">
+                    <Link className="champ-cell" to={"/champion/" + championSlug(meta, c.name)}>
                       {c.icon ? <img className="champ-icon" src={c.icon} alt="" loading="lazy" /> : null}
                       <span className="champ-cell-text">
                         <span className="champ-cell-name">{c.nameZh}</span>
                         <span className="champ-cell-en">{c.name}</span>
                       </span>
-                    </span>
+                    </Link>
                   </td>
                   <td className="num">{c.games}</td>
                   <td className="num">

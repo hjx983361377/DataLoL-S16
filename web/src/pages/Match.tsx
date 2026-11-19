@@ -5,6 +5,7 @@ import {
   EVENT_CN,
   ROLE_ORDER,
   SPELL_CN,
+  championSlug,
   dragonSummary,
   findSeries,
   fmtDuration,
@@ -242,13 +243,13 @@ function Lineup({
                     </Link>
                   </td>
                   <td>
-                    <span className="champ-cell">
+                    <Link className="champ-cell" to={"/champion/" + championSlug(meta, p.champion)}>
                       {cm?.icon ? <img className="champ-icon" src={cm.icon} alt="" loading="lazy" /> : null}
                       <span className="champ-cell-text">
                         <span className="champ-cell-name">{cm?.name_zh ?? p.champion}</span>
                         <span className="champ-cell-en">{p.champion}</span>
                       </span>
-                    </span>
+                    </Link>
                   </td>
                   <td className="num">
                     {p.kda[0]} / {p.kda[1]} / {p.kda[2]}
