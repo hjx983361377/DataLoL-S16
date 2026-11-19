@@ -2199,7 +2199,8 @@ a.match-side-name:hover { color: var(--gold); }
   display: block;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: clamp(280px, 29vw, 430px);
+  aspect-ratio: 3 / 2;
+  max-height: 1000px;
   overflow: hidden;
   background: #0d0b09;
   color: #f6f1e7;
@@ -2207,35 +2208,47 @@ a.match-side-name:hover { color: var(--gold); }
 .champ-strip picture { display: contents; }
 .champ-strip-art {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: auto;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  max-width: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 13%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 13%);
-  filter: saturate(0.96) brightness(0.94);
+  object-fit: cover;
+  object-position: 50% 40%;
+  filter: saturate(1.02) brightness(0.97);
   transition: filter 0.28s var(--ease);
 }
-.champ-strip:hover .champ-strip-art { filter: saturate(1) brightness(1); }
+.champ-strip:hover .champ-strip-art { filter: saturate(1.08) brightness(1.03); }
 .champ-strip::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(0deg, rgba(9, 7, 5, 0.62) 0%, rgba(9, 7, 5, 0) 30%);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 6, 4, 0.88) 0%,
+      rgba(8, 6, 4, 0.62) 14%,
+      rgba(8, 6, 4, 0.2) 32%,
+      rgba(8, 6, 4, 0) 52%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(8, 6, 4, 0.82) 0%,
+      rgba(8, 6, 4, 0.46) 26%,
+      rgba(8, 6, 4, 0.1) 48%,
+      rgba(8, 6, 4, 0) 60%
+    );
 }
 .champ-strip-inner {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 28px;
   height: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: clamp(46px, 5vw, 74px) 32px 0;
 }
 .champ-strip-text {
   display: flex;
@@ -2246,35 +2259,44 @@ a.match-side-name:hover { color: var(--gold); }
 }
 .champ-strip-label {
   font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #d3aa6b;
+  color: #e0b878;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
 }
 .champ-strip-title { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .champ-strip-title b {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(21px, 2.2vw, 30px);
+  font-size: clamp(26px, 3vw, 44px);
   letter-spacing: 0.005em;
-  color: #f8f3e9;
+  color: #fbf7ee;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.62);
 }
 .champ-strip-score {
   font-family: var(--mono);
-  font-size: clamp(13px, 1.1vw, 15.5px);
+  font-size: clamp(14px, 1.35vw, 19px);
   letter-spacing: 0.02em;
-  color: #e2cda8;
+  color: #eddcbb;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
 }
-.champ-strip-note { font-size: 12.5px; line-height: 1.4; color: rgba(246, 241, 231, 0.66); }
+.champ-strip-note {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(248, 244, 236, 0.84);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7);
+}
 .champ-strip-tail {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 5px;
+  margin-top: 9px;
   padding-bottom: 2px;
-  font-size: 13px;
-  color: #e6cfa6;
-  border-bottom: 1px solid rgba(214, 182, 127, 0.45);
+  font-size: 13.5px;
+  color: #edd5ac;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(214, 182, 127, 0.5);
   transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
 }
 .champ-strip:hover .champ-strip-tail { color: #f8f3e9; border-color: rgba(248, 243, 233, 0.7); }
@@ -2508,36 +2530,30 @@ a.match-side-name:hover { color: var(--gold); }
   .search-field { height: 42px; }
   .search-panel { max-height: 60vh; }
 
-  /* 窄屏：原画整幅铺在上面，文字落到下方的墨色块上，不压照片 */
-  .champ-strip {
-    height: auto;
-    display: flex;
-    flex-direction: column;
+  /* 窄屏：整幅照片仍是背景，文字压在下方，加重底部墨色渐变保证可读 */
+  .champ-strip { max-height: none; }
+  .champ-strip::after {
+    background:
+      linear-gradient(
+        0deg,
+        rgba(8, 6, 4, 0.97) 0%,
+        rgba(8, 6, 4, 0.92) 26%,
+        rgba(8, 6, 4, 0.62) 48%,
+        rgba(8, 6, 4, 0.18) 68%,
+        rgba(8, 6, 4, 0) 84%
+      );
   }
-  .champ-strip-art {
-    position: static;
-    width: 100%;
-    height: auto;
-    -webkit-mask-image: none;
-    mask-image: none;
-    filter: none;
-  }
-  .champ-strip::after { display: none; }
   .champ-strip-inner {
-    position: static;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 18px 20px 22px;
+    align-items: flex-end;
+    padding: 0 18px 26px;
   }
-  .champ-strip-text { gap: 6px; }
-  .champ-strip-label { font-size: 9.5px; }
-  .champ-strip-title b { font-size: 21px; }
+  .champ-strip-text { gap: 5px; }
+  .champ-strip-label { font-size: 9.5px; letter-spacing: 0.14em; }
+  .champ-strip-title { gap: 9px; }
+  .champ-strip-title b { font-size: 22px; }
   .champ-strip-score { font-size: 12.5px; }
-  .champ-strip-note { font-size: 11.5px; max-width: 86%; }
-  .champ-strip-tail { font-size: 12px; }
+  .champ-strip-note { font-size: 11.5px; max-width: 92%; }
+  .champ-strip-tail { font-size: 12px; margin-top: 6px; }
   .champ-strip-credit { display: none; }
 
   /* 窄屏：原画单独成横带，文字落到下方的墨色块上，避免压在奖杯上 */
