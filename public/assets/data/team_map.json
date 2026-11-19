@@ -59,6 +59,11 @@
   "api_name": "LYON",
   "code": "LYON"
  },
+ "Los Grandes": {
+  "logo": "/assets/teams/los-grandes.png",
+  "api_name": "LOS Academy",
+  "code": "LOS"
+ },
  "MVK Esports": {
   "logo": "/assets/teams/mvk-esports.png",
   "api_name": "MVK Esports",

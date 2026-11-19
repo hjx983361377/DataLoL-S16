@@ -141,19 +141,24 @@ def used_from_dataset() -> tuple[dict, set, set, set]:
 def resolve_champions(names: dict, champ_en: dict, champ_zh: dict, meta: dict) -> dict:
     by_norm = {norm(k): k for k in champ_en}
     by_name = {norm(v["name"]): k for k, v in champ_en.items()}
+    # keyed by the raw gol.gg display name, which is what data/games.json uses
     resolved, missing = {}, []
     for name, gid in sorted(names.items()):
         key = KEY_ALIASES.get(norm(name)) or by_name.get(norm(name)) or by_norm.get(norm(name))
         if not key:
             missing.append(name)
             continue
-        resolved[key] = {
+        zh = champ_zh.get(key, {})
+        resolved[name] = {
             "golgg_name": name,
             "golgg_id": gid,
             "riot_id": int(champ_en[key]["key"]),
             "key": key,
             "name": champ_en[key]["name"],
-            "name_zh": champ_zh.get(key, {}).get("name", champ_en[key]["name"]),
+            # DataDragon zh_CN swaps the two fields: "name" is the fancy title (盲僧),
+            # "title" is the champion's real name (李青). Sites want the real name.
+            "name_zh": zh.get("title") or zh.get("name") or champ_en[key]["name"],
+            "name_zh_title": zh.get("name") or "",
             "icon": f"/assets/champions/{key}.png",
             "splash": f"/assets/champions/splash/{key}.jpg",
         }
@@ -178,7 +183,10 @@ def team_jobs(teams: set) -> list:
         "cloud9": "cloud9kia",
         "geng": "gengesports",
         "teamliquid": "teamliquidhondafirst",  # TL horse mark, not the Alienware bug
-        # no "Los Grandes" entry in the API: "Fla Los Grandes" is Black Dragons, a different org
+        # gol.gg still says "Los Grandes"; the org rebranded to LOS in 2023 and the
+        # official Worlds 2026 event lists it as "LOS". "Fla Los Grandes" (FLW) is
+        # Black Dragons, a different club - do not match it.
+        "losgrandes": "los",
     }
     jobs, matched, missing = [], {}, []
     for t in sorted(teams):
@@ -212,12 +220,18 @@ def main() -> int:
     champs = resolve_champions(names, champ_en, champ_zh, meta)
     print(f"champions: {len(champs)}  items: {len(items)}  spells: {len(spells)}  teams: {len(teams)}", flush=True)
 
-    jobs = [(f"{DD}/img/champion/{k}.png", OUT / "champions" / f"{k}.png") for k in sorted(champs)]
+    jobs = [
+        (f"{DD}/img/champion/{c['key']}.png", OUT / "champions" / f"{c['key']}.png")
+        for _, c in sorted(champs.items())
+    ]
     jobs += [(f"{DD}/img/item/{i}.png", OUT / "items" / f"{i}.png") for i in sorted(items)]
     jobs += [(f"{DD}/img/spell/{s}.png", OUT / "spells" / f"{s}.png") for s in sorted(spells)]
     if args.splash:
-        jobs += [(f"https://ddragon.leagueoflegends.com/cdn/img/champion/splash/{k}_0.jpg",
-                  OUT / "champions" / "splash" / f"{k}.jpg") for k in sorted(champs)]
+        jobs += [
+            (f"https://ddragon.leagueoflegends.com/cdn/img/champion/splash/{c['key']}_0.jpg",
+             OUT / "champions" / "splash" / f"{c['key']}.jpg")
+            for _, c in sorted(champs.items())
+        ]
     team_meta = {}
     if not args.no_teams:
         tjobs, team_meta = team_jobs(teams)

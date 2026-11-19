@@ -65728,14 +65728,6 @@
       "role": "support"
      },
      {
-      "id": "99566408534404649",
-      "summonerName": "Julaxe",
-      "firstName": "Julián",
-      "lastName": "Escobar",
-      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/julaxe-cmkubrcu.png",
-      "role": "jungle"
-     },
-     {
       "id": "99566408544558791",
       "summonerName": "Pillo",
       "firstName": "José ",
@@ -65766,6 +65758,14 @@
       "lastName": "Pérez",
       "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/andreus-j4tob9dr.png",
       "role": "bottom"
+     },
+     {
+      "id": "99566408534404649",
+      "summonerName": "Julaxe",
+      "firstName": "Julián",
+      "lastName": "Escobar",
+      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/julaxe-cmkubrcu.png",
+      "role": "jungle"
      }
     ]
    },
@@ -65780,38 +65780,6 @@
     "status": "archived",
     "homeLeague": null,
     "players": [
-     {
-      "id": "99566408546681981",
-      "summonerName": "Unknown",
-      "firstName": "Carlos ",
-      "lastName": "Carranza ",
-      "image": "https://static.lolesports.com/players/download.png",
-      "role": "support"
-     },
-     {
-      "id": "99566408535108217",
-      "summonerName": "Jer0m",
-      "firstName": "Jerónimo",
-      "lastName": "Pujades",
-      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/jer0m-h1u28bu1.png",
-      "role": "top"
-     },
-     {
-      "id": "99566408527814333",
-      "summonerName": "DCStar",
-      "firstName": "Carlos ",
-      "lastName": "Méndez ",
-      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/dcstar-2dm1bvbl.png",
-      "role": "support"
-     },
-     {
-      "id": "99566408548798069",
-      "summonerName": "Zelt",
-      "firstName": "Jairo Camilo ",
-      "lastName": "Urbina Orozco",
-      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/zelt-b05dx6m.png",
-      "role": "mid"
-     },
      {
       "id": "99566408552585339",
       "summonerName": "Nurak",
@@ -65835,6 +65803,38 @@
       "lastName": "García",
       "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/itsi-32aqa1vh.png",
       "role": "jungle"
+     },
+     {
+      "id": "99566408548798069",
+      "summonerName": "Zelt",
+      "firstName": "Jairo Camilo ",
+      "lastName": "Urbina Orozco",
+      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/zelt-b05dx6m.png",
+      "role": "mid"
+     },
+     {
+      "id": "99566408527814333",
+      "summonerName": "DCStar",
+      "firstName": "Carlos ",
+      "lastName": "Méndez ",
+      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/dcstar-2dm1bvbl.png",
+      "role": "support"
+     },
+     {
+      "id": "99566408535108217",
+      "summonerName": "Jer0m",
+      "firstName": "Jerónimo",
+      "lastName": "Pujades",
+      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/jer0m-h1u28bu1.png",
+      "role": "top"
+     },
+     {
+      "id": "99566408546681981",
+      "summonerName": "Unknown",
+      "firstName": "Carlos ",
+      "lastName": "Carranza ",
+      "image": "https://static.lolesports.com/players/download.png",
+      "role": "support"
      }
     ]
    },
@@ -65850,12 +65850,12 @@
     "homeLeague": null,
     "players": [
      {
-      "id": "99842624880259725",
-      "summonerName": "Butter",
-      "firstName": "Hsien Ming",
-      "lastName": "Lee",
-      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/butter-9pwsnoue.png",
-      "role": "jungle"
+      "id": "99842624887702578",
+      "summonerName": "SkuLL",
+      "firstName": "Kwok Man",
+      "lastName": "Ng",
+      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/skull-5azwqrki.png",
+      "role": "support"
      },
      {
       "id": "99842624883099294",
@@ -65872,6 +65872,14 @@
       "lastName": "Chen",
       "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/pandabb-9mk6tfxg.png",
       "role": "mid"
+     },
+     {
+      "id": "99842624880259725",
+      "summonerName": "Butter",
+      "firstName": "Hsien Ming",
+      "lastName": "Lee",
+      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/butter-9pwsnoue.png",
+      "role": "jungle"
      },
      {
       "id": "99842624881724740",
@@ -65896,14 +65904,6 @@
       "lastName": "Park",
       "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/pingping-hzi2yb5a.png",
       "role": "top"
-     },
-     {
-      "id": "99842624887702578",
-      "summonerName": "SkuLL",
-      "firstName": "Kwok Man",
-      "lastName": "Ng",
-      "image": "https://lolstatic-a.akamaihd.net/esports-assets/production/player/skull-5azwqrki.png",
-      "role": "support"
      }
     ]
    },

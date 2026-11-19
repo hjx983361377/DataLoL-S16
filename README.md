@@ -42,7 +42,7 @@ python collect.py --season S16 --prefix "Worlds 2026"
 
 ~~~bash
 python tools/assets/fetch_assets.py            # 图标 + 元数据，约 11 MB，已本地化
-python tools/assets/fetch_assets.py --splash   # 追加英雄原画，约 +15 MB
+python tools/assets/fetch_assets.py --splash   # 追加英雄原画（107 张，+16.8 MB），已本地化
 ~~~
 
 素材一次性下到本地，站点断网也能跑。**注意**：`data/games.json` 里的 `id` 是 gol.gg 自己的英雄编号（不是 Riot id，例如 Olaf 在 gol.gg 是 66、在 Riot 是 2），所以图标一律通过 `name` 归一化后用 `champion_map.json` 查，别拿 `id` 直接对 DataDragon。
@@ -64,9 +64,19 @@ python tools/assets/fetch_assets.py --splash   # 追加英雄原画，约 +15 MB
 
 stage 取值：ROUND1..ROUND5、QUARTERFINALS、SEMIFINALS、FINALS。
 
-## 站点规划（P0 待开工）
+## 站点（web/，全容器化开发）
 
-- 全容器化开发：docker compose 起 api + web（+ SQLite），宿主机只留 Docker 和浏览器
+~~~bash
+docker compose up -d      # 起 node:22-alpine 容器跑 Vite dev，http://localhost:5173
+docker compose logs -f web  # 看编译日志
+~~~
+
+宿主机不需要装 Node，只留 Docker 和浏览器；源码挂在容器里，改文件即时 HMR。当前 P0 页：
+
+- `/` 赛事总览：6 项 KPI、阶段分布、最新战报、19 队战绩表（胜率/蓝红方/场均大小龙）、出场最多与 Ban 最热
+- `/matches` 比赛列表：按赛事 / 阶段 / 队伍筛选，46 个系列赛
+
+规划中：`/stage/:stage`、`/match/:seriesId?game=n`（BP + 选手表 + 经济曲线）、`/team/:id`、`/player/:id`、`/champion/:id`、`/compare`。
 - 路由：/ 总览、/stage/:stage、/matches、/match/:seriesId?game=n、/team/:id、/player/:id、/champion/:id、/compare
 - 素材本地化：DataDragon 英雄头像 / 装备 / 技能图标、队伍 logo 一次性下到 public/assets，避免断网白屏
 - 升华点（P1/P2）：一句话复盘、BP 桑基图、风格画像、中文观赛黑话、"如果"模拟

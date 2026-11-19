@@ -23,6 +23,8 @@ data/raw/*
 # asset pipeline temp files (regenerable)
 public/assets/teams_api.json
 public/assets/_preview/
+.screens/
+tools/_tmp_*
 tools/assets/fetch.log
 
 # build output

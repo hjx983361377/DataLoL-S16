@@ -5,7 +5,8 @@
   "riot_id": 266,
   "key": "Aatrox",
   "name": "Aatrox",
-  "name_zh": "暗裔剑魔",
+  "name_zh": "亚托克斯",
+  "name_zh_title": "暗裔剑魔",
   "icon": "/assets/champions/Aatrox.png",
   "splash": "/assets/champions/splash/Aatrox.jpg"
  },
@@ -15,7 +16,8 @@
   "riot_id": 103,
   "key": "Ahri",
   "name": "Ahri",
-  "name_zh": "九尾妖狐",
+  "name_zh": "阿狸",
+  "name_zh_title": "九尾妖狐",
   "icon": "/assets/champions/Ahri.png",
   "splash": "/assets/champions/splash/Ahri.jpg"
  },
@@ -25,7 +27,8 @@
   "riot_id": 84,
   "key": "Akali",
   "name": "Akali",
-  "name_zh": "离群之刺",
+  "name_zh": "阿卡丽",
+  "name_zh_title": "离群之刺",
   "icon": "/assets/champions/Akali.png",
   "splash": "/assets/champions/splash/Akali.jpg"
  },
@@ -35,7 +38,8 @@
   "riot_id": 12,
   "key": "Alistar",
   "name": "Alistar",
-  "name_zh": "牛头酋长",
+  "name_zh": "阿利斯塔",
+  "name_zh_title": "牛头酋长",
   "icon": "/assets/champions/Alistar.png",
   "splash": "/assets/champions/splash/Alistar.jpg"
  },
@@ -45,7 +49,8 @@
   "riot_id": 799,
   "key": "Ambessa",
   "name": "Ambessa",
-  "name_zh": "铁血狼母",
+  "name_zh": "安蓓萨",
+  "name_zh_title": "铁血狼母",
   "icon": "/assets/champions/Ambessa.png",
   "splash": "/assets/champions/splash/Ambessa.jpg"
  },
@@ -55,7 +60,8 @@
   "riot_id": 34,
   "key": "Anivia",
   "name": "Anivia",
-  "name_zh": "冰晶凤凰",
+  "name_zh": "艾尼维亚",
+  "name_zh_title": "冰晶凤凰",
   "icon": "/assets/champions/Anivia.png",
   "splash": "/assets/champions/splash/Anivia.jpg"
  },
@@ -65,7 +71,8 @@
   "riot_id": 1,
   "key": "Annie",
   "name": "Annie",
-  "name_zh": "黑暗之女",
+  "name_zh": "安妮",
+  "name_zh_title": "黑暗之女",
   "icon": "/assets/champions/Annie.png",
   "splash": "/assets/champions/splash/Annie.jpg"
  },
@@ -75,7 +82,8 @@
   "riot_id": 523,
   "key": "Aphelios",
   "name": "Aphelios",
-  "name_zh": "残月之肃",
+  "name_zh": "厄斐琉斯",
+  "name_zh_title": "残月之肃",
   "icon": "/assets/champions/Aphelios.png",
   "splash": "/assets/champions/splash/Aphelios.jpg"
  },
@@ -85,7 +93,8 @@
   "riot_id": 22,
   "key": "Ashe",
   "name": "Ashe",
-  "name_zh": "寒冰射手",
+  "name_zh": "艾希",
+  "name_zh_title": "寒冰射手",
   "icon": "/assets/champions/Ashe.png",
   "splash": "/assets/champions/splash/Ashe.jpg"
  },
@@ -95,7 +104,8 @@
   "riot_id": 893,
   "key": "Aurora",
   "name": "Aurora",
-  "name_zh": "双界灵兔",
+  "name_zh": "阿萝拉",
+  "name_zh_title": "双界灵兔",
   "icon": "/assets/champions/Aurora.png",
   "splash": "/assets/champions/splash/Aurora.jpg"
  },
@@ -105,7 +115,8 @@
   "riot_id": 432,
   "key": "Bard",
   "name": "Bard",
-  "name_zh": "星界游神",
+  "name_zh": "巴德",
+  "name_zh_title": "星界游神",
   "icon": "/assets/champions/Bard.png",
   "splash": "/assets/champions/splash/Bard.jpg"
  },
@@ -115,7 +126,8 @@
   "riot_id": 51,
   "key": "Caitlyn",
   "name": "Caitlyn",
-  "name_zh": "皮城女警",
+  "name_zh": "凯特琳",
+  "name_zh_title": "皮城女警",
   "icon": "/assets/champions/Caitlyn.png",
   "splash": "/assets/champions/splash/Caitlyn.jpg"
  },
@@ -125,7 +137,8 @@
   "riot_id": 164,
   "key": "Camille",
   "name": "Camille",
-  "name_zh": "青钢影",
+  "name_zh": "卡蜜尔",
+  "name_zh_title": "青钢影",
   "icon": "/assets/champions/Camille.png",
   "splash": "/assets/champions/splash/Camille.jpg"
  },
@@ -135,7 +148,8 @@
   "riot_id": 69,
   "key": "Cassiopeia",
   "name": "Cassiopeia",
-  "name_zh": "魔蛇之拥",
+  "name_zh": "卡西奥佩娅",
+  "name_zh_title": "魔蛇之拥",
   "icon": "/assets/champions/Cassiopeia.png",
   "splash": "/assets/champions/splash/Cassiopeia.jpg"
  },
@@ -145,7 +159,8 @@
   "riot_id": 31,
   "key": "Chogath",
   "name": "Cho'Gath",
-  "name_zh": "虚空恐惧",
+  "name_zh": "科加斯",
+  "name_zh_title": "虚空恐惧",
   "icon": "/assets/champions/Chogath.png",
   "splash": "/assets/champions/splash/Chogath.jpg"
  },
@@ -155,7 +170,8 @@
   "riot_id": 42,
   "key": "Corki",
   "name": "Corki",
-  "name_zh": "英勇投弹手",
+  "name_zh": "库奇",
+  "name_zh_title": "英勇投弹手",
   "icon": "/assets/champions/Corki.png",
   "splash": "/assets/champions/splash/Corki.jpg"
  },
@@ -165,7 +181,8 @@
   "riot_id": 131,
   "key": "Diana",
   "name": "Diana",
-  "name_zh": "皎月女神",
+  "name_zh": "黛安娜",
+  "name_zh_title": "皎月女神",
   "icon": "/assets/champions/Diana.png",
   "splash": "/assets/champions/splash/Diana.jpg"
  },
@@ -175,7 +192,8 @@
   "riot_id": 119,
   "key": "Draven",
   "name": "Draven",
-  "name_zh": "荣耀行刑官",
+  "name_zh": "德莱文",
+  "name_zh_title": "荣耀行刑官",
   "icon": "/assets/champions/Draven.png",
   "splash": "/assets/champions/splash/Draven.jpg"
  },
@@ -185,7 +203,8 @@
   "riot_id": 60,
   "key": "Elise",
   "name": "Elise",
-  "name_zh": "蜘蛛女皇",
+  "name_zh": "伊莉丝",
+  "name_zh_title": "蜘蛛女皇",
   "icon": "/assets/champions/Elise.png",
   "splash": "/assets/champions/splash/Elise.jpg"
  },
@@ -195,7 +214,8 @@
   "riot_id": 81,
   "key": "Ezreal",
   "name": "Ezreal",
-  "name_zh": "探险家",
+  "name_zh": "伊泽瑞尔",
+  "name_zh_title": "探险家",
   "icon": "/assets/champions/Ezreal.png",
   "splash": "/assets/champions/splash/Ezreal.jpg"
  },
@@ -205,7 +225,8 @@
   "riot_id": 3,
   "key": "Galio",
   "name": "Galio",
-  "name_zh": "正义巨像",
+  "name_zh": "加里奥",
+  "name_zh_title": "正义巨像",
   "icon": "/assets/champions/Galio.png",
   "splash": "/assets/champions/splash/Galio.jpg"
  },
@@ -215,7 +236,8 @@
   "riot_id": 41,
   "key": "Gangplank",
   "name": "Gangplank",
-  "name_zh": "海洋之灾",
+  "name_zh": "普朗克",
+  "name_zh_title": "海洋之灾",
   "icon": "/assets/champions/Gangplank.png",
   "splash": "/assets/champions/splash/Gangplank.jpg"
  },
@@ -225,7 +247,8 @@
   "riot_id": 150,
   "key": "Gnar",
   "name": "Gnar",
-  "name_zh": "迷失之牙",
+  "name_zh": "纳尔",
+  "name_zh_title": "迷失之牙",
   "icon": "/assets/champions/Gnar.png",
   "splash": "/assets/champions/splash/Gnar.jpg"
  },
@@ -235,7 +258,8 @@
   "riot_id": 79,
   "key": "Gragas",
   "name": "Gragas",
-  "name_zh": "酒桶",
+  "name_zh": "古拉加斯",
+  "name_zh_title": "酒桶",
   "icon": "/assets/champions/Gragas.png",
   "splash": "/assets/champions/splash/Gragas.jpg"
  },
@@ -245,7 +269,8 @@
   "riot_id": 887,
   "key": "Gwen",
   "name": "Gwen",
-  "name_zh": "灵罗娃娃",
+  "name_zh": "格温",
+  "name_zh_title": "灵罗娃娃",
   "icon": "/assets/champions/Gwen.png",
   "splash": "/assets/champions/splash/Gwen.jpg"
  },
@@ -255,7 +280,8 @@
   "riot_id": 910,
   "key": "Hwei",
   "name": "Hwei",
-  "name_zh": "异画师",
+  "name_zh": "彗",
+  "name_zh_title": "异画师",
   "icon": "/assets/champions/Hwei.png",
   "splash": "/assets/champions/splash/Hwei.jpg"
  },
@@ -265,17 +291,19 @@
   "riot_id": 39,
   "key": "Irelia",
   "name": "Irelia",
-  "name_zh": "刀锋舞者",
+  "name_zh": "艾瑞莉娅",
+  "name_zh_title": "刀锋舞者",
   "icon": "/assets/champions/Irelia.png",
   "splash": "/assets/champions/splash/Irelia.jpg"
  },
- "JarvanIV": {
+ "Jarvan IV": {
   "golgg_name": "Jarvan IV",
   "golgg_id": 34,
   "riot_id": 59,
   "key": "JarvanIV",
   "name": "Jarvan IV",
-  "name_zh": "德玛西亚皇子",
+  "name_zh": "嘉文四世",
+  "name_zh_title": "德玛西亚皇子",
   "icon": "/assets/champions/JarvanIV.png",
   "splash": "/assets/champions/splash/JarvanIV.jpg"
  },
@@ -285,7 +313,8 @@
   "riot_id": 24,
   "key": "Jax",
   "name": "Jax",
-  "name_zh": "武器大师",
+  "name_zh": "贾克斯",
+  "name_zh_title": "武器大师",
   "icon": "/assets/champions/Jax.png",
   "splash": "/assets/champions/splash/Jax.jpg"
  },
@@ -295,7 +324,8 @@
   "riot_id": 126,
   "key": "Jayce",
   "name": "Jayce",
-  "name_zh": "未来守护者",
+  "name_zh": "杰斯",
+  "name_zh_title": "未来守护者",
   "icon": "/assets/champions/Jayce.png",
   "splash": "/assets/champions/splash/Jayce.jpg"
  },
@@ -305,7 +335,8 @@
   "riot_id": 202,
   "key": "Jhin",
   "name": "Jhin",
-  "name_zh": "戏命师",
+  "name_zh": "烬",
+  "name_zh_title": "戏命师",
   "icon": "/assets/champions/Jhin.png",
   "splash": "/assets/champions/splash/Jhin.jpg"
  },
@@ -315,7 +346,8 @@
   "riot_id": 222,
   "key": "Jinx",
   "name": "Jinx",
-  "name_zh": "暴走萝莉",
+  "name_zh": "金克丝",
+  "name_zh_title": "暴走萝莉",
   "icon": "/assets/champions/Jinx.png",
   "splash": "/assets/champions/splash/Jinx.jpg"
  },
@@ -325,7 +357,8 @@
   "riot_id": 897,
   "key": "KSante",
   "name": "K'Sante",
-  "name_zh": "纳祖芒荣耀",
+  "name_zh": "奎桑提",
+  "name_zh_title": "纳祖芒荣耀",
   "icon": "/assets/champions/KSante.png",
   "splash": "/assets/champions/splash/KSante.jpg"
  },
@@ -335,7 +368,8 @@
   "riot_id": 145,
   "key": "Kaisa",
   "name": "Kai'Sa",
-  "name_zh": "虚空之女",
+  "name_zh": "卡莎",
+  "name_zh_title": "虚空之女",
   "icon": "/assets/champions/Kaisa.png",
   "splash": "/assets/champions/splash/Kaisa.jpg"
  },
@@ -345,7 +379,8 @@
   "riot_id": 429,
   "key": "Kalista",
   "name": "Kalista",
-  "name_zh": "复仇之矛",
+  "name_zh": "卡莉丝塔",
+  "name_zh_title": "复仇之矛",
   "icon": "/assets/champions/Kalista.png",
   "splash": "/assets/champions/splash/Kalista.jpg"
  },
@@ -355,7 +390,8 @@
   "riot_id": 43,
   "key": "Karma",
   "name": "Karma",
-  "name_zh": "天启者",
+  "name_zh": "卡尔玛",
+  "name_zh_title": "天启者",
   "icon": "/assets/champions/Karma.png",
   "splash": "/assets/champions/splash/Karma.jpg"
  },
@@ -365,17 +401,19 @@
   "riot_id": 85,
   "key": "Kennen",
   "name": "Kennen",
-  "name_zh": "狂暴之心",
+  "name_zh": "凯南",
+  "name_zh_title": "狂暴之心",
   "icon": "/assets/champions/Kennen.png",
   "splash": "/assets/champions/splash/Kennen.jpg"
  },
- "Khazix": {
+ "KhaZix": {
   "golgg_name": "KhaZix",
   "golgg_id": 44,
   "riot_id": 121,
   "key": "Khazix",
   "name": "Kha'Zix",
-  "name_zh": "虚空掠夺者",
+  "name_zh": "卡兹克",
+  "name_zh_title": "虚空掠夺者",
   "icon": "/assets/champions/Khazix.png",
   "splash": "/assets/champions/splash/Khazix.jpg"
  },
@@ -385,7 +423,8 @@
   "riot_id": 203,
   "key": "Kindred",
   "name": "Kindred",
-  "name_zh": "永猎双子",
+  "name_zh": "千珏",
+  "name_zh_title": "永猎双子",
   "icon": "/assets/champions/Kindred.png",
   "splash": "/assets/champions/splash/Kindred.jpg"
  },
@@ -395,7 +434,8 @@
   "riot_id": 240,
   "key": "Kled",
   "name": "Kled",
-  "name_zh": "暴怒骑士",
+  "name_zh": "克烈",
+  "name_zh_title": "暴怒骑士",
   "icon": "/assets/champions/Kled.png",
   "splash": "/assets/champions/splash/Kled.jpg"
  },
@@ -405,27 +445,30 @@
   "riot_id": 96,
   "key": "KogMaw",
   "name": "Kog'Maw",
-  "name_zh": "深渊巨口",
+  "name_zh": "克格莫",
+  "name_zh_title": "深渊巨口",
   "icon": "/assets/champions/KogMaw.png",
   "splash": "/assets/champions/splash/KogMaw.jpg"
  },
- "Leblanc": {
+ "LeBlanc": {
   "golgg_name": "LeBlanc",
   "golgg_id": 46,
   "riot_id": 7,
   "key": "Leblanc",
   "name": "LeBlanc",
-  "name_zh": "诡术妖姬",
+  "name_zh": "乐芙兰",
+  "name_zh_title": "诡术妖姬",
   "icon": "/assets/champions/Leblanc.png",
   "splash": "/assets/champions/splash/Leblanc.jpg"
  },
- "LeeSin": {
+ "Lee Sin": {
   "golgg_name": "Lee Sin",
   "golgg_id": 47,
   "riot_id": 64,
   "key": "LeeSin",
   "name": "Lee Sin",
-  "name_zh": "盲僧",
+  "name_zh": "李青",
+  "name_zh_title": "盲僧",
   "icon": "/assets/champions/LeeSin.png",
   "splash": "/assets/champions/splash/LeeSin.jpg"
  },
@@ -435,7 +478,8 @@
   "riot_id": 89,
   "key": "Leona",
   "name": "Leona",
-  "name_zh": "曙光女神",
+  "name_zh": "蕾欧娜",
+  "name_zh_title": "曙光女神",
   "icon": "/assets/champions/Leona.png",
   "splash": "/assets/champions/splash/Leona.jpg"
  },
@@ -445,7 +489,8 @@
   "riot_id": 876,
   "key": "Lillia",
   "name": "Lillia",
-  "name_zh": "含羞蓓蕾",
+  "name_zh": "莉莉娅",
+  "name_zh_title": "含羞蓓蕾",
   "icon": "/assets/champions/Lillia.png",
   "splash": "/assets/champions/splash/Lillia.jpg"
  },
@@ -455,7 +500,8 @@
   "riot_id": 127,
   "key": "Lissandra",
   "name": "Lissandra",
-  "name_zh": "冰霜女巫",
+  "name_zh": "丽桑卓",
+  "name_zh_title": "冰霜女巫",
   "icon": "/assets/champions/Lissandra.png",
   "splash": "/assets/champions/splash/Lissandra.jpg"
  },
@@ -465,7 +511,8 @@
   "riot_id": 805,
   "key": "Locke",
   "name": "Locke",
-  "name_zh": "灰烬驱魔人",
+  "name_zh": "洛克",
+  "name_zh_title": "灰烬驱魔人",
   "icon": "/assets/champions/Locke.png",
   "splash": "/assets/champions/splash/Locke.jpg"
  },
@@ -475,7 +522,8 @@
   "riot_id": 236,
   "key": "Lucian",
   "name": "Lucian",
-  "name_zh": "圣枪游侠",
+  "name_zh": "卢锡安",
+  "name_zh_title": "圣枪游侠",
   "icon": "/assets/champions/Lucian.png",
   "splash": "/assets/champions/splash/Lucian.jpg"
  },
@@ -485,7 +533,8 @@
   "riot_id": 117,
   "key": "Lulu",
   "name": "Lulu",
-  "name_zh": "仙灵女巫",
+  "name_zh": "璐璐",
+  "name_zh_title": "仙灵女巫",
   "icon": "/assets/champions/Lulu.png",
   "splash": "/assets/champions/splash/Lulu.jpg"
  },
@@ -495,7 +544,8 @@
   "riot_id": 99,
   "key": "Lux",
   "name": "Lux",
-  "name_zh": "光辉女郎",
+  "name_zh": "拉克丝",
+  "name_zh_title": "光辉女郎",
   "icon": "/assets/champions/Lux.png",
   "splash": "/assets/champions/splash/Lux.jpg"
  },
@@ -505,7 +555,8 @@
   "riot_id": 54,
   "key": "Malphite",
   "name": "Malphite",
-  "name_zh": "熔岩巨兽",
+  "name_zh": "墨菲特",
+  "name_zh_title": "熔岩巨兽",
   "icon": "/assets/champions/Malphite.png",
   "splash": "/assets/champions/splash/Malphite.jpg"
  },
@@ -515,7 +566,8 @@
   "riot_id": 57,
   "key": "Maokai",
   "name": "Maokai",
-  "name_zh": "扭曲树精",
+  "name_zh": "茂凯",
+  "name_zh_title": "扭曲树精",
   "icon": "/assets/champions/Maokai.png",
   "splash": "/assets/champions/splash/Maokai.jpg"
  },
@@ -525,7 +577,8 @@
   "riot_id": 800,
   "key": "Mel",
   "name": "Mel",
-  "name_zh": "流光镜影",
+  "name_zh": "梅尔",
+  "name_zh_title": "流光镜影",
   "icon": "/assets/champions/Mel.png",
   "splash": "/assets/champions/splash/Mel.jpg"
  },
@@ -535,17 +588,19 @@
   "riot_id": 902,
   "key": "Milio",
   "name": "Milio",
-  "name_zh": "明烛",
+  "name_zh": "米利欧",
+  "name_zh_title": "明烛",
   "icon": "/assets/champions/Milio.png",
   "splash": "/assets/champions/splash/Milio.jpg"
  },
- "MissFortune": {
+ "Miss Fortune": {
   "golgg_name": "Miss Fortune",
   "golgg_id": 57,
   "riot_id": 21,
   "key": "MissFortune",
   "name": "Miss Fortune",
-  "name_zh": "赏金猎人",
+  "name_zh": "厄运小姐",
+  "name_zh_title": "赏金猎人",
   "icon": "/assets/champions/MissFortune.png",
   "splash": "/assets/champions/splash/MissFortune.jpg"
  },
@@ -555,7 +610,8 @@
   "riot_id": 950,
   "key": "Naafiri",
   "name": "Naafiri",
-  "name_zh": "百裂冥犬",
+  "name_zh": "纳亚菲利",
+  "name_zh_title": "百裂冥犬",
   "icon": "/assets/champions/Naafiri.png",
   "splash": "/assets/champions/splash/Naafiri.jpg"
  },
@@ -565,7 +621,8 @@
   "riot_id": 267,
   "key": "Nami",
   "name": "Nami",
-  "name_zh": "唤潮鲛姬",
+  "name_zh": "娜美",
+  "name_zh_title": "唤潮鲛姬",
   "icon": "/assets/champions/Nami.png",
   "splash": "/assets/champions/splash/Nami.jpg"
  },
@@ -575,7 +632,8 @@
   "riot_id": 75,
   "key": "Nasus",
   "name": "Nasus",
-  "name_zh": "沙漠死神",
+  "name_zh": "内瑟斯",
+  "name_zh_title": "沙漠死神",
   "icon": "/assets/champions/Nasus.png",
   "splash": "/assets/champions/splash/Nasus.jpg"
  },
@@ -585,7 +643,8 @@
   "riot_id": 111,
   "key": "Nautilus",
   "name": "Nautilus",
-  "name_zh": "深海泰坦",
+  "name_zh": "诺提勒斯",
+  "name_zh_title": "深海泰坦",
   "icon": "/assets/champions/Nautilus.png",
   "splash": "/assets/champions/splash/Nautilus.jpg"
  },
@@ -595,7 +654,8 @@
   "riot_id": 518,
   "key": "Neeko",
   "name": "Neeko",
-  "name_zh": "万花通灵",
+  "name_zh": "妮蔻",
+  "name_zh_title": "万花通灵",
   "icon": "/assets/champions/Neeko.png",
   "splash": "/assets/champions/splash/Neeko.jpg"
  },
@@ -605,7 +665,8 @@
   "riot_id": 56,
   "key": "Nocturne",
   "name": "Nocturne",
-  "name_zh": "永恒梦魇",
+  "name_zh": "魔腾",
+  "name_zh_title": "永恒梦魇",
   "icon": "/assets/champions/Nocturne.png",
   "splash": "/assets/champions/splash/Nocturne.jpg"
  },
@@ -615,7 +676,8 @@
   "riot_id": 2,
   "key": "Olaf",
   "name": "Olaf",
-  "name_zh": "狂战士",
+  "name_zh": "奥拉夫",
+  "name_zh_title": "狂战士",
   "icon": "/assets/champions/Olaf.png",
   "splash": "/assets/champions/splash/Olaf.jpg"
  },
@@ -625,7 +687,8 @@
   "riot_id": 61,
   "key": "Orianna",
   "name": "Orianna",
-  "name_zh": "发条魔灵",
+  "name_zh": "奥莉安娜",
+  "name_zh_title": "发条魔灵",
   "icon": "/assets/champions/Orianna.png",
   "splash": "/assets/champions/splash/Orianna.jpg"
  },
@@ -635,7 +698,8 @@
   "riot_id": 516,
   "key": "Ornn",
   "name": "Ornn",
-  "name_zh": "山隐之焰",
+  "name_zh": "奥恩",
+  "name_zh_title": "山隐之焰",
   "icon": "/assets/champions/Ornn.png",
   "splash": "/assets/champions/splash/Ornn.jpg"
  },
@@ -645,7 +709,8 @@
   "riot_id": 80,
   "key": "Pantheon",
   "name": "Pantheon",
-  "name_zh": "不屈之枪",
+  "name_zh": "潘森",
+  "name_zh_title": "不屈之枪",
   "icon": "/assets/champions/Pantheon.png",
   "splash": "/assets/champions/splash/Pantheon.jpg"
  },
@@ -655,7 +720,8 @@
   "riot_id": 78,
   "key": "Poppy",
   "name": "Poppy",
-  "name_zh": "圣锤之毅",
+  "name_zh": "波比",
+  "name_zh_title": "圣锤之毅",
   "icon": "/assets/champions/Poppy.png",
   "splash": "/assets/champions/splash/Poppy.jpg"
  },
@@ -665,7 +731,8 @@
   "riot_id": 555,
   "key": "Pyke",
   "name": "Pyke",
-  "name_zh": "血港鬼影",
+  "name_zh": "派克",
+  "name_zh_title": "血港鬼影",
   "icon": "/assets/champions/Pyke.png",
   "splash": "/assets/champions/splash/Pyke.jpg"
  },
@@ -675,7 +742,8 @@
   "riot_id": 246,
   "key": "Qiyana",
   "name": "Qiyana",
-  "name_zh": "元素女皇",
+  "name_zh": "奇亚娜",
+  "name_zh_title": "元素女皇",
   "icon": "/assets/champions/Qiyana.png",
   "splash": "/assets/champions/splash/Qiyana.jpg"
  },
@@ -685,7 +753,8 @@
   "riot_id": 497,
   "key": "Rakan",
   "name": "Rakan",
-  "name_zh": "幻翎",
+  "name_zh": "洛",
+  "name_zh_title": "幻翎",
   "icon": "/assets/champions/Rakan.png",
   "splash": "/assets/champions/splash/Rakan.jpg"
  },
@@ -695,17 +764,19 @@
   "riot_id": 526,
   "key": "Rell",
   "name": "Rell",
-  "name_zh": "镕铁少女",
+  "name_zh": "芮尔",
+  "name_zh_title": "镕铁少女",
   "icon": "/assets/champions/Rell.png",
   "splash": "/assets/champions/splash/Rell.jpg"
  },
- "Renata": {
+ "Renata Glasc": {
   "golgg_name": "Renata Glasc",
   "golgg_id": 159,
   "riot_id": 888,
   "key": "Renata",
   "name": "Renata Glasc",
-  "name_zh": "炼金男爵",
+  "name_zh": "烈娜塔 · 戈拉斯克",
+  "name_zh_title": "炼金男爵",
   "icon": "/assets/champions/Renata.png",
   "splash": "/assets/champions/splash/Renata.jpg"
  },
@@ -715,7 +786,8 @@
   "riot_id": 58,
   "key": "Renekton",
   "name": "Renekton",
-  "name_zh": "荒漠屠夫",
+  "name_zh": "雷克顿",
+  "name_zh_title": "荒漠屠夫",
   "icon": "/assets/champions/Renekton.png",
   "splash": "/assets/champions/splash/Renekton.jpg"
  },
@@ -725,7 +797,8 @@
   "riot_id": 68,
   "key": "Rumble",
   "name": "Rumble",
-  "name_zh": "机械公敌",
+  "name_zh": "兰博",
+  "name_zh_title": "机械公敌",
   "icon": "/assets/champions/Rumble.png",
   "splash": "/assets/champions/splash/Rumble.jpg"
  },
@@ -735,7 +808,8 @@
   "riot_id": 13,
   "key": "Ryze",
   "name": "Ryze",
-  "name_zh": "符文法师",
+  "name_zh": "瑞兹",
+  "name_zh_title": "符文法师",
   "icon": "/assets/champions/Ryze.png",
   "splash": "/assets/champions/splash/Ryze.jpg"
  },
@@ -745,7 +819,8 @@
   "riot_id": 113,
   "key": "Sejuani",
   "name": "Sejuani",
-  "name_zh": "北地之怒",
+  "name_zh": "瑟庄妮",
+  "name_zh_title": "北地之怒",
   "icon": "/assets/champions/Sejuani.png",
   "splash": "/assets/champions/splash/Sejuani.jpg"
  },
@@ -755,7 +830,8 @@
   "riot_id": 147,
   "key": "Seraphine",
   "name": "Seraphine",
-  "name_zh": "星籁歌姬",
+  "name_zh": "萨勒芬妮",
+  "name_zh_title": "星籁歌姬",
   "icon": "/assets/champions/Seraphine.png",
   "splash": "/assets/champions/splash/Seraphine.jpg"
  },
@@ -765,7 +841,8 @@
   "riot_id": 98,
   "key": "Shen",
   "name": "Shen",
-  "name_zh": "暮光之眼",
+  "name_zh": "慎",
+  "name_zh_title": "暮光之眼",
   "icon": "/assets/champions/Shen.png",
   "splash": "/assets/champions/splash/Shen.jpg"
  },
@@ -775,7 +852,8 @@
   "riot_id": 14,
   "key": "Sion",
   "name": "Sion",
-  "name_zh": "亡灵战神",
+  "name_zh": "赛恩",
+  "name_zh_title": "亡灵战神",
   "icon": "/assets/champions/Sion.png",
   "splash": "/assets/champions/splash/Sion.jpg"
  },
@@ -785,7 +863,8 @@
   "riot_id": 15,
   "key": "Sivir",
   "name": "Sivir",
-  "name_zh": "战争女神",
+  "name_zh": "希维尔",
+  "name_zh_title": "战争女神",
   "icon": "/assets/champions/Sivir.png",
   "splash": "/assets/champions/splash/Sivir.jpg"
  },
@@ -795,7 +874,8 @@
   "riot_id": 72,
   "key": "Skarner",
   "name": "Skarner",
-  "name_zh": "上古领主",
+  "name_zh": "斯卡纳",
+  "name_zh_title": "上古领主",
   "icon": "/assets/champions/Skarner.png",
   "splash": "/assets/champions/splash/Skarner.jpg"
  },
@@ -805,7 +885,8 @@
   "riot_id": 50,
   "key": "Swain",
   "name": "Swain",
-  "name_zh": "诺克萨斯统领",
+  "name_zh": "斯维因",
+  "name_zh_title": "诺克萨斯统领",
   "icon": "/assets/champions/Swain.png",
   "splash": "/assets/champions/splash/Swain.jpg"
  },
@@ -815,7 +896,8 @@
   "riot_id": 517,
   "key": "Sylas",
   "name": "Sylas",
-  "name_zh": "解脱者",
+  "name_zh": "塞拉斯",
+  "name_zh_title": "解脱者",
   "icon": "/assets/champions/Sylas.png",
   "splash": "/assets/champions/splash/Sylas.jpg"
  },
@@ -825,17 +907,19 @@
   "riot_id": 134,
   "key": "Syndra",
   "name": "Syndra",
-  "name_zh": "暗黑元首",
+  "name_zh": "辛德拉",
+  "name_zh_title": "暗黑元首",
   "icon": "/assets/champions/Syndra.png",
   "splash": "/assets/champions/splash/Syndra.jpg"
  },
- "TahmKench": {
+ "Tahm Kench": {
   "golgg_name": "Tahm Kench",
   "golgg_id": 126,
   "riot_id": 223,
   "key": "TahmKench",
   "name": "Tahm Kench",
-  "name_zh": "河流之王",
+  "name_zh": "塔姆",
+  "name_zh_title": "河流之王",
   "icon": "/assets/champions/TahmKench.png",
   "splash": "/assets/champions/splash/TahmKench.jpg"
  },
@@ -845,7 +929,8 @@
   "riot_id": 163,
   "key": "Taliyah",
   "name": "Taliyah",
-  "name_zh": "岩雀",
+  "name_zh": "塔莉垭",
+  "name_zh_title": "岩雀",
   "icon": "/assets/champions/Taliyah.png",
   "splash": "/assets/champions/splash/Taliyah.jpg"
  },
@@ -855,7 +940,8 @@
   "riot_id": 412,
   "key": "Thresh",
   "name": "Thresh",
-  "name_zh": "魂锁典狱长",
+  "name_zh": "锤石",
+  "name_zh_title": "魂锁典狱长",
   "icon": "/assets/champions/Thresh.png",
   "splash": "/assets/champions/splash/Thresh.jpg"
  },
@@ -865,7 +951,8 @@
   "riot_id": 18,
   "key": "Tristana",
   "name": "Tristana",
-  "name_zh": "麦林炮手",
+  "name_zh": "崔丝塔娜",
+  "name_zh_title": "麦林炮手",
   "icon": "/assets/champions/Tristana.png",
   "splash": "/assets/champions/splash/Tristana.jpg"
  },
@@ -875,17 +962,19 @@
   "riot_id": 48,
   "key": "Trundle",
   "name": "Trundle",
-  "name_zh": "巨魔之王",
+  "name_zh": "特朗德尔",
+  "name_zh_title": "巨魔之王",
   "icon": "/assets/champions/Trundle.png",
   "splash": "/assets/champions/splash/Trundle.jpg"
  },
- "TwistedFate": {
+ "Twisted Fate": {
   "golgg_name": "Twisted Fate",
   "golgg_id": 96,
   "riot_id": 4,
   "key": "TwistedFate",
   "name": "Twisted Fate",
-  "name_zh": "卡牌大师",
+  "name_zh": "崔斯特",
+  "name_zh_title": "卡牌大师",
   "icon": "/assets/champions/TwistedFate.png",
   "splash": "/assets/champions/splash/TwistedFate.jpg"
  },
@@ -895,7 +984,8 @@
   "riot_id": 29,
   "key": "Twitch",
   "name": "Twitch",
-  "name_zh": "瘟疫之源",
+  "name_zh": "图奇",
+  "name_zh_title": "瘟疫之源",
   "icon": "/assets/champions/Twitch.png",
   "splash": "/assets/champions/splash/Twitch.jpg"
  },
@@ -905,7 +995,8 @@
   "riot_id": 110,
   "key": "Varus",
   "name": "Varus",
-  "name_zh": "惩戒之箭",
+  "name_zh": "韦鲁斯",
+  "name_zh_title": "惩戒之箭",
   "icon": "/assets/champions/Varus.png",
   "splash": "/assets/champions/splash/Varus.jpg"
  },
@@ -915,17 +1006,19 @@
   "riot_id": 67,
   "key": "Vayne",
   "name": "Vayne",
-  "name_zh": "暗夜猎手",
+  "name_zh": "薇恩",
+  "name_zh_title": "暗夜猎手",
   "icon": "/assets/champions/Vayne.png",
   "splash": "/assets/champions/splash/Vayne.jpg"
  },
- "Velkoz": {
+ "VelKoz": {
   "golgg_name": "VelKoz",
   "golgg_id": 123,
   "riot_id": 161,
   "key": "Velkoz",
   "name": "Vel'Koz",
-  "name_zh": "虚空之眼",
+  "name_zh": "维克兹",
+  "name_zh_title": "虚空之眼",
   "icon": "/assets/champions/Velkoz.png",
   "splash": "/assets/champions/splash/Velkoz.jpg"
  },
@@ -935,7 +1028,8 @@
   "riot_id": 254,
   "key": "Vi",
   "name": "Vi",
-  "name_zh": "皮城执法官",
+  "name_zh": "蔚",
+  "name_zh_title": "皮城执法官",
   "icon": "/assets/champions/Vi.png",
   "splash": "/assets/champions/splash/Vi.jpg"
  },
@@ -945,7 +1039,8 @@
   "riot_id": 112,
   "key": "Viktor",
   "name": "Viktor",
-  "name_zh": "奥术先驱",
+  "name_zh": "维克托",
+  "name_zh_title": "奥术先驱",
   "icon": "/assets/champions/Viktor.png",
   "splash": "/assets/champions/splash/Viktor.jpg"
  },
@@ -955,17 +1050,19 @@
   "riot_id": 106,
   "key": "Volibear",
   "name": "Volibear",
-  "name_zh": "不灭狂雷",
+  "name_zh": "沃利贝尔",
+  "name_zh_title": "不灭狂雷",
   "icon": "/assets/champions/Volibear.png",
   "splash": "/assets/champions/splash/Volibear.jpg"
  },
- "MonkeyKing": {
+ "Wukong": {
   "golgg_name": "Wukong",
   "golgg_id": 108,
   "riot_id": 62,
   "key": "MonkeyKing",
   "name": "Wukong",
-  "name_zh": "齐天大圣",
+  "name_zh": "孙悟空",
+  "name_zh_title": "齐天大圣",
   "icon": "/assets/champions/MonkeyKing.png",
   "splash": "/assets/champions/splash/MonkeyKing.jpg"
  },
@@ -975,17 +1072,19 @@
   "riot_id": 498,
   "key": "Xayah",
   "name": "Xayah",
-  "name_zh": "逆羽",
+  "name_zh": "霞",
+  "name_zh_title": "逆羽",
   "icon": "/assets/champions/Xayah.png",
   "splash": "/assets/champions/splash/Xayah.jpg"
  },
- "XinZhao": {
+ "Xin Zhao": {
   "golgg_name": "Xin Zhao",
   "golgg_id": 110,
   "riot_id": 5,
   "key": "XinZhao",
   "name": "Xin Zhao",
-  "name_zh": "德邦总管",
+  "name_zh": "赵信",
+  "name_zh_title": "德邦总管",
   "icon": "/assets/champions/XinZhao.png",
   "splash": "/assets/champions/splash/XinZhao.jpg"
  },
@@ -995,7 +1094,8 @@
   "riot_id": 777,
   "key": "Yone",
   "name": "Yone",
-  "name_zh": "封魔剑魂",
+  "name_zh": "永恩",
+  "name_zh_title": "封魔剑魂",
   "icon": "/assets/champions/Yone.png",
   "splash": "/assets/champions/splash/Yone.jpg"
  },
@@ -1005,7 +1105,8 @@
   "riot_id": 83,
   "key": "Yorick",
   "name": "Yorick",
-  "name_zh": "牧魂人",
+  "name_zh": "约里克",
+  "name_zh_title": "牧魂人",
   "icon": "/assets/champions/Yorick.png",
   "splash": "/assets/champions/splash/Yorick.jpg"
  },
@@ -1015,7 +1116,8 @@
   "riot_id": 804,
   "key": "Yunara",
   "name": "Yunara",
-  "name_zh": "不破之誓",
+  "name_zh": "芸阿娜",
+  "name_zh_title": "不破之誓",
   "icon": "/assets/champions/Yunara.png",
   "splash": "/assets/champions/splash/Yunara.jpg"
  },
@@ -1025,7 +1127,8 @@
   "riot_id": 350,
   "key": "Yuumi",
   "name": "Yuumi",
-  "name_zh": "魔法猫咪",
+  "name_zh": "悠米",
+  "name_zh_title": "魔法猫咪",
   "icon": "/assets/champions/Yuumi.png",
   "splash": "/assets/champions/splash/Yuumi.jpg"
  },
@@ -1035,7 +1138,8 @@
   "riot_id": 904,
   "key": "Zaahen",
   "name": "Zaahen",
-  "name_zh": "不落魔锋",
+  "name_zh": "亚恒",
+  "name_zh_title": "不落魔锋",
   "icon": "/assets/champions/Zaahen.png",
   "splash": "/assets/champions/splash/Zaahen.jpg"
  },
@@ -1045,7 +1149,8 @@
   "riot_id": 221,
   "key": "Zeri",
   "name": "Zeri",
-  "name_zh": "祖安花火",
+  "name_zh": "泽丽",
+  "name_zh_title": "祖安花火",
   "icon": "/assets/champions/Zeri.png",
   "splash": "/assets/champions/splash/Zeri.jpg"
  },
@@ -1055,7 +1160,8 @@
   "riot_id": 115,
   "key": "Ziggs",
   "name": "Ziggs",
-  "name_zh": "爆破鬼才",
+  "name_zh": "吉格斯",
+  "name_zh_title": "爆破鬼才",
   "icon": "/assets/champions/Ziggs.png",
   "splash": "/assets/champions/splash/Ziggs.jpg"
  },
@@ -1065,7 +1171,8 @@
   "riot_id": 143,
   "key": "Zyra",
   "name": "Zyra",
-  "name_zh": "荆棘之兴",
+  "name_zh": "婕拉",
+  "name_zh_title": "荆棘之兴",
   "icon": "/assets/champions/Zyra.png",
   "splash": "/assets/champions/splash/Zyra.jpg"
  }
