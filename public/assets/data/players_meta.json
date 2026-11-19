@@ -1,0 +1,567 @@
+{
+ "anyone s legend|breathe": {
+  "photo": "/assets/players/anyone-s-legend--breathe.webp",
+  "role": "top",
+  "summoner": "Breathe",
+  "team": "Anyone s Legend"
+ },
+ "anyone s legend|hope": {
+  "photo": "/assets/players/anyone-s-legend--hope.webp",
+  "role": "bottom",
+  "summoner": "Hope",
+  "team": "Anyone s Legend"
+ },
+ "anyone s legend|kael": {
+  "photo": "/assets/players/anyone-s-legend--kael.webp",
+  "role": "support",
+  "summoner": "Kael",
+  "team": "Anyone s Legend"
+ },
+ "anyone s legend|shanks": {
+  "photo": "/assets/players/anyone-s-legend--shanks.webp",
+  "role": "mid",
+  "summoner": "Shanks",
+  "team": "Anyone s Legend"
+ },
+ "anyone s legend|tarzan": {
+  "photo": "/assets/players/anyone-s-legend--tarzan.webp",
+  "role": "jungle",
+  "summoner": "Tarzan",
+  "team": "Anyone s Legend"
+ },
+ "bilibili gaming|bin": {
+  "photo": "/assets/players/bilibili-gaming--bin.webp",
+  "role": "top",
+  "summoner": "Bin",
+  "team": "Bilibili Gaming"
+ },
+ "bilibili gaming|knight": {
+  "photo": "/assets/players/bilibili-gaming--knight.webp",
+  "role": "mid",
+  "summoner": "Knight",
+  "team": "Bilibili Gaming"
+ },
+ "bilibili gaming|on": {
+  "photo": "/assets/players/bilibili-gaming--on.webp",
+  "role": "support",
+  "summoner": "ON",
+  "team": "Bilibili Gaming"
+ },
+ "bilibili gaming|viper": {
+  "photo": "/assets/players/bilibili-gaming--viper.webp",
+  "role": "bottom",
+  "summoner": "Viper",
+  "team": "Bilibili Gaming"
+ },
+ "bilibili gaming|xun": {
+  "photo": "/assets/players/bilibili-gaming--xun.webp",
+  "role": "jungle",
+  "summoner": "Xun",
+  "team": "Bilibili Gaming"
+ },
+ "cloud9|blaber": {
+  "photo": "/assets/players/cloud9--blaber.webp",
+  "role": "jungle",
+  "summoner": "Blaber",
+  "team": "Cloud9"
+ },
+ "cloud9|loki": {
+  "photo": "/assets/players/cloud9--loki.webp",
+  "role": "mid",
+  "summoner": "Loki",
+  "team": "Cloud9"
+ },
+ "cloud9|tactical": {
+  "photo": "/assets/players/cloud9--tactical.webp",
+  "role": "bottom",
+  "summoner": "Tactical",
+  "team": "Cloud9"
+ },
+ "cloud9|thanatos": {
+  "photo": "/assets/players/cloud9--thanatos.webp",
+  "role": "top",
+  "summoner": "Thanatos",
+  "team": "Cloud9"
+ },
+ "cloud9|vulcan": {
+  "photo": "/assets/players/cloud9--vulcan.webp",
+  "role": "support",
+  "summoner": "Vulcan",
+  "team": "Cloud9"
+ },
+ "ctbc flying oyster|doggo": {
+  "photo": "/assets/players/ctbc-flying-oyster--doggo.webp",
+  "role": "bottom",
+  "summoner": "Doggo",
+  "team": "CTBC Flying Oyster"
+ },
+ "ctbc flying oyster|kino": {
+  "photo": "/assets/players/ctbc-flying-oyster--kino.webp",
+  "role": "support",
+  "summoner": "Kino",
+  "team": "CTBC Flying Oyster"
+ },
+ "ctbc flying oyster|pout": {
+  "photo": "/assets/players/ctbc-flying-oyster--pout.webp",
+  "role": "mid",
+  "summoner": "POUT",
+  "team": "CTBC Flying Oyster"
+ },
+ "ctbc flying oyster|rest": {
+  "photo": "/assets/players/ctbc-flying-oyster--rest.webp",
+  "role": "top",
+  "summoner": "Rest",
+  "team": "CTBC Flying Oyster"
+ },
+ "ctbc flying oyster|shad0w": {
+  "photo": "/assets/players/ctbc-flying-oyster--shad0w.webp",
+  "role": "jungle",
+  "summoner": "Shad0w",
+  "team": "CTBC Flying Oyster"
+ },
+ "dplus kia|career": {
+  "photo": "/assets/players/dplus-kia--career.webp",
+  "role": "support",
+  "summoner": "Career",
+  "team": "Dplus KIA"
+ },
+ "dplus kia|lucid": {
+  "photo": "/assets/players/dplus-kia--lucid.webp",
+  "role": "jungle",
+  "summoner": "Lucid",
+  "team": "Dplus KIA"
+ },
+ "dplus kia|showmaker": {
+  "photo": "/assets/players/dplus-kia--showmaker.webp",
+  "role": "mid",
+  "summoner": "ShowMaker",
+  "team": "Dplus KIA"
+ },
+ "dplus kia|siwoo": {
+  "photo": "/assets/players/dplus-kia--siwoo.webp",
+  "role": "top",
+  "summoner": "Siwoo",
+  "team": "Dplus KIA"
+ },
+ "dplus kia|smash": {
+  "photo": "/assets/players/dplus-kia--smash.webp",
+  "role": "bottom",
+  "summoner": "Smash",
+  "team": "Dplus KIA"
+ },
+ "furia|ayu": {
+  "photo": "/assets/players/furia--ayu.webp",
+  "role": "bottom",
+  "summoner": "Ayu",
+  "team": "FURIA"
+ },
+ "furia|guigo": {
+  "photo": "/assets/players/furia--guigo.webp",
+  "role": "top",
+  "summoner": "Guigo",
+  "team": "FURIA"
+ },
+ "furia|jojo": {
+  "photo": "/assets/players/furia--jojo.webp",
+  "role": "support",
+  "summoner": "JoJo",
+  "team": "FURIA"
+ },
+ "furia|tatu": {
+  "photo": "/assets/players/furia--tatu.webp",
+  "role": "jungle",
+  "summoner": "Tatu",
+  "team": "FURIA"
+ },
+ "furia|tutsz": {
+  "photo": "/assets/players/furia--tutsz.webp",
+  "role": "mid",
+  "summoner": "Tutsz",
+  "team": "FURIA"
+ },
+ "g2 esports|brokenblade": {
+  "photo": "/assets/players/g2-esports--brokenblade.webp",
+  "role": "top",
+  "summoner": "BrokenBlade",
+  "team": "G2 Esports"
+ },
+ "g2 esports|caps": {
+  "photo": "/assets/players/g2-esports--caps.webp",
+  "role": "mid",
+  "summoner": "Caps",
+  "team": "G2 Esports"
+ },
+ "g2 esports|hans": {
+  "photo": null,
+  "role": "bottom",
+  "team": "G2 Esports"
+ },
+ "g2 esports|labrov": {
+  "photo": "/assets/players/g2-esports--labrov.webp",
+  "role": "support",
+  "summoner": "Labrov",
+  "team": "G2 Esports"
+ },
+ "g2 esports|skewmond": {
+  "photo": "/assets/players/g2-esports--skewmond.webp",
+  "role": "jungle",
+  "summoner": "SkewMond",
+  "team": "G2 Esports"
+ },
+ "gen.g|canyon": {
+  "photo": "/assets/players/gen-g--canyon.webp",
+  "role": "jungle",
+  "summoner": "Canyon",
+  "team": "Gen.G"
+ },
+ "gen.g|chovy": {
+  "photo": "/assets/players/gen-g--chovy.webp",
+  "role": "mid",
+  "summoner": "Chovy",
+  "team": "Gen.G"
+ },
+ "gen.g|duro": {
+  "photo": "/assets/players/gen-g--duro.webp",
+  "role": "support",
+  "summoner": "Duro",
+  "team": "Gen.G"
+ },
+ "gen.g|kiin": {
+  "photo": "/assets/players/gen-g--kiin.webp",
+  "role": "top",
+  "summoner": "Kiin",
+  "team": "Gen.G"
+ },
+ "gen.g|ruler": {
+  "photo": "/assets/players/gen-g--ruler.webp",
+  "role": "bottom",
+  "summoner": "Ruler",
+  "team": "Gen.G"
+ },
+ "hanwha life esports|delight": {
+  "photo": "/assets/players/hanwha-life-esports--delight.webp",
+  "role": "support",
+  "summoner": "Delight",
+  "team": "Hanwha Life Esports"
+ },
+ "hanwha life esports|gumayusi": {
+  "photo": "/assets/players/hanwha-life-esports--gumayusi.webp",
+  "role": "bottom",
+  "summoner": "Gumayusi",
+  "team": "Hanwha Life Esports"
+ },
+ "hanwha life esports|kanavi": {
+  "photo": "/assets/players/hanwha-life-esports--kanavi.webp",
+  "role": "jungle",
+  "summoner": "Kanavi",
+  "team": "Hanwha Life Esports"
+ },
+ "hanwha life esports|zeka": {
+  "photo": "/assets/players/hanwha-life-esports--zeka.webp",
+  "role": "mid",
+  "summoner": "Zeka",
+  "team": "Hanwha Life Esports"
+ },
+ "hanwha life esports|zeus": {
+  "photo": "/assets/players/hanwha-life-esports--zeus.webp",
+  "role": "top",
+  "summoner": "Zeus",
+  "team": "Hanwha Life Esports"
+ },
+ "invictus gaming|jiaqi": {
+  "photo": "/assets/players/invictus-gaming--jiaqi.webp",
+  "role": "bottom",
+  "summoner": "JiaQi",
+  "team": "Invictus Gaming"
+ },
+ "invictus gaming|meiko": {
+  "photo": "/assets/players/invictus-gaming--meiko.webp",
+  "role": "support",
+  "summoner": "Meiko",
+  "team": "Invictus Gaming"
+ },
+ "invictus gaming|rookie": {
+  "photo": "/assets/players/invictus-gaming--rookie.webp",
+  "role": "mid",
+  "summoner": "Rookie",
+  "team": "Invictus Gaming"
+ },
+ "invictus gaming|theshy": {
+  "photo": "/assets/players/invictus-gaming--theshy.webp",
+  "role": "top",
+  "summoner": "TheShy",
+  "team": "Invictus Gaming"
+ },
+ "invictus gaming|wei": {
+  "photo": "/assets/players/invictus-gaming--wei.webp",
+  "role": "jungle",
+  "summoner": "Wei",
+  "team": "Invictus Gaming"
+ },
+ "karmine corp|busio": {
+  "photo": "/assets/players/karmine-corp--busio.webp",
+  "role": "support",
+  "summoner": "Busio",
+  "team": "Karmine Corp"
+ },
+ "karmine corp|caliste": {
+  "photo": "/assets/players/karmine-corp--caliste.webp",
+  "role": "bottom",
+  "summoner": "Caliste",
+  "team": "Karmine Corp"
+ },
+ "karmine corp|canna": {
+  "photo": "/assets/players/karmine-corp--canna.webp",
+  "role": "top",
+  "summoner": "Canna",
+  "team": "Karmine Corp"
+ },
+ "karmine corp|kyeahoo": {
+  "photo": "/assets/players/karmine-corp--kyeahoo.webp",
+  "role": "mid",
+  "summoner": "kyeahoo",
+  "team": "Karmine Corp"
+ },
+ "karmine corp|yike": {
+  "photo": "/assets/players/karmine-corp--yike.webp",
+  "role": "jungle",
+  "summoner": "Yike",
+  "team": "Karmine Corp"
+ },
+ "los grandes|ackerman": {
+  "photo": null,
+  "role": "support",
+  "team": "Los Grandes"
+ },
+ "los grandes|curse": {
+  "photo": null,
+  "role": "jungle",
+  "team": "Los Grandes"
+ },
+ "los grandes|duduhh": {
+  "photo": null,
+  "role": "bottom",
+  "team": "Los Grandes"
+ },
+ "los grandes|feisty": {
+  "photo": null,
+  "role": "mid",
+  "team": "Los Grandes"
+ },
+ "los grandes|zest": {
+  "photo": null,
+  "role": "top",
+  "team": "Los Grandes"
+ },
+ "lyon|berserker": {
+  "photo": "/assets/players/lyon--berserker.webp",
+  "role": "bottom",
+  "summoner": "Berserker",
+  "team": "LYON"
+ },
+ "lyon|dhokla": {
+  "photo": "/assets/players/lyon--dhokla.webp",
+  "role": "top",
+  "summoner": "Dhokla",
+  "team": "LYON"
+ },
+ "lyon|inspired": {
+  "photo": "/assets/players/lyon--inspired.webp",
+  "role": "jungle",
+  "summoner": "Inspired",
+  "team": "LYON"
+ },
+ "lyon|isles": {
+  "photo": "/assets/players/lyon--isles.webp",
+  "role": "support",
+  "summoner": "Isles",
+  "team": "LYON"
+ },
+ "lyon|saint": {
+  "photo": "/assets/players/lyon--saint.webp",
+  "role": "mid",
+  "summoner": "Saint",
+  "team": "LYON"
+ },
+ "movistar koi|alvaro": {
+  "photo": "/assets/players/movistar-koi--alvaro.webp",
+  "role": "support",
+  "summoner": "Alvaro",
+  "team": "Movistar KOI"
+ },
+ "movistar koi|elyoya": {
+  "photo": "/assets/players/movistar-koi--elyoya.webp",
+  "role": "jungle",
+  "summoner": "Elyoya",
+  "team": "Movistar KOI"
+ },
+ "movistar koi|jojopyun": {
+  "photo": "/assets/players/movistar-koi--jojopyun.webp",
+  "role": "mid",
+  "summoner": "Jojopyun",
+  "team": "Movistar KOI"
+ },
+ "movistar koi|myrwn": {
+  "photo": "/assets/players/movistar-koi--myrwn.webp",
+  "role": "top",
+  "summoner": "Myrwn",
+  "team": "Movistar KOI"
+ },
+ "movistar koi|supa": {
+  "photo": "/assets/players/movistar-koi--supa.webp",
+  "role": "bottom",
+  "summoner": "Supa",
+  "team": "Movistar KOI"
+ },
+ "mvk esports|chika": {
+  "photo": "/assets/players/mvk-esports--chika.webp",
+  "role": "mid",
+  "summoner": "Chika",
+  "team": "MVK Esports"
+ },
+ "mvk esports|gury": {
+  "photo": "/assets/players/mvk-esports--gury.webp",
+  "role": "jungle",
+  "summoner": "Gury",
+  "team": "MVK Esports"
+ },
+ "mvk esports|harky": {
+  "photo": "/assets/players/mvk-esports--harky.webp",
+  "role": "bottom",
+  "summoner": "Harky",
+  "team": "MVK Esports"
+ },
+ "mvk esports|kratos": {
+  "photo": "/assets/players/mvk-esports--kratos.webp",
+  "role": "top",
+  "summoner": "Kratos",
+  "team": "MVK Esports"
+ },
+ "mvk esports|sansan": {
+  "photo": "/assets/players/mvk-esports--sansan.webp",
+  "role": "jungle",
+  "summoner": "SanSan",
+  "team": "MVK Esports"
+ },
+ "mvk esports|siuloong": {
+  "photo": "/assets/players/mvk-esports--siuloong.webp",
+  "role": "support",
+  "summoner": "SiuLoong",
+  "team": "MVK Esports"
+ },
+ "t1|doran": {
+  "photo": "/assets/players/t1--doran.webp",
+  "role": "top",
+  "summoner": "Doran",
+  "team": "T1"
+ },
+ "t1|faker": {
+  "photo": "/assets/players/t1--faker.webp",
+  "role": "mid",
+  "summoner": "Faker",
+  "team": "T1"
+ },
+ "t1|keria": {
+  "photo": "/assets/players/t1--keria.webp",
+  "role": "support",
+  "summoner": "Keria",
+  "team": "T1"
+ },
+ "t1|oner": {
+  "photo": "/assets/players/t1--oner.webp",
+  "role": "jungle",
+  "summoner": "Oner",
+  "team": "T1"
+ },
+ "t1|peyz": {
+  "photo": "/assets/players/t1--peyz.webp",
+  "role": "bottom",
+  "summoner": "Peyz",
+  "team": "T1"
+ },
+ "team liquid|corejj": {
+  "photo": null,
+  "role": "support",
+  "team": "Team Liquid"
+ },
+ "team liquid|josedeodo": {
+  "photo": null,
+  "role": "jungle",
+  "team": "Team Liquid"
+ },
+ "team liquid|morgan": {
+  "photo": null,
+  "role": "top",
+  "team": "Team Liquid"
+ },
+ "team liquid|quid": {
+  "photo": null,
+  "role": "mid",
+  "team": "Team Liquid"
+ },
+ "team liquid|yeon": {
+  "photo": null,
+  "role": "bottom",
+  "team": "Team Liquid"
+ },
+ "team secret whales|bie": {
+  "photo": "/assets/players/team-secret-whales--bie.webp",
+  "role": "support",
+  "summoner": "Bie",
+  "team": "Team Secret Whales"
+ },
+ "team secret whales|dire": {
+  "photo": "/assets/players/team-secret-whales--dire.webp",
+  "role": "mid",
+  "summoner": "Dire",
+  "team": "Team Secret Whales"
+ },
+ "team secret whales|eddie": {
+  "photo": "/assets/players/team-secret-whales--eddie.webp",
+  "role": "bottom",
+  "summoner": "Eddie",
+  "team": "Team Secret Whales"
+ },
+ "team secret whales|hizto": {
+  "photo": "/assets/players/team-secret-whales--hizto.webp",
+  "role": "jungle",
+  "summoner": "Hizto",
+  "team": "Team Secret Whales"
+ },
+ "team secret whales|pun": {
+  "photo": "/assets/players/team-secret-whales--pun.webp",
+  "role": "top",
+  "summoner": "Pun",
+  "team": "Team Secret Whales"
+ },
+ "top esports|369": {
+  "photo": "/assets/players/top-esports--369.webp",
+  "role": "top",
+  "summoner": "369",
+  "team": "Top Esports"
+ },
+ "top esports|creme": {
+  "photo": "/assets/players/top-esports--creme.webp",
+  "role": "mid",
+  "summoner": "Creme",
+  "team": "Top Esports"
+ },
+ "top esports|jackeylove": {
+  "photo": "/assets/players/top-esports--jackeylove.webp",
+  "role": "bottom",
+  "summoner": "JackeyLove",
+  "team": "Top Esports"
+ },
+ "top esports|tian": {
+  "photo": "/assets/players/top-esports--tian.webp",
+  "role": "jungle",
+  "summoner": "Tian",
+  "team": "Top Esports"
+ },
+ "top esports|zhuo": {
+  "photo": "/assets/players/top-esports--zhuo.webp",
+  "role": "support",
+  "summoner": "Zhuo",
+  "team": "Top Esports"
+ }
+}

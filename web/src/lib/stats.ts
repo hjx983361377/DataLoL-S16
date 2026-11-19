@@ -312,3 +312,254 @@ export function seriesOptions(): {
   const teams = [...new Set(series.flatMap((s) => s.teams))].sort();
   return { tournaments, stages, teams };
 }
+
+export const ROLE_ORDER = ["top", "jungle", "mid", "bottom", "support"] as const;
+export type Role = (typeof ROLE_ORDER)[number];
+
+export const ROLE_CN: Record<string, string> = {
+  top: "上单",
+  jungle: "打野",
+  mid: "中单",
+  bottom: "下路",
+  support: "辅助"
+};
+
+export function roleLabel(role: string): string {
+  return ROLE_CN[role] ?? role;
+}
+
+export function roleIndex(role: string): number {
+  const i = ROLE_ORDER.indexOf(role as Role);
+  return i < 0 ? ROLE_ORDER.length : i;
+}
+
+export function playerKey(team: string, name: string): string {
+  return (team + "|" + name).toLowerCase();
+}
+
+export function playerSlug(team: string, name: string): string {
+  const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return slug(team) + "--" + slug(name);
+}
+
+export interface PlayerRow {
+  key: string;
+  name: string;
+  team: string;
+  teamCode: string;
+  teamLogo: string | null;
+  role: string;
+  photo: string | null;
+  games: number;
+  wins: number;
+  losses: number;
+  winRate: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number | null;
+  cs: number;
+  minutes: number;
+  csPerMin: number;
+  championCount: number;
+  topChampion: { name: string; nameZh: string; icon: string | null; games: number } | null;
+}
+
+export interface PlayerChampionRow {
+  name: string;
+  nameZh: string;
+  icon: string | null;
+  games: number;
+  wins: number;
+  winRate: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number | null;
+  csPerMin: number;
+}
+
+export interface PlayerGameRow {
+  game: Game;
+  opponent: string;
+  opponentLogo: string | null;
+  champion: string;
+  championZh: string;
+  win: boolean;
+  k: number;
+  d: number;
+  a: number;
+  cs: number;
+}
+
+interface PlayerAcc {
+  name: string;
+  team: string;
+  games: number;
+  wins: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  cs: number;
+  seconds: number;
+  champions: Map<
+    string,
+    { games: number; wins: number; kills: number; deaths: number; assists: number; cs: number; seconds: number }
+  >;
+}
+
+function accumulate(): Map<string, PlayerAcc> {
+  const acc = new Map<string, PlayerAcc>();
+  for (const game of games) {
+    const sides = Object.fromEntries(game.teams.map((t) => [t.side, t]));
+    for (const p of game.players) {
+      const key = playerKey(sides[p.team]?.name ?? p.team, p.name);
+      let row = acc.get(key);
+      if (!row) {
+        row = {
+          name: p.name,
+          team: sides[p.team]?.name ?? p.team,
+          games: 0,
+          wins: 0,
+          kills: 0,
+          deaths: 0,
+          assists: 0,
+          cs: 0,
+          seconds: 0,
+          champions: new Map()
+        };
+        acc.set(key, row);
+      }
+      const win = Boolean(sides[p.team]?.win);
+      const [k, d, a] = p.kda;
+      row.games += 1;
+      row.wins += win ? 1 : 0;
+      row.kills += k;
+      row.deaths += d;
+      row.assists += a;
+      row.cs += p.cs;
+      row.seconds += game.duration_seconds;
+
+      let champ = row.champions.get(p.champion);
+      if (!champ) {
+        champ = { games: 0, wins: 0, kills: 0, deaths: 0, assists: 0, cs: 0, seconds: 0 };
+        row.champions.set(p.champion, champ);
+      }
+      champ.games += 1;
+      champ.wins += win ? 1 : 0;
+      champ.kills += k;
+      champ.deaths += d;
+      champ.assists += a;
+      champ.cs += p.cs;
+      champ.seconds += game.duration_seconds;
+    }
+  }
+  return acc;
+}
+
+function ratio(kills: number, deaths: number, assists: number): number | null {
+  if (!deaths) return kills + assists > 0 ? null : 0;
+  return (kills + assists) / deaths;
+}
+
+export function buildPlayers(meta: Meta): PlayerRow[] {
+  const acc = accumulate();
+  const rows: PlayerRow[] = [];
+  for (const [key, a] of acc) {
+    const info = meta.players[key];
+    const league = meta.teams[a.team];
+    const champs = [...a.champions.entries()]
+      .map(([name, c]) => ({ name, c }))
+      .sort((x, y) => y.c.games - x.c.games || y.c.wins - x.c.wins);
+    const best = champs[0];
+    const bestMeta = best ? meta.champions[best.name] : undefined;
+    rows.push({
+      key,
+      name: a.name,
+      team: a.team,
+      teamCode: league?.code ?? a.team.slice(0, 3).toUpperCase(),
+      teamLogo: league?.logo ?? null,
+      role: info?.role ?? "mid",
+      photo: info?.photo ?? null,
+      games: a.games,
+      wins: a.wins,
+      losses: a.games - a.wins,
+      winRate: a.games ? a.wins / a.games : 0,
+      kills: a.kills,
+      deaths: a.deaths,
+      assists: a.assists,
+      kda: ratio(a.kills, a.deaths, a.assists),
+      cs: a.cs,
+      minutes: a.seconds / 60,
+      csPerMin: a.seconds ? a.cs / (a.seconds / 60) : 0,
+      championCount: a.champions.size,
+      topChampion: best
+        ? { name: best.name, nameZh: bestMeta?.name_zh ?? best.name, icon: bestMeta?.icon ?? null, games: best.c.games }
+        : null
+    });
+  }
+  return rows.sort(
+    (a, b) =>
+      (b.kda ?? Number.POSITIVE_INFINITY) - (a.kda ?? Number.POSITIVE_INFINITY) ||
+      b.games - a.games ||
+      a.name.localeCompare(b.name)
+  );
+}
+
+export function playerChampions(meta: Meta, key: string): PlayerChampionRow[] {
+  const acc = accumulate().get(key);
+  if (!acc) return [];
+  return [...acc.champions.entries()]
+    .map(([name, c]) => {
+      const cm = meta.champions[name];
+      return {
+        name,
+        nameZh: cm?.name_zh ?? name,
+        icon: cm?.icon ?? null,
+        games: c.games,
+        wins: c.wins,
+        winRate: c.games ? c.wins / c.games : 0,
+        kills: c.kills,
+        deaths: c.deaths,
+        assists: c.assists,
+        kda: ratio(c.kills, c.deaths, c.assists),
+        csPerMin: c.seconds ? c.cs / (c.seconds / 60) : 0
+      };
+    })
+    .sort((a, b) => b.games - a.games || b.winRate - a.winRate || (b.kda ?? 0) - (a.kda ?? 0));
+}
+
+export function playerGames(meta: Meta, key: string): PlayerGameRow[] {
+  const rows: PlayerGameRow[] = [];
+  for (const game of games) {
+    const sides = Object.fromEntries(game.teams.map((t) => [t.side, t]));
+    for (const p of game.players) {
+      if (playerKey(sides[p.team]?.name ?? p.team, p.name) !== key) continue;
+      const other = game.teams.find((t) => t.side !== p.team);
+      const otherMeta = other ? meta.teams[other.name] : undefined;
+      const cm = meta.champions[p.champion];
+      rows.push({
+        game,
+        opponent: other?.name ?? "?",
+        opponentLogo: otherMeta?.logo ?? null,
+        champion: p.champion,
+        championZh: cm?.name_zh ?? p.champion,
+        win: Boolean(sides[p.team]?.win),
+        k: p.kda[0],
+        d: p.kda[1],
+        a: p.kda[2],
+        cs: p.cs
+      });
+    }
+  }
+  return rows.sort((a, b) => (a.game.date < b.game.date ? 1 : a.game.date > b.game.date ? -1 : b.game.game_id - a.game.game_id));
+}
+
+export function findPlayerKey(meta: Meta, slug: string): string | null {
+  for (const key of Object.keys(meta.players)) {
+    const sep = key.indexOf("|");
+    if (sep < 0) continue;
+    if (playerSlug(key.slice(0, sep), key.slice(sep + 1)) === slug) return key;
+  }
+  return null;
+}

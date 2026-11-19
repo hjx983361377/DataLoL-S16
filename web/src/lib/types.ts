@@ -81,7 +81,15 @@ export interface TeamMeta {
   code: string;
 }
 
+export interface PlayerMeta {
+  team: string;
+  role: string;
+  photo: string | null;
+  summoner?: string;
+}
+
 export interface Meta {
   champions: Record<string, ChampionMeta>;
   teams: Record<string, TeamMeta>;
+  players: Record<string, PlayerMeta>;
 }

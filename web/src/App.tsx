@@ -4,6 +4,8 @@ import { loadMeta } from "./lib/data";
 import type { Meta } from "./lib/types";
 import Overview from "./pages/Overview";
 import Matches from "./pages/Matches";
+import Players from "./pages/Players";
+import Player from "./pages/Player";
 
 export default function App() {
   const [meta, setMeta] = useState<Meta | null>(null);
@@ -36,6 +38,7 @@ export default function App() {
               赛事总览
             </NavLink>
             <NavLink to="/matches">比赛列表</NavLink>
+            <NavLink to="/players">选手榜</NavLink>
           </nav>
         </div>
       </header>
@@ -59,15 +62,15 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Overview meta={meta} />} />
             <Route path="/matches" element={<Matches meta={meta} />} />
+            <Route path="/players" element={<Players meta={meta} />} />
+            <Route path="/player/:slug" element={<Player meta={meta} />} />
             <Route
               path="*"
               element={
                 <div className="page">
                   <div className="state">
                     <h2>这一页还在做</h2>
-                    <p>
-                      目前上线了赛事总览与比赛列表。单场详情、队伍页、选手榜在下一版。
-                    </p>
+                    <p>目前上线了赛事总览、比赛列表与选手榜。单场详情页在下一版。</p>
                     <Link className="link-arrow" to="/">
                       回到赛事总览
                     </Link>
@@ -86,6 +89,7 @@ export default function App() {
             <div className="footer-links">
               <Link to="/">赛事总览</Link>
               <Link to="/matches">比赛列表</Link>
+              <Link to="/players">选手榜</Link>
               <a href="https://github.com/hjx983361377/DataLoL-S16" target="_blank" rel="noreferrer">
                 数据仓库
               </a>
