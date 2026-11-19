@@ -1,0 +1,600 @@
+[
+ {
+  "series_id": 83722,
+  "label": "BLG vs Gen.G",
+  "stage": "FINALS",
+  "score": "1 - 3",
+  "teams": [
+   "Gen.G",
+   "Bilibili Gaming"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-14",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83718,
+  "label": "BLG vs T1",
+  "stage": "SEMIFINALS",
+  "score": "3 - 1",
+  "teams": [
+   "Bilibili Gaming",
+   "T1"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-08",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83713,
+  "label": "IG vs Gen.G",
+  "stage": "SEMIFINALS",
+  "score": "3 - 0",
+  "teams": [
+   "Gen.G",
+   "Invictus Gaming"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-07",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83709,
+  "label": "KC vs T1",
+  "stage": "QUARTERFINALS",
+  "score": "3 - 1",
+  "teams": [
+   "T1",
+   "Karmine Corp"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-06",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83704,
+  "label": "Dplus KIA vs BLG",
+  "stage": "QUARTERFINALS",
+  "score": "3 - 0",
+  "teams": [
+   "Bilibili Gaming",
+   "Dplus KIA"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-05",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83699,
+  "label": "Gen.G vs LYON",
+  "stage": "QUARTERFINALS",
+  "score": "3 - 0",
+  "teams": [
+   "Gen.G",
+   "LYON"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-04",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83694,
+  "label": "Top Esports vs IG",
+  "stage": "QUARTERFINALS",
+  "score": "3 - 1",
+  "teams": [
+   "Invictus Gaming",
+   "Top Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-11-03",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83692,
+  "label": "HLE vs BLG",
+  "stage": "ROUND5",
+  "score": "2 - 0",
+  "teams": [
+   "Bilibili Gaming",
+   "Hanwha Life Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-31",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83689,
+  "label": "Los Grandes vs LYON",
+  "stage": "ROUND5",
+  "score": "2 - 1",
+  "teams": [
+   "LYON",
+   "Los Grandes"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-31",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83686,
+  "label": "KC vs MKOI",
+  "stage": "ROUND5",
+  "score": "2 - 0",
+  "teams": [
+   "Karmine Corp",
+   "Movistar KOI"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-31",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83684,
+  "label": "HLE vs G2 Esports",
+  "stage": "ROUND4",
+  "score": "0 - 2",
+  "teams": [
+   "G2 Esports",
+   "Hanwha Life Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-30",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83681,
+  "label": "Team Liquid vs Los Grandes",
+  "stage": "ROUND4",
+  "score": "2 - 1",
+  "teams": [
+   "Los Grandes",
+   "Team Liquid"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-30",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83678,
+  "label": "Top Esports vs BLG",
+  "stage": "ROUND4",
+  "score": "1 - 2",
+  "teams": [
+   "Bilibili Gaming",
+   "Top Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-29",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83675,
+  "label": "KC vs CFO",
+  "stage": "ROUND4",
+  "score": "2 - 0",
+  "teams": [
+   "Karmine Corp",
+   "CTBC Flying Oyster"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-29",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83672,
+  "label": "IG vs LYON",
+  "stage": "ROUND4",
+  "score": "1 - 2",
+  "teams": [
+   "LYON",
+   "Invictus Gaming"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-28",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83669,
+  "label": "MKOI vs T1",
+  "stage": "ROUND4",
+  "score": "2 - 0",
+  "teams": [
+   "T1",
+   "Movistar KOI"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-28",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83667,
+  "label": "Team Liquid vs AL",
+  "stage": "ROUND3",
+  "score": "0 - 2",
+  "teams": [
+   "Anyone s Legend",
+   "Team Liquid"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-26",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83664,
+  "label": "Los Grandes vs TSW",
+  "stage": "ROUND3",
+  "score": "0 - 2",
+  "teams": [
+   "Team Secret Whales",
+   "Los Grandes"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-26",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83663,
+  "label": "KC vs BLG",
+  "stage": "ROUND3",
+  "score": "1 - 0",
+  "teams": [
+   "Bilibili Gaming",
+   "Karmine Corp"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-26",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83662,
+  "label": "T1 vs CFO",
+  "stage": "ROUND3",
+  "score": "1 - 0",
+  "teams": [
+   "T1",
+   "CTBC Flying Oyster"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-26",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83659,
+  "label": "Gen.G vs LYON",
+  "stage": "ROUND3",
+  "score": "1 - 2",
+  "teams": [
+   "LYON",
+   "Gen.G"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-25",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83656,
+  "label": "Dplus KIA vs MKOI",
+  "stage": "ROUND3",
+  "score": "0 - 2",
+  "teams": [
+   "Movistar KOI",
+   "Dplus KIA"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-25",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83655,
+  "label": "Top Esports vs G2 Esports",
+  "stage": "ROUND3",
+  "score": "1 - 0",
+  "teams": [
+   "Top Esports",
+   "G2 Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-25",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83654,
+  "label": "HLE vs IG",
+  "stage": "ROUND3",
+  "score": "1 - 0",
+  "teams": [
+   "Invictus Gaming",
+   "Hanwha Life Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-25",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83653,
+  "label": "Team Liquid vs BLG",
+  "stage": "ROUND2",
+  "score": "0 - 1",
+  "teams": [
+   "Team Liquid",
+   "Bilibili Gaming"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83652,
+  "label": "Dplus KIA vs T1",
+  "stage": "ROUND2",
+  "score": "1 - 0",
+  "teams": [
+   "Dplus KIA",
+   "T1"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83651,
+  "label": "HLE vs Gen.G",
+  "stage": "ROUND2",
+  "score": "0 - 1",
+  "teams": [
+   "Hanwha Life Esports",
+   "Gen.G"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83650,
+  "label": "IG vs TSW",
+  "stage": "ROUND2",
+  "score": "0 - 1",
+  "teams": [
+   "Team Secret Whales",
+   "Invictus Gaming"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83649,
+  "label": "LYON vs KC",
+  "stage": "ROUND2",
+  "score": "0 - 1",
+  "teams": [
+   "Karmine Corp",
+   "LYON"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83648,
+  "label": "G2 Esports vs Los Grandes",
+  "stage": "ROUND2",
+  "score": "0 - 1",
+  "teams": [
+   "Los Grandes",
+   "G2 Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83647,
+  "label": "CFO vs MKOI",
+  "stage": "ROUND2",
+  "score": "1 - 0",
+  "teams": [
+   "Movistar KOI",
+   "CTBC Flying Oyster"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83646,
+  "label": "Top Esports vs AL",
+  "stage": "ROUND2",
+  "score": "1 - 0",
+  "teams": [
+   "Top Esports",
+   "Anyone s Legend"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-24",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83645,
+  "label": "BLG vs MKOI",
+  "stage": "ROUND1",
+  "score": "1 - 0",
+  "teams": [
+   "Movistar KOI",
+   "Bilibili Gaming"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83644,
+  "label": "TSW vs LYON",
+  "stage": "ROUND1",
+  "score": "1 - 0",
+  "teams": [
+   "LYON",
+   "Team Secret Whales"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83643,
+  "label": "Los Grandes vs T1",
+  "stage": "ROUND1",
+  "score": "0 - 1",
+  "teams": [
+   "Los Grandes",
+   "T1"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83642,
+  "label": "HLE vs Top Esports",
+  "stage": "ROUND1",
+  "score": "0 - 1",
+  "teams": [
+   "Top Esports",
+   "Hanwha Life Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83641,
+  "label": "G2 Esports vs Dplus KIA",
+  "stage": "ROUND1",
+  "score": "1 - 0",
+  "teams": [
+   "Dplus KIA",
+   "G2 Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83640,
+  "label": "AL vs KC",
+  "stage": "ROUND1",
+  "score": "1 - 0",
+  "teams": [
+   "Karmine Corp",
+   "Anyone s Legend"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83639,
+  "label": "Team Liquid vs CFO",
+  "stage": "ROUND1",
+  "score": "0 - 1",
+  "teams": [
+   "Team Liquid",
+   "CTBC Flying Oyster"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83638,
+  "label": "Gen.G vs IG",
+  "stage": "ROUND1",
+  "score": "0 - 1",
+  "teams": [
+   "Invictus Gaming",
+   "Gen.G"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-23",
+  "tournament": "Worlds 2026 Main Event"
+ },
+ {
+  "series_id": 83635,
+  "label": "KC vs MVK Esports",
+  "stage": "ROUND3",
+  "score": "3 - 0",
+  "teams": [
+   "Karmine Corp",
+   "MVK Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-18",
+  "tournament": "Worlds 2026 Play-In"
+ },
+ {
+  "series_id": 83631,
+  "label": "MVK Esports vs FURIA",
+  "stage": "ROUND2",
+  "score": "3 - 1",
+  "teams": [
+   "MVK Esports",
+   "FURIA"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-17",
+  "tournament": "Worlds 2026 Play-In"
+ },
+ {
+  "series_id": 83628,
+  "label": "MVK Esports vs KC",
+  "stage": "ROUND2",
+  "score": "3 - 0",
+  "teams": [
+   "Karmine Corp",
+   "MVK Esports"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-16",
+  "tournament": "Worlds 2026 Play-In"
+ },
+ {
+  "series_id": 83623,
+  "label": "FURIA vs Cloud9",
+  "stage": "ROUND1",
+  "score": "3 - 1",
+  "teams": [
+   "FURIA",
+   "Cloud9"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-16",
+  "tournament": "Worlds 2026 Play-In"
+ },
+ {
+  "series_id": 83598,
+  "label": "Cloud9 vs KC",
+  "stage": "ROUND1",
+  "score": "3 - 2",
+  "teams": [
+   "Karmine Corp",
+   "Cloud9"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-15",
+  "tournament": "Worlds 2026 Play-In"
+ },
+ {
+  "series_id": 83593,
+  "label": "FURIA vs MVK Esports",
+  "stage": "ROUND1",
+  "score": "3 - 0",
+  "teams": [
+   "MVK Esports",
+   "FURIA"
+  ],
+  "patch": "16.20",
+  "date": "2026-10-15",
+  "tournament": "Worlds 2026 Play-In"
+ }
+]

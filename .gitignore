@@ -1,0 +1,25 @@
+# dependencies & virtualenvs
+node_modules/
+.venv/
+venv/
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# local data snapshots (87 MB of raw HTML; regenerable with collect.py)
+data/raw/*
+!data/raw/.gitkeep
+
+# logs / env / editor
+*.log
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+
+# build output
+dist/
+*.local
