@@ -1,6 +1,66 @@
 import { useMemo, useState } from "react";
-import type { Meta } from "../lib/types";
+import { Link } from "react-router-dom";
+import type { Meta, Series } from "../lib/types";
 import { filterSeries, seriesOptions, stageLabel } from "../lib/stats";
+
+function Chevron() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" className="chev">
+      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function scoreParts(score: string): [number, number] {
+  const parts = score.split(/\s*[-–]\s*/).map((x) => Number(x));
+  if (parts.length === 2 && parts.every((n) => Number.isFinite(n))) return [parts[0], parts[1]];
+  return [0, 0];
+}
+
+function SeriesItem({ s, meta }: { s: Series; meta: Meta }) {
+  const [a, b] = scoreParts(s.score);
+  const team0 = s.teams[0] ?? "?";
+  const team1 = s.teams[1] ?? "?";
+  const logo0 = meta.teams[team0]?.logo;
+  const logo1 = meta.teams[team1]?.logo;
+  const chip0 = meta.teams[team0]?.code ?? team0.slice(0, 3).toUpperCase();
+  const chip1 = meta.teams[team1]?.code ?? team1.slice(0, 3).toUpperCase();
+
+  return (
+    <li>
+      <Link className="series-row" to={"/match/" + s.series_id}>
+        <span className="series-meta">
+          <span className="series-date">{s.date.slice(5)}</span>
+          <span className="stage-tag">{stageLabel(s.tournament, s.stage)}</span>
+        </span>
+        <span className="series-teams">
+          <span className={"side" + (a > b ? " won" : a < b ? " lost" : "")}>
+            {logo0 ? (
+              <img className="team-logo sm" src={logo0} alt={team0} loading="lazy" />
+            ) : (
+              <span className="team-logo team-logo-fallback sm">{chip0}</span>
+            )}
+            <span>{team0}</span>
+          </span>
+          <span className="vs">vs</span>
+          <span className={"side right" + (b > a ? " won" : b < a ? " lost" : "")}>
+            <span>{team1}</span>
+            {logo1 ? (
+              <img className="team-logo sm" src={logo1} alt={team1} loading="lazy" />
+            ) : (
+              <span className="team-logo team-logo-fallback sm">{chip1}</span>
+            )}
+          </span>
+        </span>
+        <span className="series-score">
+          {a} – {b}
+        </span>
+        <span className="series-games">{a + b} 局</span>
+        <Chevron />
+      </Link>
+    </li>
+  );
+}
 
 export default function Matches({ meta }: { meta: Meta }) {
   const [tournament, setTournament] = useState("ALL");
@@ -15,18 +75,21 @@ export default function Matches({ meta }: { meta: Meta }) {
     [opts, tournament]
   );
 
+  const dirty = tournament !== "ALL" || stage !== "ALL" || team !== "ALL";
+
   return (
     <div className="page">
       <section className="page-head">
-        <h1>比赛列表</h1>
-        <p className="hero-sub">
-          共 {rows.length} 个系列赛 · 点击筛选阶段、队伍查看具体对阵
+        <p className="eyebrow rise d1">比赛列表</p>
+        <h1 className="rise d2">46 个系列赛，逐局可查。</h1>
+        <p className="section-note rise d3">
+          入围赛 22 局、正赛 76 局，按阶段与队伍筛选。每一行是一个系列赛（BO3 / BO5），比分在前的是胜者。
         </p>
       </section>
 
       <div className="filters">
-        <label>
-          赛事
+        <label className="filter">
+          <span>赛事</span>
           <select
             value={tournament}
             onChange={(e) => {
@@ -42,8 +105,8 @@ export default function Matches({ meta }: { meta: Meta }) {
             ))}
           </select>
         </label>
-        <label>
-          阶段
+        <label className="filter">
+          <span>阶段</span>
           <select value={stage} onChange={(e) => setStage(e.target.value)}>
             <option value="ALL">全部阶段</option>
             {stages.map((s) => (
@@ -53,8 +116,8 @@ export default function Matches({ meta }: { meta: Meta }) {
             ))}
           </select>
         </label>
-        <label>
-          队伍
+        <label className="filter">
+          <span>队伍</span>
           <select value={team} onChange={(e) => setTeam(e.target.value)}>
             <option value="ALL">全部队伍</option>
             {opts.teams.map((t) => (
@@ -64,71 +127,32 @@ export default function Matches({ meta }: { meta: Meta }) {
             ))}
           </select>
         </label>
-        <button
-          className="reset"
-          onClick={() => {
-            setTournament("ALL");
-            setStage("ALL");
-            setTeam("ALL");
-          }}
-        >
-          重置
-        </button>
+        {dirty ? (
+          <button
+            className="reset"
+            onClick={() => {
+              setTournament("ALL");
+              setStage("ALL");
+              setTeam("ALL");
+            }}
+          >
+            重置
+          </button>
+        ) : null}
+        <span className="filter-count">{rows.length} 个系列赛</span>
       </div>
 
       {rows.length === 0 ? (
         <div className="state">
-          <p>没有符合条件的比赛。</p>
+          <h2>没有符合条件的比赛</h2>
+          <p>换个阶段或队伍试试。</p>
         </div>
       ) : (
-        <div className="table-wrap">
-          <table className="table matches">
-            <thead>
-              <tr>
-                <th className="num">日期</th>
-                <th>阶段</th>
-                <th>对阵</th>
-                <th className="num">比分</th>
-                <th className="num">局数</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((s) => (
-                <tr key={s.series_id}>
-                  <td className="num muted">{s.date}</td>
-                  <td>
-                    <span className="pill">{stageLabel(s.tournament, s.stage)}</span>
-                  </td>
-                  <td>
-                    <span className="vs-row">
-                      {s.teams[0] && meta.teams[s.teams[0]]?.logo ? (
-                        <img
-                          className="team-logo sm"
-                          src={meta.teams[s.teams[0]].logo}
-                          alt={s.teams[0]}
-                          loading="lazy"
-                        />
-                      ) : null}
-                      <span>{s.teams[0] ?? "?"}</span>
-                      <span className="vs">vs</span>
-                      <span>{s.teams[1] ?? "?"}</span>
-                      {s.teams[1] && meta.teams[s.teams[1]]?.logo ? (
-                        <img
-                          className="team-logo sm"
-                          src={meta.teams[s.teams[1]].logo}
-                          alt={s.teams[1]}
-                          loading="lazy"
-                        />
-                      ) : null}
-                    </span>
-                  </td>
-                  <td className="num score">{s.score}</td>
-                  <td className="num muted">{s.score.split(" - ").reduce((a, b) => a + Number(b), 0)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ul className="series-list">
+          {rows.map((s) => (
+            <SeriesItem key={s.series_id} s={s} meta={meta} />
+          ))}
+        </ul>
       )}
     </div>
   );

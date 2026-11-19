@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Route, Routes } from "react-router-dom";
 import { loadMeta } from "./lib/data";
 import type { Meta } from "./lib/types";
 import Overview from "./pages/Overview";
@@ -27,14 +27,11 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <div className="topbar-inner">
-          <NavLink to="/" className="brand">
+          <NavLink to="/" className="brand" aria-label="S16 世界赛数据中心首页">
             <span className="brand-mark">S16</span>
-            <span className="brand-text">
-              世界赛数据中心
-              <small>WORLDS 2026 · DATA</small>
-            </span>
+            <span className="brand-text">世界赛数据中心</span>
           </NavLink>
-          <nav className="nav">
+          <nav className="nav" aria-label="主导航">
             <NavLink to="/" end>
               赛事总览
             </NavLink>
@@ -45,14 +42,18 @@ export default function App() {
 
       <main className="main">
         {error ? (
-          <div className="state state-error">
-            <h2>数据加载失败</h2>
-            <p>{error}</p>
+          <div className="page">
+            <div className="state">
+              <h2>数据加载失败</h2>
+              <p>{error}</p>
+            </div>
           </div>
         ) : !meta ? (
-          <div className="state">
-            <div className="spinner" />
-            <p>正在装载 98 局比赛数据…</p>
+          <div className="page">
+            <div className="state">
+              <div className="spinner" />
+              <p>正在装载 98 局比赛数据…</p>
+            </div>
           </div>
         ) : (
           <Routes>
@@ -61,9 +62,16 @@ export default function App() {
             <Route
               path="*"
               element={
-                <div className="state">
-                  <h2>页面还没做</h2>
-                  <p>P0 只上线了赛事总览与比赛列表，单场详情、队伍页、选手榜在 P1。</p>
+                <div className="page">
+                  <div className="state">
+                    <h2>这一页还在做</h2>
+                    <p>
+                      目前上线了赛事总览与比赛列表。单场详情、队伍页、选手榜在下一版。
+                    </p>
+                    <Link className="link-arrow" to="/">
+                      回到赛事总览
+                    </Link>
+                  </div>
                 </div>
               }
             />
@@ -72,12 +80,26 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <p>
-          数据来源：gol.gg 对局页（逐局抓取快照）· 素材：Riot DataDragon 16.20.1 / lolesports API
-        </p>
-        <p className="muted">
-          英雄联盟及其相关素材版权归 Riot Games 所有，本站为非商业数据整理与展示。
-        </p>
+        <div className="footer-inner">
+          <div className="footer-top">
+            <p className="footer-brand">S16 世界赛数据中心</p>
+            <div className="footer-links">
+              <Link to="/">赛事总览</Link>
+              <Link to="/matches">比赛列表</Link>
+              <a href="https://github.com/hjx983361377/DataLoL-S16" target="_blank" rel="noreferrer">
+                数据仓库
+              </a>
+            </div>
+          </div>
+          <div className="footer-fine">
+            <p>
+              数据来源：gol.gg 对局页逐局快照（98 局 / 46 个系列赛）· 素材：Riot DataDragon 16.20.1、lolesports API
+            </p>
+            <p>
+              英雄联盟及其相关素材版权归 Riot Games 所有。本站为非商业的数据整理与展示，与 Riot Games 无隶属关系。
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
