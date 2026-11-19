@@ -13,6 +13,7 @@ import {
   type TeamRow
 } from "../lib/stats";
 import Reveal from "../components/Reveal";
+import Search from "../components/Search";
 
 function Chevron() {
   return (
@@ -209,6 +210,10 @@ export default function Overview({ meta }: { meta: Meta }) {
             直接看数据
             <ArrowDown />
           </a>
+        </div>
+
+        <div className="rise d5 search-slot">
+          <Search meta={meta} />
         </div>
 
         <Reveal delay={120}>

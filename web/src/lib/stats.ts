@@ -104,8 +104,9 @@ function matchup(game: Game): string {
 }
 
 export function fmtDuration(sec: number): string {
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
+  const total = Math.max(0, Math.round(sec));
+  const m = Math.floor(total / 60);
+  const s = total % 60;
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
