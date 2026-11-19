@@ -182,23 +182,25 @@ export default function Overview({ meta }: { meta: Meta }) {
 
   return (
     <div className="page">
-      <section className="hero">
-        <p className="eyebrow rise d1">League of Legends · Season 16</p>
-        <h1 className="rise d2">
-          九十八局。
-          <br />
-          一个赛季。
-        </h1>
-        <p className="hero-sub rise d3">
-          从 10 月 15 日的入围赛到 11 月 14 日的总决赛：{ov.totalSeries} 个系列赛、{ov.teamCount} 支队伍、{ov.playerCount} 位选手，每一局的 BP 与胜负。
+      <section className="page-head">
+        <p className="eyebrow rise d1">2026 全球总决赛</p>
+        <h1 className="rise d2">数据总览</h1>
+        <p className="section-note rise d3">
+          <span className="note-line">
+            <span className="no-break">{ov.totalGames} 局比赛</span>、
+            <span className="no-break">{ov.totalSeries} 个系列赛</span>、
+            <span className="no-break">{ov.teamCount} 支队伍</span>、
+            <span className="no-break">{ov.playerCount} 位选手</span>。
+          </span>
+          <span className="note-line">赛程为 10 月 15 日至 11 月 14 日，包含入围赛、瑞士轮与淘汰赛。</span>
         </p>
         <div className="hero-actions rise d4">
           <Link className="btn btn-primary" to="/matches">
-            浏览全部比赛
+            查看比赛列表
             <Chevron />
           </Link>
           <a className="link-arrow" href="#season">
-            先看总览
+            直接看数据
             <ArrowDown />
           </a>
         </div>
@@ -229,10 +231,9 @@ export default function Overview({ meta }: { meta: Meta }) {
       <section className="section" id="season">
         <Reveal>
           <div className="section-head">
-            <p className="eyebrow">赛季概览</p>
-            <h2 className="section-title">把 98 局，压成几个数。</h2>
+            <h2 className="section-title">赛事数据概览</h2>
             <p className="section-note">
-              全部数字来自逐局抓取的原始页面快照，而不是二手整理。日期、补丁、BP 顺序、经济曲线都保留在原始数据里。
+              数字取自逐局抓取的原始页面快照，日期、补丁、BP 顺序与逐分钟经济差均可在原始数据中核对。
             </p>
           </div>
         </Reveal>
@@ -305,10 +306,10 @@ export default function Overview({ meta }: { meta: Meta }) {
       <section className="section">
         <Reveal>
           <div className="section-head">
-            <p className="eyebrow">英雄焦点</p>
-            <h2 className="section-title">这个版本，谁被围绕着打。</h2>
+            <p className="eyebrow">英雄数据</p>
+            <h2 className="section-title">出场与禁用</h2>
             <p className="section-note">
-              出场最多的四个英雄。胜率按"选到该英雄的一方是否取胜"统计，包含所有 98 局。
+              出场次数最多的四个英雄；胜率为选中该英雄的一方在全部 98 局中的胜率。
             </p>
           </div>
         </Reveal>
@@ -346,7 +347,7 @@ export default function Overview({ meta }: { meta: Meta }) {
         <Reveal delay={100}>
           <div>
             <div className="subhead">
-              <h3>Ban 位最热</h3>
+              <h3>被 Ban 最多</h3>
               <span>被禁用次数</span>
             </div>
             <ChampionRows rows={ov.topBans} metric="bans" />

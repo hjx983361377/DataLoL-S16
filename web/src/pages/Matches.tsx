@@ -80,10 +80,10 @@ export default function Matches({ meta }: { meta: Meta }) {
   return (
     <div className="page">
       <section className="page-head">
-        <p className="eyebrow rise d1">比赛列表</p>
-        <h1 className="rise d2">46 个系列赛，逐局可查。</h1>
+        <p className="eyebrow rise d1">2026 全球总决赛</p>
+        <h1 className="rise d2">比赛列表</h1>
         <p className="section-note rise d3">
-          入围赛 22 局、正赛 76 局，按阶段与队伍筛选。每一行是一个系列赛（BO3 / BO5），比分在前的是胜者。
+          46 个系列赛、98 局比赛（入围赛 22 局，正赛 76 局）。按赛事、阶段与队伍筛选，每一行是 BO3 / BO5 系列赛。
         </p>
       </section>
 
