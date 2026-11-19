@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    S16 涓栫晫璧涙暟鎹腑蹇?鈥?璧涗簨骞撮壌
    鏆栫焊搴?/ 澧ㄥ瓧 / 鍗曚竴鏆楅噾寮鸿皟锛涘畫浣撴帓鏍囬锛岀瓑瀹芥帓鏁板瓧
    ============================================================ */
@@ -1823,4 +1823,105 @@ a.match-side-name:hover { color: var(--gold); }
   .roster-table .player-cell-name { font-size: 14px; }
   .roster-table .player-cell-team { font-size: 11px; }
   .champ-extra { min-width: 62px; }
+}
+
+/* ---------- teams index ---------- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
+  gap: 16px;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 17px 17px 15px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+  transition: border-color 150ms var(--ease);
+}
+
+.team-card:hover { border-color: rgba(138, 91, 24, 0.42); }
+.team-card:hover .team-card-name { color: var(--gold); }
+
+.team-card-head { display: flex; align-items: center; gap: 10px; }
+
+.team-card-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+
+.team-card-logo-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+.team-card-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--serif);
+  font-size: 18.5px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.005em;
+  transition: color 150ms var(--ease);
+}
+
+.team-card-run {
+  flex: 0 0 auto;
+  margin-left: auto;
+  align-self: center;
+  padding: 3px 7px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.team-card-run.is-champion { border-color: rgba(138, 91, 24, 0.5); color: var(--gold); }
+
+.team-card-record { display: flex; align-items: center; gap: 22px; }
+.team-card-stat { display: flex; flex-direction: column; gap: 1px; }
+.team-card-stat b {
+  font-family: var(--mono);
+  font-size: 15.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+.team-card-stat small { font-size: 11px; color: var(--ink-3); }
+
+.team-card-bar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--raise);
+  overflow: hidden;
+}
+
+.team-card-fill { display: block; height: 100%; background: var(--gold); opacity: 0.5; }
+
+.team-card-roster { display: flex; gap: 5px; }
+.team-card-roster .avatar { width: 24px; height: 24px; }
+
+@media (max-width: 720px) {
+  .team-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .team-card { padding: 15px 15px 14px; gap: 12px; }
+  .nav { gap: 11px; }
+  .nav a { font-size: 12.5px; }
+  .brand-text { font-size: 14px; }
 }

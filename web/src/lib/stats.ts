@@ -825,6 +825,21 @@ export function teamRoster(meta: Meta, name: string): PlayerRow[] {
 }
 
 /** 把 dragon_types 归并成「化学科技龙 ×2、炼火龙」这种读法。 */
+/** 全部队伍，按系列赛胜率、胜场、局胜率、队名排序。 */
+export function buildTeams(meta: Meta): TeamSummary[] {
+  const names = [...new Set([...Object.keys(meta.teams), ...series.flatMap((s) => s.teams)])];
+  return names
+    .map((name) => buildTeam(meta, name))
+    .filter((t): t is TeamSummary => t !== null)
+    .sort(
+      (a, b) =>
+        b.seriesWinRate - a.seriesWinRate ||
+        b.seriesWins - a.seriesWins ||
+        b.winRate - a.winRate ||
+        a.name.localeCompare(b.name)
+    );
+}
+
 export function dragonSummary(types: string[]): string {
   const counts = new Map<string, number>();
   for (const t of types) counts.set(t, (counts.get(t) ?? 0) + 1);
