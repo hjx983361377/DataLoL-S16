@@ -192,7 +192,10 @@ export default function Overview({ meta }: { meta: Meta }) {
             <span className="no-break">{ov.teamCount} 支队伍</span>、
             <span className="no-break">{ov.playerCount} 位选手</span>。
           </span>
-          <span className="note-line">赛程为 10 月 15 日至 11 月 14 日，包含入围赛、瑞士轮与淘汰赛。</span>
+          <span className="note-line">
+            <span className="no-break">赛程为 10 月 15 日至 11 月 14 日，</span>
+            <span className="no-break">包含入围赛、瑞士轮与淘汰赛。</span>
+          </span>
         </p>
         <div className="hero-actions rise d4">
           <Link className="btn btn-primary" to="/matches">
