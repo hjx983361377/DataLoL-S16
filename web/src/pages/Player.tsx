@@ -9,7 +9,8 @@ import {
   playerChampions,
   playerGames,
   roleLabel,
-  stageLabel
+  stageLabel,
+  teamSlug
 } from "../lib/stats";
 import { PlayerAvatar } from "./Players";
 
@@ -57,7 +58,9 @@ export default function Player({ meta }: { meta: Meta }) {
           </p>
           <p className="player-facts">
             {row.teamLogo ? <img className="team-logo" src={row.teamLogo} alt="" loading="lazy" /> : null}
-            <span>{row.team}</span>
+            <Link className="player-team-link" to={"/team/" + teamSlug(row.team)}>
+              {row.team}
+            </Link>
             <span className="dot" aria-hidden="true">·</span>
             <span>{roleLabel(row.role)}</span>
             <span className="dot" aria-hidden="true">·</span>

@@ -604,6 +604,226 @@ export const EVENT_CN: Record<string, string> = {
   "Cloud Drake": "云端龙"
 };
 
+/* ---------- 队伍页 ---------- */
+
+export function teamSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function findTeamName(meta: Meta, slug: string): string | null {
+  for (const name of Object.keys(meta.teams)) if (teamSlug(name) === slug) return name;
+  for (const s of series) for (const name of s.teams) if (teamSlug(name) === slug) return name;
+  return null;
+}
+
+export interface TeamSeriesRow {
+  series: Series;
+  opponent: string;
+  opponentLogo: string | null;
+  own: number;
+  opp: number;
+  win: boolean;
+  games: number;
+}
+
+export interface TeamChampionRow {
+  name: string;
+  nameZh: string;
+  icon: string | null;
+  games: number;
+  wins: number;
+  winRate: number | null;
+}
+
+export interface TeamSummary {
+  name: string;
+  slug: string;
+  code: string;
+  logo: string | null;
+  seriesWins: number;
+  seriesLosses: number;
+  seriesWinRate: number;
+  games: number;
+  wins: number;
+  losses: number;
+  winRate: number;
+  blueGames: number;
+  blueWins: number;
+  redGames: number;
+  redWins: number;
+  kills: number;
+  deaths: number;
+  towers: number;
+  dragons: number;
+  barons: number;
+  seconds: number;
+  run: string;
+  runNote: string;
+  seriesRows: TeamSeriesRow[];
+  picks: TeamChampionRow[];
+  bans: TeamChampionRow[];
+}
+
+/** 队伍走到的最深阶段：入围赛 < 主赛事各轮 < 八强 < 半决赛 < 决赛。 */
+function seriesRank(s: Series): number {
+  return (s.tournament.includes("Play-In") ? 0 : 100) + ROUND_ORDER_INDEX(s.stage);
+}
+
+function champRows(
+  acc: Map<string, { games: number; wins: number }>,
+  meta: Meta,
+  withRate: boolean
+): TeamChampionRow[] {
+  return [...acc.entries()]
+    .map(([name, e]) => {
+      const c = meta.champions[name];
+      return {
+        name,
+        nameZh: c?.name_zh ?? name,
+        icon: c?.icon ?? null,
+        games: e.games,
+        wins: e.wins,
+        winRate: withRate && e.games ? e.wins / e.games : null
+      };
+    })
+    .sort((a, b) => b.games - a.games || b.wins - a.wins || a.name.localeCompare(b.name));
+}
+
+export function buildTeam(meta: Meta, name: string): TeamSummary | null {
+  const related = series.filter((s) => s.teams.includes(name));
+  const ownGames = games.filter((g) => g.teams.some((t) => t.name === name));
+  if (!related.length && !ownGames.length) return null;
+
+  const seriesRows: TeamSeriesRow[] = related
+    .map((s) => {
+      const idx = s.teams.indexOf(name);
+      const parts = s.score.split(/\s*[-–]\s*/).map((x) => Number(x));
+      const own = parts[idx] ?? 0;
+      const opp = parts[1 - idx] ?? 0;
+      const opponent = s.teams[1 - idx] ?? "?";
+      return {
+        series: s,
+        opponent,
+        opponentLogo: meta.teams[opponent]?.logo ?? null,
+        own,
+        opp,
+        win: own > opp,
+        games: own + opp
+      };
+    })
+    .sort((a, b) =>
+      a.series.date < b.series.date ? 1 : a.series.date > b.series.date ? -1 : b.series.series_id - a.series.series_id
+    );
+
+  let wins = 0;
+  let losses = 0;
+  let kills = 0;
+  let deaths = 0;
+  let towers = 0;
+  let dragons = 0;
+  let barons = 0;
+  let seconds = 0;
+  let blueGames = 0;
+  let blueWins = 0;
+  let redGames = 0;
+  let redWins = 0;
+  const picks = new Map<string, { games: number; wins: number }>();
+  const bans = new Map<string, { games: number; wins: number }>();
+
+  for (const game of ownGames) {
+    const team = game.teams.find((t) => t.name === name);
+    if (!team) continue;
+    const other = game.teams.find((t) => t.side !== team.side);
+    const win = team.win;
+    wins += win ? 1 : 0;
+    losses += win ? 0 : 1;
+    kills += team.kills;
+    deaths += other?.kills ?? 0;
+    towers += team.towers;
+    dragons += team.dragons;
+    barons += team.barons;
+    seconds += game.duration_seconds;
+    if (team.side === "blue") {
+      blueGames += 1;
+      if (win) blueWins += 1;
+    } else {
+      redGames += 1;
+      if (win) redWins += 1;
+    }
+    const picked = team.side === "blue" ? game.picks.blue : game.picks.red;
+    const banned = team.side === "blue" ? game.bans.blue : game.bans.red;
+    for (const p of picked) {
+      const e = picks.get(p.name) ?? { games: 0, wins: 0 };
+      e.games += 1;
+      if (win) e.wins += 1;
+      picks.set(p.name, e);
+    }
+    for (const b of banned) {
+      const e = bans.get(b.name) ?? { games: 0, wins: 0 };
+      e.games += 1;
+      bans.set(b.name, e);
+    }
+  }
+
+  const seriesWins = seriesRows.filter((r) => r.win).length;
+  const seriesLosses = seriesRows.length - seriesWins;
+
+  const deepest = [...related].sort(
+    (a, b) => seriesRank(b) - seriesRank(a) || (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)
+  )[0];
+  const deepestRow = deepest ? seriesRows.find((r) => r.series.series_id === deepest.series_id) ?? null : null;
+  let run = "入围赛";
+  if (deepest && !deepest.tournament.includes("Play-In")) {
+    if (deepest.stage === "FINALS") run = deepestRow?.win ? "冠军" : "亚军";
+    else if (deepest.stage === "SEMIFINALS") run = "四强";
+    else if (deepest.stage === "QUARTERFINALS") run = "八强";
+    else run = "瑞士轮";
+  }
+  const runNote = deepestRow
+    ? stageLabel(deepestRow.series.tournament, deepestRow.series.stage) +
+      " " + deepestRow.own + "–" + deepestRow.opp +
+      (deepestRow.win ? " 胜 " : " 负 ") + deepestRow.opponent
+    : "";
+
+  return {
+    name,
+    slug: teamSlug(name),
+    code: meta.teams[name]?.code ?? name.slice(0, 3).toUpperCase(),
+    logo: meta.teams[name]?.logo ?? null,
+    seriesWins,
+    seriesLosses,
+    seriesWinRate: seriesRows.length ? seriesWins / seriesRows.length : 0,
+    games: ownGames.length,
+    wins,
+    losses,
+    winRate: ownGames.length ? wins / ownGames.length : 0,
+    blueGames,
+    blueWins,
+    redGames,
+    redWins,
+    kills,
+    deaths,
+    towers,
+    dragons,
+    barons,
+    seconds,
+    run,
+    runNote,
+    seriesRows,
+    picks: champRows(picks, meta, true),
+    bans: champRows(bans, meta, false)
+  };
+}
+
+export function teamRoster(meta: Meta, name: string): PlayerRow[] {
+  return buildPlayers(meta)
+    .filter((p) => p.team === name)
+    .sort((a, b) => roleIndex(a.role) - roleIndex(b.role) || b.games - a.games);
+}
+
 /** 把 dragon_types 归并成「化学科技龙 ×2、炼火龙」这种读法。 */
 export function dragonSummary(types: string[]): string {
   const counts = new Map<string, number>();

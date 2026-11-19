@@ -13,7 +13,8 @@ import {
   playerSlug,
   roleLabel,
   seriesGames,
-  stageLabel
+  stageLabel,
+  teamSlug
 } from "../lib/stats";
 
 /** 饰品（远见改造 / 神谕透镜 / 侦查守卫）与真眼在 items 里混排，展示时单独拎出来。 */
@@ -349,7 +350,9 @@ export default function Match({ meta }: { meta: Meta }) {
           <div className="match-side">
             {logoA ? <img className="match-logo" src={logoA} alt="" loading="lazy" /> : null}
             <div className="match-side-body">
-              <p className="match-side-name">{teamA}</p>
+              <Link className="match-side-name" to={"/team/" + teamSlug(teamA)}>
+                {teamA}
+              </Link>
               <p className="match-side-meta">
                 {winsA} 胜 {games.length - winsA} 负
               </p>
@@ -367,7 +370,9 @@ export default function Match({ meta }: { meta: Meta }) {
           </div>
           <div className="match-side right">
             <div className="match-side-body">
-              <p className="match-side-name">{teamB}</p>
+              <Link className="match-side-name" to={"/team/" + teamSlug(teamB)}>
+                {teamB}
+              </Link>
               <p className="match-side-meta">
                 {winsB} 胜 {games.length - winsB} 负
               </p>

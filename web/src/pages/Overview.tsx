@@ -7,6 +7,7 @@ import {
   fmtDuration,
   fmtPct,
   stageLabel,
+  teamSlug,
   type ChampionRow,
   type TeamRow
 } from "../lib/stats";
@@ -51,14 +52,14 @@ function TeamTable({ rows }: { rows: TeamRow[] }) {
             <tr key={t.name}>
               <td className="num rank">{i + 1}</td>
               <td>
-                <span className="team-cell">
+                <Link className="team-cell" to={"/team/" + teamSlug(t.name)}>
                   {t.logo ? (
                     <img className="team-logo" src={t.logo} alt={t.name} loading="lazy" />
                   ) : (
                     <span className="team-logo team-logo-fallback">{t.code}</span>
                   )}
                   <span>{t.name}</span>
-                </span>
+                </Link>
               </td>
               <td className="num">{t.games}</td>
               <td className="num">

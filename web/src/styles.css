@@ -1,6 +1,6 @@
-/* ============================================================
-   S16 世界赛数据中心 — 赛事年鉴
-   暖纸底 / 墨字 / 单一暗金强调；宋体排标题，等宽排数字
+﻿/* ============================================================
+   S16 涓栫晫璧涙暟鎹腑蹇?鈥?璧涗簨骞撮壌
+   鏆栫焊搴?/ 澧ㄥ瓧 / 鍗曚竴鏆楅噾寮鸿皟锛涘畫浣撴帓鏍囬锛岀瓑瀹芥帓鏁板瓧
    ============================================================ */
 
 @font-face {
@@ -902,7 +902,7 @@ ul { list-style: none; padding: 0; }
   to { opacity: 1; transform: none; }
 }
 
-/* 渐进增强：只有 JS 在跑时才隐藏，脚本失效或截图工具走静态渲染时内容依然可见 */
+/* 娓愯繘澧炲己锛氬彧鏈?JS 鍦ㄨ窇鏃舵墠闅愯棌锛岃剼鏈け鏁堟垨鎴浘宸ュ叿璧伴潤鎬佹覆鏌撴椂鍐呭渚濈劧鍙 */
 .reveal { transition: opacity 0.42s var(--ease), transform 0.42s var(--ease); transition-delay: var(--delay, 0ms); }
 
 html.js .reveal { opacity: 0; transform: translateY(10px); }
@@ -1173,7 +1173,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .recent-stage { display: none; }
   .table { font-size: 14px; }
   .table th, .table td { padding-right: 10px; }
-  /* 队伍战绩在窄屏只保留排名 / 队伍 / 胜负 / 胜率，避免横向被切 */
+  /* 闃熶紞鎴樼哗鍦ㄧ獎灞忓彧淇濈暀鎺掑悕 / 闃熶紞 / 鑳滆礋 / 鑳滅巼锛岄伩鍏嶆í鍚戣鍒?*/
   .teams-table th:nth-child(3), .teams-table td:nth-child(3),
   .teams-table th:nth-child(n + 6), .teams-table td:nth-child(n + 6) { display: none; }
   .teams-table .rate-bar { display: none; }
@@ -1207,7 +1207,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .player-name { font-size: 38px; }
   .player-facts { font-size: 11px; }
   .stat-value.compact { font-size: 22px; }
-  /* 选手榜窄屏只保留排名 / 选手 / 位置 / 出场 / KDA，数字列留足间距 */
+  /* 閫夋墜姒滅獎灞忓彧淇濈暀鎺掑悕 / 閫夋墜 / 浣嶇疆 / 鍑哄満 / KDA锛屾暟瀛楀垪鐣欒冻闂磋窛 */
   .players-table th:nth-child(5), .players-table td:nth-child(5),
   .players-table th:nth-child(6), .players-table td:nth-child(6),
   .players-table th:nth-child(n + 8), .players-table td:nth-child(n + 8) { display: none; }
@@ -1228,7 +1228,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .log-result { grid-area: result; }
   .log-kda { grid-area: kda; font-size: 12.5px; white-space: nowrap; }
   .log-cs, .log-time, .log-row .stage-tag, .log-spacer { display: none; }
-  /* 英雄池窄屏保留 英雄 / 出场 / 胜 – 负 / 胜率 */
+  /* 鑻遍泟姹犵獎灞忎繚鐣?鑻遍泟 / 鍑哄満 / 鑳?鈥?璐?/ 鑳滅巼 */
   .player-champs-table th:nth-child(5), .player-champs-table td:nth-child(5),
   .player-champs-table th:nth-child(6), .player-champs-table td:nth-child(6) { display: none; }
   .player-champs-table .rate-bar { display: none; }
@@ -1236,7 +1236,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .hero-actions .btn { width: 100%; justify-content: center; }
 }
 /* ============================================================
-   单场详情 /match/:seriesId
+   鍗曞満璇︽儏 /match/:seriesId
    ============================================================ */
 
 .side-tag {
@@ -1313,7 +1313,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   color: var(--ink-3);
 }
 
-/* 逐局切换 */
+/* 閫愬眬鍒囨崲 */
 .game-tabs {
   display: flex;
   gap: 4px;
@@ -1350,7 +1350,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   font-variant-numeric: tabular-nums;
 }
 
-/* 单局对比板 */
+/* 鍗曞眬瀵规瘮鏉?*/
 .game-board {
   margin-top: 26px;
   padding: 0 clamp(18px, 2.6vw, 32px) clamp(10px, 1.2vw, 16px);
@@ -1442,7 +1442,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   color: var(--ink-3);
 }
 
-/* 经济曲线 */
+/* 缁忔祹鏇茬嚎 */
 .gold-chart-wrap { margin-top: 12px; }
 .gold-chart { display: block; width: 100%; height: auto; }
 .gold-chart .axis { stroke: var(--rule-soft); stroke-width: 1; }
@@ -1477,7 +1477,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .legend-blue { background: rgba(62, 93, 120, 0.5); }
 .legend-red { background: rgba(156, 59, 46, 0.45); }
 
-/* 双方阵容 */
+/* 鍙屾柟闃靛 */
 .lineups { display: grid; gap: clamp(30px, 3.6vw, 48px); margin-top: 4px; }
 .lineup-head {
   display: flex;
@@ -1533,7 +1533,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .spell-cell { display: inline-flex; gap: 3px; }
 .spell-cell img { width: 19px; height: 19px; border-radius: 2px; background: var(--raise); }
 
-/* 比赛进程 */
+/* 姣旇禌杩涚▼ */
 .timeline { margin-top: 4px; columns: 2; column-gap: clamp(28px, 4vw, 64px); }
 .timeline-row {
   display: grid;
@@ -1570,7 +1570,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 }
 
 @media (max-width: 720px) {
-  /* 比分头：两队一行，比分另起一行居中 */
+  /* 姣斿垎澶达細涓ら槦涓€琛岋紝姣斿垎鍙﹁捣涓€琛屽眳涓?*/
   .match-hero-body {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
@@ -1596,7 +1596,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .match-center .match-meta { font-size: 10.5px; margin-top: 0; }
   .match-hero-foot { margin-top: 18px; font-size: 11px; }
 
-  /* 逐局 tab：窄屏只留局数与时长 */
+  /* 閫愬眬 tab锛氱獎灞忓彧鐣欏眬鏁颁笌鏃堕暱 */
   .game-tabs { margin-top: 20px; }
   .game-tab { padding: 9px 11px 10px; font-size: 13px; }
   .game-tab small { font-size: 10.5px; }
@@ -1620,7 +1620,7 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .bans { gap: 6px; padding-top: 10px; }
   .ban { width: 22px; height: 22px; }
 
-  /* 窄屏阵容：每个选手一张两行卡片 */
+  /* 绐勫睆闃靛锛氭瘡涓€夋墜涓€寮犱袱琛屽崱鐗?*/
   .lineup-table thead { display: none; }
   .lineup-table, .lineup-table tbody { display: block; }
   .lineup-table tr {
@@ -1666,4 +1666,161 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .equip-cell img:nth-child(n + 8) { display: none; }
 
   .timeline-row { grid-template-columns: 40px 7px minmax(0, 1fr) auto; gap: 8px; font-size: 13.5px; }
+}
+
+/* ---------- team pages ---------- */
+
+a.match-side-name { display: block; color: inherit; }
+a.match-side-name:hover { color: var(--gold); }
+
+.team-cell { color: inherit; }
+.team-cell:hover span:last-child { color: var(--gold); }
+
+.player-team-link { color: inherit; }
+.player-team-link:hover { color: var(--gold); }
+
+.team-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 208px;
+  gap: clamp(24px, 3.4vw, 56px);
+  align-items: start;
+  margin-top: clamp(22px, 2.6vw, 34px);
+  padding-bottom: clamp(26px, 3.2vw, 40px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.team-name {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.6vw, 56px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+}
+
+.team-hero .section-note { margin-top: 16px; max-width: 600px; }
+
+.team-plate {
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.team-plate img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+.team-plate-fallback {
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.6vw, 58px);
+  color: var(--ink-3);
+}
+
+.team-code {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+}
+
+.ts-list { margin-top: 4px; }
+
+.ts-row {
+  display: grid;
+  grid-template-columns: 46px 104px minmax(0, 1fr) 92px 40px 44px 16px;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 12px;
+  margin: 0 -12px;
+  border-top: 1px solid var(--rule-soft);
+  border-radius: var(--r-xs);
+  font-size: 14.5px;
+  transition: background 150ms var(--ease);
+}
+
+.ts-list li:last-child .ts-row { border-bottom: 1px solid var(--rule-soft); }
+
+.ts-row:hover { background: var(--paper-2); }
+
+.ts-date {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.ts-opponent { display: flex; align-items: center; gap: 9px; min-width: 0; }
+
+.ts-opponent span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.ts-score {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.ts-result { font-size: 12.5px; text-align: center; }
+.ts-result.won { color: var(--win); }
+.ts-result.lost { color: var(--loss); }
+
+.ts-games {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-3);
+  text-align: right;
+}
+
+.ts-row .chev { color: var(--ink-3); }
+
+.roster-table .champ-cell { gap: 8px; }
+.roster-table .champ-cell-name { font-size: 14px; }
+.roster-table .champ-count-inline { margin-left: 6px; font-family: var(--mono); font-size: 11px; }
+
+@media (max-width: 900px) {
+  .roster-hide { display: none; }
+}
+
+@media (max-width: 720px) {
+  .team-hero { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .team-plate { width: 88px; height: 88px; aspect-ratio: auto; padding: 14px; order: -1; }
+  .team-name { font-size: clamp(32px, 8vw, 40px); }
+  .team-hero .player-facts { margin-top: 14px; }
+
+  .ts-row {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "date opp score"
+      "stage opp result";
+    row-gap: 6px;
+    column-gap: 10px;
+    padding: 12px 8px;
+    margin: 0 -8px;
+  }
+  .ts-date { grid-area: date; align-self: start; padding-top: 2px; }
+  .ts-row .stage-tag { grid-area: stage; justify-self: start; font-size: 10.5px; }
+  .ts-opponent { grid-area: opp; }
+  .ts-score { grid-area: score; font-size: 14px; }
+  .ts-result { grid-area: result; justify-self: end; }
+  .ts-games, .ts-row .chev { display: none; }
+}
+
+@media (max-width: 720px) {
+  .roster-table { font-size: 13.5px; }
+  .roster-table th, .roster-table td { padding-right: 9px; }
+  .roster-table th:nth-child(3), .roster-table td:nth-child(3) { display: none; }
+  .roster-table .role-tag { font-size: 10.5px; padding: 2px 5px; }
+  .roster-table .player-cell { gap: 7px; }
+  .roster-table .player-cell .avatar { width: 26px; height: 26px; }
+  .roster-table .player-cell-name { font-size: 14px; }
+  .roster-table .player-cell-team { font-size: 11px; }
+  .champ-extra { min-width: 62px; }
 }
