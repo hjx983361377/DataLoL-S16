@@ -91,7 +91,7 @@ export default function App() {
                   </svg>
                 </span>
               </span>
-              <span className="champ-strip-credit">图：懂球帝图集 · 官方摄影</span>
+              <span className="champ-strip-credit">图：官方摄影</span>
             </span>
           </Link>
         )}

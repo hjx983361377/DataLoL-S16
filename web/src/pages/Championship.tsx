@@ -113,7 +113,7 @@ export default function Championship({ meta }: { meta: Meta }) {
           </div>
           {logo ? <img className="champ-logo" src={logo} alt={CHAMPION + " 队标"} /> : null}
         </div>
-        <p className="champ-art-credit">图：懂球帝图集 · 官方摄影（2026-11-14 决赛现场）</p>
+        <p className="champ-art-credit">图：官方摄影（2026-11-14 决赛现场）</p>
       </section>
 
       <section className="section champ-stats">
