@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTrailEntry } from "../lib/trail";
 import { Link } from "react-router-dom";
 import type { Meta } from "../lib/types";
 import { buildPlayers, buildTeams, fmtPct, roleIndex, type PlayerRow, type TeamSummary } from "../lib/stats";
@@ -51,6 +52,7 @@ function TeamCard({ team, roster }: { team: TeamSummary; roster: PlayerRow[] }) 
 }
 
 export default function Teams({ meta }: { meta: Meta }) {
+  useTrailEntry("战队巡礼");
   const teams = useMemo(() => buildTeams(meta), [meta]);
 
   const rosters = useMemo(() => {

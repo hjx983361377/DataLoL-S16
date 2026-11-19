@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTrailEntry } from "../lib/trail";
 import { Link } from "react-router-dom";
 import type { Meta, Series } from "../lib/types";
 import { filterSeries, seriesOptions, stageLabel } from "../lib/stats";
@@ -63,6 +64,7 @@ function SeriesItem({ s, meta }: { s: Series; meta: Meta }) {
 }
 
 export default function Matches({ meta }: { meta: Meta }) {
+  useTrailEntry("比赛列表");
   const [tournament, setTournament] = useState("ALL");
   const [stage, setStage] = useState("ALL");
   const [team, setTeam] = useState("ALL");

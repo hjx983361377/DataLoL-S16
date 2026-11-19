@@ -13,6 +13,9 @@ import {
   teamSlug
 } from "../lib/stats";
 import { PlayerAvatar } from "./Players";
+import { useCrumb, type Crumb } from "../lib/trail";
+
+const PLAYERS_CRUMB: Crumb = { path: "/players", label: "选手榜" };
 
 export default function Player({ meta }: { meta: Meta }) {
   const { slug } = useParams();
@@ -23,6 +26,7 @@ export default function Player({ meta }: { meta: Meta }) {
   }, [meta, key]);
   const champions = useMemo(() => (key ? playerChampions(meta, key) : []), [meta, key]);
   const log = useMemo(() => (key ? playerGames(meta, key) : []), [meta, key]);
+  const parent = useCrumb(row ? row.name : null, PLAYERS_CRUMB);
 
   if (!row) {
     return (
@@ -41,9 +45,9 @@ export default function Player({ meta }: { meta: Meta }) {
   return (
     <div className="page">
       <nav className="crumbs" aria-label="位置">
-        <Link to="/players">选手榜</Link>
+        <Link to={parent.path}>{parent.label}</Link>
         <span aria-hidden="true">/</span>
-        <span>{row.team}</span>
+        <span>{row.name}</span>
       </nav>
 
       <section className="player-hero">

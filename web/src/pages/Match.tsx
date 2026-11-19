@@ -16,6 +16,9 @@ import {
   stageLabel,
   teamSlug
 } from "../lib/stats";
+import { useCrumb, type Crumb } from "../lib/trail";
+
+const MATCHES_CRUMB: Crumb = { path: "/matches", label: "比赛列表" };
 
 /** 饰品（远见改造 / 神谕透镜 / 侦查守卫）与真眼在 items 里混排，展示时单独拎出来。 */
 const TRINKETS = new Set(["3340", "3350", "3363", "3364"]);
@@ -293,6 +296,9 @@ export default function Match({ meta }: { meta: Meta }) {
     return map;
   }, [games]);
 
+  const crumbLabel = series ? (series.teams[0] ?? "?") + " vs " + (series.teams[1] ?? "?") : null;
+  const parent = useCrumb(crumbLabel, MATCHES_CRUMB);
+
   if (!series || !game) {
     return (
       <div className="page">
@@ -335,7 +341,7 @@ export default function Match({ meta }: { meta: Meta }) {
   return (
     <div className="page">
       <nav className="crumbs" aria-label="位置">
-        <Link to="/matches">比赛列表</Link>
+        <Link to={parent.path}>{parent.label}</Link>
         <span aria-hidden="true">/</span>
         <span>
           {teamA} vs {teamB}

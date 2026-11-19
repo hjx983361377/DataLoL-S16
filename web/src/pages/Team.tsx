@@ -13,6 +13,9 @@ import {
   type TeamChampionRow
 } from "../lib/stats";
 import { PlayerAvatar } from "./Players";
+import { useCrumb, type Crumb } from "../lib/trail";
+
+const TEAMS_CRUMB: Crumb = { path: "/teams", label: "战队巡礼" };
 
 function Chevron() {
   return (
@@ -52,6 +55,7 @@ export default function Team({ meta }: { meta: Meta }) {
   const name = useMemo(() => (slug ? findTeamName(meta, slug) : null), [meta, slug]);
   const team = useMemo(() => (name ? buildTeam(meta, name) : null), [meta, name]);
   const roster = useMemo(() => (name ? teamRoster(meta, name) : []), [meta, name]);
+  const parent = useCrumb(team ? team.name : null, TEAMS_CRUMB);
 
   if (!name || !team) {
     return (
@@ -72,7 +76,7 @@ export default function Team({ meta }: { meta: Meta }) {
   return (
     <div className="page">
       <nav className="crumbs" aria-label="位置">
-        <Link to="/">赛事总览</Link>
+        <Link to={parent.path}>{parent.label}</Link>
         <span aria-hidden="true">/</span>
         <span>{team.name}</span>
       </nav>

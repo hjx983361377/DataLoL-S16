@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTrailEntry } from "../lib/trail";
 import { Link } from "react-router-dom";
 import type { Meta } from "../lib/types";
 import {
@@ -46,6 +47,7 @@ function sortRows(rows: PlayerRow[], key: SortKey): PlayerRow[] {
 }
 
 export default function Players({ meta }: { meta: Meta }) {
+  useTrailEntry("选手榜");
   const all = useMemo(() => buildPlayers(meta), [meta]);
   const [role, setRole] = useState("ALL");
   const [team, setTeam] = useState("ALL");

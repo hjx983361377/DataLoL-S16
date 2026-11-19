@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTrailEntry } from "../lib/trail";
 import { Link } from "react-router-dom";
 import type { Meta, Series } from "../lib/types";
 import { series } from "../lib/data";
@@ -147,6 +148,7 @@ function RecentRow({ s }: { s: Series }) {
 }
 
 export default function Overview({ meta }: { meta: Meta }) {
+  useTrailEntry("赛事总览");
   const ov = useMemo(() => buildOverview(meta), [meta]);
   const maxStage = Math.max(1, ...ov.stageRows.map((s) => s.games));
 
