@@ -2199,7 +2199,7 @@ a.match-side-name:hover { color: var(--gold); }
   display: block;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: clamp(232px, 27vw, 384px);
+  height: clamp(280px, 29vw, 430px);
   overflow: hidden;
   background: #0d0b09;
   color: #f6f1e7;
@@ -2207,12 +2207,14 @@ a.match-side-name:hover { color: var(--gold); }
 .champ-strip picture { display: contents; }
 .champ-strip-art {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  right: 0;
+  width: auto;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 4%;
-  filter: saturate(0.94) brightness(0.92);
+  max-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 13%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 13%);
+  filter: saturate(0.96) brightness(0.94);
   transition: filter 0.28s var(--ease);
 }
 .champ-strip:hover .champ-strip-art { filter: saturate(1) brightness(1); }
@@ -2221,16 +2223,7 @@ a.match-side-name:hover { color: var(--gold); }
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(9, 7, 5, 0.93) 0%,
-      rgba(9, 7, 5, 0.84) 20%,
-      rgba(9, 7, 5, 0.52) 40%,
-      rgba(9, 7, 5, 0.18) 64%,
-      rgba(9, 7, 5, 0.46) 100%
-    ),
-    linear-gradient(0deg, rgba(9, 7, 5, 0.5) 0%, rgba(9, 7, 5, 0) 62%);
+  background: linear-gradient(0deg, rgba(9, 7, 5, 0.62) 0%, rgba(9, 7, 5, 0) 30%);
 }
 .champ-strip-inner {
   position: relative;
@@ -2515,14 +2508,29 @@ a.match-side-name:hover { color: var(--gold); }
   .search-field { height: 42px; }
   .search-panel { max-height: 60vh; }
 
-  .champ-strip { height: 250px; }
-  .champ-strip-art { object-position: 50% 50%; }
+  /* 窄屏：原画整幅铺在上面，文字落到下方的墨色块上，不压照片 */
+  .champ-strip {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .champ-strip-art {
+    position: static;
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    filter: none;
+  }
+  .champ-strip::after { display: none; }
   .champ-strip-inner {
+    position: static;
+    height: auto;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
-    padding: 0 16px;
+    padding: 18px 20px 22px;
   }
   .champ-strip-text { gap: 6px; }
   .champ-strip-label { font-size: 9.5px; }
