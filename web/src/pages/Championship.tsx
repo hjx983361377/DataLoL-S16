@@ -78,12 +78,16 @@ export default function Championship({ meta }: { meta: Meta }) {
       </nav>
 
       <section className="champ-hero">
-        <img
-          className="champ-hero-art"
-          src="/assets/brand/champions-2026.jpg"
-          alt="2026 世界冠军奖杯插画"
-          loading="eager"
-        />
+        <picture>
+          <source media="(max-width: 720px)" srcSet="/assets/brand/blg-champions-hero-mobile.jpg" />
+          <img
+            className="champ-hero-art"
+            src="/assets/brand/blg-champions-hero.jpg"
+            alt="Bilibili Gaming 六名选手在 2026 全球总决赛决赛舞台上共同举起召唤师杯"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
         <div className="champ-hero-inner">
           <p className="champ-eyebrow">2026 全球总决赛 · 冠军</p>
           <h1 className="champ-title">{CHAMPION}</h1>
@@ -109,7 +113,7 @@ export default function Championship({ meta }: { meta: Meta }) {
           </div>
           {logo ? <img className="champ-logo" src={logo} alt={CHAMPION + " 队标"} /> : null}
         </div>
-        <p className="champ-art-credit">背景为本站自绘插画（奖杯 + 舞台灯 + 纸屑），不是现场照片。</p>
+        <p className="champ-art-credit">图：懂球帝图集 · 官方摄影（2026-11-14 决赛现场）</p>
       </section>
 
       <section className="section champ-stats">

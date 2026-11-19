@@ -2302,19 +2302,21 @@ a.match-side-name:hover { color: var(--gold); }
   isolation: isolate;
   width: 100vw;
   margin: clamp(16px, 2vw, 24px) calc(50% - 50vw) 0;
-  min-height: clamp(460px, 62vh, 640px);
+  min-height: clamp(560px, 84vh, 880px);
   overflow: hidden;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
-  background: #12100d;
+  background: #0d0b09;
 }
+.champ-hero picture { display: contents; }
 .champ-hero-art {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 62% 60%;
+  object-position: 50% 34%;
+  filter: saturate(1.02);
 }
 .champ-hero::before {
   content: "";
@@ -2322,8 +2324,8 @@ a.match-side-name:hover { color: var(--gold); }
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(100deg, rgba(11, 9, 7, 0.94) 0%, rgba(11, 9, 7, 0.8) 32%, rgba(11, 9, 7, 0.3) 58%, rgba(11, 9, 7, 0) 78%),
-    linear-gradient(to top, rgba(11, 9, 7, 0.82) 0%, rgba(11, 9, 7, 0) 52%);
+    linear-gradient(to top, rgba(10, 8, 6, 0.92) 0%, rgba(10, 8, 6, 0.62) 16%, rgba(10, 8, 6, 0.18) 34%, rgba(10, 8, 6, 0) 52%),
+    linear-gradient(94deg, rgba(10, 8, 6, 0.94) 0%, rgba(10, 8, 6, 0.82) 24%, rgba(10, 8, 6, 0.44) 42%, rgba(10, 8, 6, 0.1) 58%, rgba(10, 8, 6, 0) 70%);
 }
 .champ-hero-inner {
   position: relative;
@@ -2335,9 +2337,9 @@ a.match-side-name:hover { color: var(--gold); }
   max-width: var(--max);
   min-height: inherit;
   margin: 0 auto;
-  padding: clamp(40px, 5vw, 64px) 32px clamp(46px, 5vw, 66px);
+  padding: clamp(40px, 5vw, 64px) 32px clamp(52px, 5.6vw, 74px);
 }
-.champ-hero-inner > * { max-width: 560px; }
+.champ-hero-inner > * { max-width: 600px; }
 
 .champ-eyebrow {
   font-family: var(--mono);
@@ -2350,11 +2352,12 @@ a.match-side-name:hover { color: var(--gold); }
   margin-top: 14px;
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(38px, 6vw, 68px);
+  font-size: clamp(42px, 6.4vw, 78px);
   line-height: 1.06;
   letter-spacing: 0.01em;
   color: #f6f1e7;
   text-wrap: balance;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.55);
 }
 .champ-score {
   display: flex;
@@ -2367,6 +2370,7 @@ a.match-side-name:hover { color: var(--gold); }
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   color: #f6f1e7;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.6);
 }
 .champ-dash { color: rgba(246, 241, 231, 0.42); }
 .champ-score-note {
@@ -2379,7 +2383,8 @@ a.match-side-name:hover { color: var(--gold); }
   margin-top: 14px;
   font-size: 15px;
   line-height: 1.78;
-  color: rgba(246, 241, 231, 0.82);
+  color: rgba(246, 241, 231, 0.88);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7);
 }
 .champ-actions { display: flex; align-items: center; gap: 22px; margin-top: 26px; }
 .champ-hero .btn-primary { background: #f6f1e7; color: #17130f; }
@@ -2405,7 +2410,8 @@ a.match-side-name:hover { color: var(--gold); }
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.03em;
-  color: rgba(246, 241, 231, 0.42);
+  color: rgba(246, 241, 231, 0.55);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
 }
 
 .champ-stats { padding-top: clamp(34px, 4vw, 52px); }
@@ -2531,8 +2537,9 @@ a.match-side-name:hover { color: var(--gold); }
     position: static;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9;
-    object-position: 62% 50%;
+    aspect-ratio: 3 / 2;
+    object-position: 50% 50%;
+    filter: none;
   }
   .champ-hero::before { display: none; }
   .champ-hero-inner { position: static; min-height: 0; padding: 26px 20px 34px; }
