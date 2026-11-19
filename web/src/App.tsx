@@ -54,24 +54,44 @@ export default function App() {
 
       <main className="main">
         {location.pathname === "/championship" ? null : (
-          <Link className="champ-strip" to="/championship">
-            <span className="champ-strip-label">2026 世界冠军</span>
-            <span className="champ-strip-mid">
-              <b>Bilibili Gaming</b>
-              <span className="champ-strip-score">3 – 1 Gen.G</span>
-            </span>
-            <span className="champ-strip-tail">
-              查看夺冠纪念
-              <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
-                <path
-                  d="M9 6l6 6-6 6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+          <Link
+            className="champ-strip"
+            to="/championship"
+            aria-label="Bilibili Gaming 夺得 2026 全球总决赛冠军，查看夺冠纪念"
+          >
+            <picture>
+              <source media="(max-width: 720px)" srcSet="/assets/brand/blg-trophy-mobile.jpg" />
+              <img
+                className="champ-strip-art"
+                src="/assets/brand/blg-trophy.jpg"
+                alt="Bilibili Gaming 在 2026 全球总决赛举起召唤师杯"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <span className="champ-strip-inner">
+              <span className="champ-strip-text">
+                <span className="champ-strip-label">2026 世界冠军</span>
+                <span className="champ-strip-title">
+                  <b>Bilibili Gaming</b>
+                  <span className="champ-strip-score">3 – 1 Gen.G</span>
+                </span>
+                <span className="champ-strip-note">队史首座召唤师杯 · 2026-11-14 决赛</span>
+                <span className="champ-strip-tail">
+                  查看夺冠纪念
+                  <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
+                    <path
+                      d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </span>
+              <span className="champ-strip-credit">图：摄影师一村 / 虎扑</span>
             </span>
           </Link>
         )}
