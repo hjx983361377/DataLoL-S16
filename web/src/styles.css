@@ -2590,3 +2590,67 @@ a.match-side-name:hover { color: var(--gold); }
   .champ-roster th:nth-child(5), .champ-roster td:nth-child(5),
   .champ-roster th:nth-child(6), .champ-roster td:nth-child(6) { display: none; }
 }
+
+
+/* ---------- 能力雷达 ---------- */
+.radar-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 336px) minmax(0, 470px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 4vw, 62px);
+  margin-top: 6px;
+  padding: clamp(10px, 1.4vw, 16px) 0 clamp(6px, 1vw, 10px);
+}
+.radar-svg { width: 100%; max-width: 400px; height: auto; overflow: visible; }
+.radar-ring { fill: none; stroke: var(--rule-soft); stroke-width: 1; }
+.radar-ring.outer { stroke: var(--rule); }
+.radar-spoke { stroke: var(--rule-soft); stroke-width: 1; }
+.radar-area {
+  fill: rgba(138, 91, 24, 0.13);
+  stroke: var(--gold);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.radar-dot { fill: var(--gold); }
+.radar-axis-label {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  fill: var(--ink-2);
+}
+.radar-section .subhead h2 { white-space: nowrap; }
+.radar-list { list-style: none; margin: 0; padding: 0; max-width: 480px; }
+.radar-row {
+  display: grid;
+  grid-template-columns: 46px 66px minmax(56px, 1fr) 72px;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 2px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.radar-row:last-child { border-bottom: 0; }
+.radar-row-label { font-size: 13.5px; color: var(--ink); }
+.radar-row-value { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.radar-row .rate-bar { width: 100%; height: 4px; }
+.radar-row-rank {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  text-align: right;
+}
+.radar-row-rank.is-top { color: var(--gold); }
+
+@media (max-width: 720px) {
+  .radar-section .subhead { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .radar-section .subhead h2 { white-space: normal; }
+  .radar-list { max-width: 100%; }
+}
+
+@media (max-width: 840px) {
+  .radar-panel { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .radar-svg { max-width: 340px; margin: 0 auto; }
+  .radar-row { grid-template-columns: 40px 58px minmax(50px, 1fr) 62px; gap: 10px; }
+  .radar-row-rank { font-size: 10.5px; }
+}
+

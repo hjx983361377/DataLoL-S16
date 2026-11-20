@@ -556,6 +556,130 @@ export function playerGames(meta: Meta, key: string): PlayerGameRow[] {
   return rows.sort((a, b) => (a.game.date < b.game.date ? 1 : a.game.date > b.game.date ? -1 : b.game.game_id - a.game.game_id));
 }
 
+/* ---------- 选手能力雷达（六边形） ---------- */
+
+export type RadarKey = "kills" | "assists" | "survival" | "cs" | "kp" | "win";
+
+export interface RadarAxis {
+  key: RadarKey;
+  label: string;
+  hint: string;
+  value: number;
+  display: string;
+  /** 同位置百分位，0–100 */
+  pct: number;
+  /** 同位置排名，1 = 最高 */
+  rank: number;
+  total: number;
+}
+
+export interface PlayerRadar {
+  axes: RadarAxis[];
+  peers: number;
+  role: string;
+}
+
+interface RadarAcc {
+  games: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  cs: number;
+  seconds: number;
+  teamKills: number;
+  wins: number;
+}
+
+interface RadarMetric {
+  key: RadarKey;
+  label: string;
+  hint: string;
+  pick: (r: RadarAcc) => number;
+  display: (v: number) => string;
+}
+
+const RADAR_METRICS: RadarMetric[] = [
+  { key: "kills", label: "击杀", hint: "场均击杀", pick: (r) => r.kills / r.games, display: (v) => v.toFixed(1) },
+  { key: "assists", label: "助攻", hint: "场均助攻", pick: (r) => r.assists / r.games, display: (v) => v.toFixed(1) },
+  {
+    key: "survival",
+    label: "生存",
+    hint: "场均死亡，越少越好",
+    pick: (r) => -(r.deaths / r.games),
+    display: (v) => (-v).toFixed(1)
+  },
+  { key: "cs", label: "补刀", hint: "分均补刀", pick: (r) => r.cs / (r.seconds / 60), display: (v) => v.toFixed(1) },
+  {
+    key: "kp",
+    label: "参团",
+    hint: "（击杀 + 助攻）/ 队伍击杀",
+    pick: (r) => (r.kills + r.assists) / Math.max(1, r.teamKills),
+    display: (v) => Math.round(v * 100) + "%"
+  },
+  { key: "win", label: "胜率", hint: "出场局数胜率", pick: (r) => r.wins / r.games, display: (v) => Math.round(v * 100) + "%" }
+];
+
+let radarCache: Map<string, RadarAcc> | null = null;
+
+function radarTable(): Map<string, RadarAcc> {
+  if (radarCache) return radarCache;
+  const acc = new Map<string, RadarAcc>();
+  for (const game of games) {
+    const sides = Object.fromEntries(game.teams.map((t) => [t.side, t]));
+    for (const p of game.players) {
+      const team = sides[p.team];
+      const key = playerKey(team?.name ?? p.team, p.name);
+      let row = acc.get(key);
+      if (!row) {
+        row = { games: 0, kills: 0, deaths: 0, assists: 0, cs: 0, seconds: 0, teamKills: 0, wins: 0 };
+        acc.set(key, row);
+      }
+      row.games += 1;
+      row.kills += p.kda[0];
+      row.deaths += p.kda[1];
+      row.assists += p.kda[2];
+      row.cs += p.cs;
+      row.seconds += game.duration_seconds;
+      row.teamKills += team?.kills ?? 0;
+      row.wins += team?.win ? 1 : 0;
+    }
+  }
+  radarCache = acc;
+  return acc;
+}
+
+export function buildPlayerRadar(meta: Meta, key: string): PlayerRadar | null {
+  const table = radarTable();
+  const acc = table.get(key);
+  if (!acc) return null;
+  const role = meta.players[key]?.role ?? "";
+  const pool = [...table.entries()].filter(([k]) => (meta.players[k]?.role ?? "") === role && role !== "");
+  const peers = pool.length;
+  if (peers === 0) return null;
+
+  const axes = RADAR_METRICS.map((metric) => {
+    const value = metric.pick(acc);
+    const ranked = pool
+      .map(([k, r]) => ({ key: k, v: metric.pick(r) }))
+      .sort((a, b) => a.v - b.v || a.key.localeCompare(b.key));
+    const idx = ranked.findIndex((r) => r.key === key);
+    const rank = peers - idx;
+    const pct = Math.round(((idx + 0.5) / peers) * 100);
+    return {
+      key: metric.key,
+      label: metric.label,
+      hint: metric.hint,
+      value,
+      display: metric.display(value),
+      pct,
+      rank,
+      total: peers
+    };
+  });
+
+  return { axes, peers, role };
+}
+
 export function findPlayerKey(meta: Meta, slug: string): string | null {
   for (const key of Object.keys(meta.players)) {
     const sep = key.indexOf("|");

@@ -2,12 +2,14 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Meta } from "../lib/types";
 import {
+  buildPlayerRadar,
   buildPlayers,
   championSlug,
   findPlayerKey,
   fmtDuration,
   fmtPct,
   playerChampions,
+  type PlayerRadar,
   playerGames,
   roleLabel,
   stageLabel,
@@ -18,6 +20,61 @@ import { useCrumb, type Crumb } from "../lib/trail";
 
 const PLAYERS_CRUMB: Crumb = { path: "/players", label: "选手榜" };
 
+const RADAR_CX = 180;
+const RADAR_CY = 166;
+const RADAR_R = 112;
+const RADAR_RINGS = [0.25, 0.5, 0.75, 1];
+
+function HexRadar({ radar }: { radar: PlayerRadar }) {
+  const angle = (i: number) => ((-90 + i * 60) * Math.PI) / 180;
+  const point = (i: number, ratio: number): [number, number] => [
+    RADAR_CX + Math.cos(angle(i)) * RADAR_R * ratio,
+    RADAR_CY + Math.sin(angle(i)) * RADAR_R * ratio
+  ];
+  const ring = (ratio: number) =>
+    radar.axes.map((_, i) => point(i, ratio).map((n) => n.toFixed(1)).join(",")).join(" ");
+  const shape = radar.axes
+    .map((axis, i) => {
+      const [x, y] = point(i, Math.max(0.08, axis.pct / 100));
+      return x.toFixed(1) + "," + y.toFixed(1);
+    })
+    .join(" ");
+  const dots = radar.axes.map((axis, i) => point(i, Math.max(0.08, axis.pct / 100)));
+
+  return (
+    <svg
+      className="radar-svg"
+      viewBox="0 0 360 336"
+      role="img"
+      aria-label={"能力雷达：" + radar.axes.map((a) => a.label + " " + a.pct + " 百分位").join("，")}
+    >
+      {RADAR_RINGS.map((ratio) => (
+        <polygon key={ratio} className={"radar-ring" + (ratio === 1 ? " outer" : "")} points={ring(ratio)} />
+      ))}
+      {radar.axes.map((axis, i) => {
+        const [x, y] = point(i, 1);
+        return <line key={axis.key} className="radar-spoke" x1={RADAR_CX} y1={RADAR_CY} x2={x} y2={y} />;
+      })}
+      <polygon className="radar-area" points={shape} />
+      {dots.map(([x, y], i) => (
+        <circle key={radar.axes[i].key} className="radar-dot" cx={x} cy={y} r={2.6} />
+      ))}
+      {radar.axes.map((axis, i) => {
+        const cos = Math.cos(angle(i));
+        const sin = Math.sin(angle(i));
+        const x = RADAR_CX + cos * (RADAR_R + 24);
+        const y = RADAR_CY + sin * (RADAR_R + 24);
+        const anchor = cos > 0.3 ? "start" : cos < -0.3 ? "end" : "middle";
+        return (
+          <text key={axis.key} className="radar-axis-label" x={x} y={y} textAnchor={anchor} dominantBaseline="middle">
+            {axis.label}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
+
 export default function Player({ meta }: { meta: Meta }) {
   const { slug } = useParams();
   const key = useMemo(() => (slug ? findPlayerKey(meta, slug) : null), [meta, slug]);
@@ -27,6 +84,7 @@ export default function Player({ meta }: { meta: Meta }) {
   }, [meta, key]);
   const champions = useMemo(() => (key ? playerChampions(meta, key) : []), [meta, key]);
   const log = useMemo(() => (key ? playerGames(meta, key) : []), [meta, key]);
+  const radar = useMemo(() => (key ? buildPlayerRadar(meta, key) : null), [meta, key]);
   const parent = useCrumb(row ? row.name : null, PLAYERS_CRUMB);
 
   if (!row) {
@@ -121,6 +179,34 @@ export default function Player({ meta }: { meta: Meta }) {
           </div>
         </div>
       </section>
+
+      {radar ? (
+        <section className="section radar-section">
+          <div className="subhead">
+            <h2 className="section-title">能力雷达</h2>
+            <span>
+              与 {roleLabel(radar.role)} 位置其他 {radar.peers - 1} 位选手横向对比 · 生存为场均死亡，越低越靠前
+            </span>
+          </div>
+          <div className="radar-panel">
+            <HexRadar radar={radar} />
+            <ul className="radar-list">
+              {radar.axes.map((axis) => (
+                <li key={axis.key} className="radar-row" title={axis.hint}>
+                  <span className="radar-row-label">{axis.label}</span>
+                  <span className="radar-row-value">{axis.display}</span>
+                  <span className="rate-bar radar-row-bar">
+                    <span className="rate-fill" style={{ width: axis.pct + "%" }} />
+                  </span>
+                  <span className={"radar-row-rank" + (axis.rank <= 3 ? " is-top" : "")}>
+                    第 {axis.rank} / {axis.total}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
 
       <section className="section">
         <div className="subhead">
