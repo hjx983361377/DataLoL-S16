@@ -17,6 +17,23 @@ export interface TeamBlock {
   dragon_types: string[];
 }
 
+export interface PlayerStatDetail {
+  /** 本局总经济 */
+  gold?: number;
+  /** 本局经济占全队比例（百分数，如 19.0） */
+  gold_share?: number;
+  /** 分均经济 */
+  gpm?: number;
+  /** 本局总伤害 */
+  damage?: number;
+  /** 本局伤害占全队比例（百分数，如 19.7） */
+  damage_share?: number;
+  /** 分均伤害 */
+  dpm?: number;
+  /** 伤转：总伤害 / 总经济 */
+  damage_per_gold?: number;
+}
+
 export interface PlayerStat {
   team: "blue" | "red";
   name: string;
@@ -26,6 +43,7 @@ export interface PlayerStat {
   cs: number;
   items: string[];
   spells: string[];
+  stats?: PlayerStatDetail;
 }
 
 export interface TimelineEvent {

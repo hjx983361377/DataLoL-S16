@@ -362,6 +362,18 @@ export interface PlayerRow {
   cs: number;
   minutes: number;
   csPerMin: number;
+  /** 合计经济 */
+  gold: number;
+  goldPerMin: number;
+  /** 全队经济占比（0–1） */
+  goldShare: number;
+  /** 合计伤害 */
+  damage: number;
+  damagePerMin: number;
+  /** 全队伤害占比（0–1） */
+  damageShare: number;
+  /** 伤转：合计伤害 ÷ 合计经济 */
+  damagePerGold: number | null;
   championCount: number;
   topChampion: { name: string; nameZh: string; icon: string | null; games: number } | null;
 }
@@ -391,6 +403,10 @@ export interface PlayerGameRow {
   d: number;
   a: number;
   cs: number;
+  damage: number;
+  gold: number;
+  damagePerMin: number;
+  damagePerGold: number | null;
 }
 
 interface PlayerAcc {
@@ -403,6 +419,10 @@ interface PlayerAcc {
   assists: number;
   cs: number;
   seconds: number;
+  gold: number;
+  damage: number;
+  teamGold: number;
+  teamDamage: number;
   champions: Map<
     string,
     { games: number; wins: number; kills: number; deaths: number; assists: number; cs: number; seconds: number }
@@ -413,6 +433,13 @@ function accumulate(): Map<string, PlayerAcc> {
   const acc = new Map<string, PlayerAcc>();
   for (const game of games) {
     const sides = Object.fromEntries(game.teams.map((t) => [t.side, t]));
+    const teamTotals = new Map<string, { gold: number; damage: number }>();
+    for (const p of game.players) {
+      const total = teamTotals.get(p.team) ?? { gold: 0, damage: 0 };
+      total.gold += p.stats?.gold ?? 0;
+      total.damage += p.stats?.damage ?? 0;
+      teamTotals.set(p.team, total);
+    }
     for (const p of game.players) {
       const key = playerKey(sides[p.team]?.name ?? p.team, p.name);
       let row = acc.get(key);
@@ -427,12 +454,17 @@ function accumulate(): Map<string, PlayerAcc> {
           assists: 0,
           cs: 0,
           seconds: 0,
+          gold: 0,
+          damage: 0,
+          teamGold: 0,
+          teamDamage: 0,
           champions: new Map()
         };
         acc.set(key, row);
       }
       const win = Boolean(sides[p.team]?.win);
       const [k, d, a] = p.kda;
+      const totals = teamTotals.get(p.team);
       row.games += 1;
       row.wins += win ? 1 : 0;
       row.kills += k;
@@ -440,6 +472,10 @@ function accumulate(): Map<string, PlayerAcc> {
       row.assists += a;
       row.cs += p.cs;
       row.seconds += game.duration_seconds;
+      row.gold += p.stats?.gold ?? 0;
+      row.damage += p.stats?.damage ?? 0;
+      row.teamGold += totals?.gold ?? 0;
+      row.teamDamage += totals?.damage ?? 0;
 
       let champ = row.champions.get(p.champion);
       if (!champ) {
@@ -493,6 +529,13 @@ export function buildPlayers(meta: Meta): PlayerRow[] {
       cs: a.cs,
       minutes: a.seconds / 60,
       csPerMin: a.seconds ? a.cs / (a.seconds / 60) : 0,
+      gold: a.gold,
+      goldPerMin: a.seconds ? a.gold / (a.seconds / 60) : 0,
+      goldShare: a.teamGold ? a.gold / a.teamGold : 0,
+      damage: a.damage,
+      damagePerMin: a.seconds ? a.damage / (a.seconds / 60) : 0,
+      damageShare: a.teamDamage ? a.damage / a.teamDamage : 0,
+      damagePerGold: a.gold ? a.damage / a.gold : null,
       championCount: a.champions.size,
       topChampion: best
         ? { name: best.name, nameZh: bestMeta?.name_zh ?? best.name, icon: bestMeta?.icon ?? null, games: best.c.games }
@@ -549,7 +592,11 @@ export function playerGames(meta: Meta, key: string): PlayerGameRow[] {
         k: p.kda[0],
         d: p.kda[1],
         a: p.kda[2],
-        cs: p.cs
+        cs: p.cs,
+        damage: p.stats?.damage ?? 0,
+        gold: p.stats?.gold ?? 0,
+        damagePerMin: p.stats?.dpm ?? 0,
+        damagePerGold: p.stats?.damage_per_gold ?? null
       });
     }
   }
@@ -701,6 +748,13 @@ export function seriesGames(seriesId: number): Game[] {
 
 export function fmtGold(gold: number): string {
   return gold.toLocaleString("en-US");
+}
+
+/** 大数字压缩显示：16426 → 16.4k，980 → 980 */
+export function fmtK(value: number): string {
+  if (!Number.isFinite(value)) return "—";
+  if (Math.abs(value) >= 1000) return (value / 1000).toFixed(1) + "k";
+  return String(Math.round(value));
 }
 
 export const SPELL_CN: Record<string, string> = {

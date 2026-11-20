@@ -7,6 +7,7 @@ import type { Meta } from "../lib/types";
 import {
   buildPlayers,
   findPlayerKey,
+  fmtK,
   fmtPct,
   playerSlug,
   roleLabel,
@@ -34,6 +35,9 @@ type SortKey =
   | "wins"
   | "losses"
   | "championCount"
+  | "damagePerMin"
+  | "damagePerGold"
+  | "goldPerMin"
   | "name";
 
 type SortDir = "asc" | "desc";
@@ -52,6 +56,9 @@ const SORTS: SortSpec[] = [
   { key: "winRate", label: "胜率", dir: "desc", value: (row) => row.winRate },
   { key: "games", label: "出场局数", dir: "desc", value: (row) => row.games },
   { key: "csPerMin", label: "分均补刀", dir: "desc", value: (row) => row.csPerMin },
+  { key: "damagePerMin", label: "分均伤害", dir: "desc", value: (row) => row.damagePerMin },
+  { key: "damagePerGold", label: "伤转", dir: "desc", value: (row) => row.damagePerGold },
+  { key: "goldPerMin", label: "分均经济", dir: "desc", value: (row) => row.goldPerMin },
   { key: "kills", label: "场均击杀", dir: "desc", value: (row) => perGame(row.kills, row) },
   { key: "deaths", label: "场均死亡", dir: "asc", value: (row) => perGame(row.deaths, row) },
   { key: "assists", label: "场均助攻", dir: "desc", value: (row) => perGame(row.assists, row) },
@@ -338,6 +345,9 @@ export default function Players({ meta }: { meta: Meta }) {
                 <SortHeader label="KDA" sortKey="kda" sort={sort} dir={dir} onSort={pickSort} />
                 <SortHeader label="场均 K / D / A" sortKey="kills" sort={sort} dir={dir} onSort={pickSort} />
                 <SortHeader label="分均补刀" sortKey="csPerMin" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="分均伤害" sortKey="damagePerMin" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="伤转" sortKey="damagePerGold" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="分均经济" sortKey="goldPerMin" sort={sort} dir={dir} onSort={pickSort} />
                 <SortHeader label="英雄" sortKey="championCount" sort={sort} dir={dir} onSort={pickSort} />
                 <th aria-hidden="true" />
               </tr>
@@ -398,6 +408,25 @@ export default function Players({ meta }: { meta: Meta }) {
                       {(p.assists / p.games).toFixed(1)}
                     </td>
                     <td className="num muted">{p.csPerMin.toFixed(1)}</td>
+                    <td
+                      className="num output-cell"
+                      title={
+                        "合计 " +
+                        fmtK(p.damage) +
+                        " · 全队占比 " +
+                        (p.damageShare * 100).toFixed(1) +
+                        "%"
+                      }
+                    >
+                      {Math.round(p.damagePerMin)}
+                    </td>
+                    <td className="num">{p.damagePerGold === null ? "—" : p.damagePerGold.toFixed(2)}</td>
+                    <td
+                      className="num muted"
+                      title={"合计 " + fmtK(p.gold) + " · 全队占比 " + (p.goldShare * 100).toFixed(1) + "%"}
+                    >
+                      {Math.round(p.goldPerMin)}
+                    </td>
                     <td className="num muted">{p.championCount}</td>
                     <td className="chevron-cell">
                       <Chevron />

@@ -117,6 +117,18 @@ export function ComparePanel({ meta, keys }: { meta: Meta; keys: string[] }) {
       value: row.csPerMin,
       text: row.csPerMin.toFixed(1)
     }))),
+    metric("分均伤害", "全队伤害占比见括号", "high", rows.map((row) => ({
+      value: row.damagePerMin,
+      text: Math.round(row.damagePerMin) + "（" + (row.damageShare * 100).toFixed(0) + "%）"
+    }))),
+    metric("伤转", "伤害 ÷ 经济", "high", rows.map((row) => ({
+      value: row.damagePerGold,
+      text: row.damagePerGold === null ? "—" : row.damagePerGold.toFixed(2)
+    }))),
+    metric("分均经济", undefined, "high", rows.map((row) => ({
+      value: row.goldPerMin,
+      text: Math.round(row.goldPerMin) + "（" + (row.goldShare * 100).toFixed(0) + "%）"
+    }))),
     metric("参团率", "（击杀 + 助攻）÷ 队伍击杀", "high", rows.map((row, index) => ({
       value: kp(index),
       text: kpText(index)

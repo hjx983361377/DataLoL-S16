@@ -7,6 +7,7 @@ import {
   championSlug,
   findPlayerKey,
   fmtDuration,
+  fmtK,
   fmtPct,
   playerChampions,
   playerGames,
@@ -87,7 +88,7 @@ export default function Player({ meta }: { meta: Meta }) {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section player-stats">
         <div className="stats-grid">
           <div className="stat">
             <p className="stat-value">{row.games}</p>
@@ -123,6 +124,27 @@ export default function Player({ meta }: { meta: Meta }) {
             <p className="stat-value">{row.csPerMin.toFixed(1)}</p>
             <p className="stat-label">分均补刀</p>
             <p className="stat-hint">合计 {row.cs} 刀</p>
+          </div>
+          <div className="stat">
+            <p className="stat-value">{Math.round(row.damagePerMin)}</p>
+            <p className="stat-label">分均伤害</p>
+            <p className="stat-hint">
+              合计 {fmtK(row.damage)} · 占比 {(row.damageShare * 100).toFixed(0)}%
+            </p>
+          </div>
+          <div className="stat">
+            <p className="stat-value compact">
+              {row.damagePerGold === null ? "—" : row.damagePerGold.toFixed(2)}
+            </p>
+            <p className="stat-label">伤转</p>
+            <p className="stat-hint">伤害 ÷ 经济</p>
+          </div>
+          <div className="stat">
+            <p className="stat-value">{Math.round(row.goldPerMin)}</p>
+            <p className="stat-label">分均经济</p>
+            <p className="stat-hint">
+              合计 {fmtK(row.gold)} · 占比 {(row.goldShare * 100).toFixed(0)}%
+            </p>
           </div>
           <div className="stat">
             <p className="stat-value">{row.championCount}</p>

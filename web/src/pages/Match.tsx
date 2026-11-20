@@ -11,6 +11,7 @@ import {
   findSeries,
   fmtDuration,
   fmtGold,
+  fmtK,
   playerKey,
   playerSlug,
   roleLabel,
@@ -219,6 +220,8 @@ function Lineup({
               <th>英雄</th>
               <th className="num">K / D / A</th>
               <th className="num">补刀</th>
+              <th className="num">伤害</th>
+              <th className="num">经济</th>
               <th>装备</th>
               <th>召唤师技能</th>
             </tr>
@@ -256,6 +259,44 @@ function Lineup({
                     {p.kda[0]} / {p.kda[1]} / {p.kda[2]}
                   </td>
                   <td className="num">{p.cs}</td>
+                  <td
+                    className="num output-cell"
+                    title={
+                      p.stats
+                        ? "总伤害 " +
+                          fmtGold(p.stats.damage ?? 0) +
+                          " · 伤害占比 " +
+                          (p.stats.damage_share ?? 0).toFixed(1) +
+                          "% · 分均 " +
+                          (p.stats.dpm ?? 0) +
+                          " · 伤转 " +
+                          (p.stats.damage_per_gold ?? 0).toFixed(2)
+                        : undefined
+                    }
+                  >
+                    <span className="output-value">{p.stats ? fmtK(p.stats.damage ?? 0) : "—"}</span>
+                    {p.stats ? (
+                      <span className="output-sub">{Math.round(p.stats.damage_share ?? 0)}%</span>
+                    ) : null}
+                  </td>
+                  <td
+                    className="num output-cell"
+                    title={
+                      p.stats
+                        ? "总经济 " +
+                          fmtGold(p.stats.gold ?? 0) +
+                          " · 经济占比 " +
+                          (p.stats.gold_share ?? 0).toFixed(1) +
+                          "% · 分均 " +
+                          (p.stats.gpm ?? 0)
+                        : undefined
+                    }
+                  >
+                    <span className="output-value">{p.stats ? fmtK(p.stats.gold ?? 0) : "—"}</span>
+                    {p.stats ? (
+                      <span className="output-sub">{Math.round(p.stats.gold_share ?? 0)}%</span>
+                    ) : null}
+                  </td>
                   <td>
                     <ItemsCell items={p.items} meta={meta} />
                   </td>
