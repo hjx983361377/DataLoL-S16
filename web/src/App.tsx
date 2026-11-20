@@ -60,7 +60,7 @@ export default function App() {
             aria-label="Bilibili Gaming 夺得 2026 全球总决赛冠军，查看夺冠纪念"
           >
             <picture>
-              <source media="(max-width: 720px)" srcSet={asset("/assets/brand/blg-champions-band-mobile.jpg")} />
+              <source media="(max-width: 720px)" srcSet={asset("/assets/brand/blg-champions-hero-mobile.jpg")} />
               <img
                 className="champ-strip-art"
                 src={asset("/assets/brand/blg-champions-band.jpg")}

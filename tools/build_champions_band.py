@@ -8,9 +8,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public/assets/brand/blg-champions-hero.jpg"
-SRC_M = ROOT / "public/assets/brand/blg-champions-hero-mobile.jpg"
 OUT = ROOT / "public/assets/brand/blg-champions-band.jpg"
-OUT_M = ROOT / "public/assets/brand/blg-champions-band-mobile.jpg"
 
 
 def band(src: Path, dst: Path, out_w: int, out_h: int, quality: int) -> None:
@@ -30,4 +28,3 @@ if __name__ == "__main__":
     if not SRC.exists():
         raise SystemExit(f"missing {SRC}")
     band(SRC, OUT, 2400, 880, 82)
-    band(SRC_M, OUT_M, 1200, 540, 80)
