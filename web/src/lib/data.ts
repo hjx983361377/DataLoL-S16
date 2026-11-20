@@ -7,8 +7,13 @@ export const series = seriesJson as unknown as Series[];
 
 /** 站点部署在子路径时（GitHub Pages 的 /repo/），素材路径需要带上 BASE_URL 前缀。 */
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-export const asset = (p: string | undefined | null): string =>
-  p && p.startsWith("/") ? BASE + p : (p ?? "");
+export const asset = (p: string | undefined | null): string => {
+  if (!p) return "";
+  if (!p.startsWith("/")) return p;
+  // 已经带过前缀的不要再加一层（loadMeta 里会给部分字段补前缀）
+  if (BASE && (p === BASE || p.startsWith(BASE + "/"))) return p;
+  return BASE + p;
+};
 
 async function getJson<T>(url: string): Promise<T> {
   const res = await fetch(url);
