@@ -159,7 +159,7 @@ export default function Player({ meta }: { meta: Meta }) {
           <div className="subhead">
             <h2 className="section-title">能力雷达</h2>
             <span>
-              与 {roleLabel(radar.role)} 位置其他 {radar.peers - 1} 位选手横向对比 · 生存为场均死亡，越低越靠前
+              与 {roleLabel(radar.role)} 位置其他 {radar.peers - 1} 位选手横向对比 · 生存为场均死亡，伤转为伤害 ÷ 经济
             </span>
           </div>
           <div className="radar-panel">

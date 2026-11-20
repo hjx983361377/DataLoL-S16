@@ -605,7 +605,7 @@ export function playerGames(meta: Meta, key: string): PlayerGameRow[] {
 
 /* ---------- 选手能力雷达（六边形） ---------- */
 
-export type RadarKey = "kills" | "assists" | "survival" | "cs" | "kp" | "win";
+export type RadarKey = "damage" | "gold" | "der" | "survival" | "kp" | "win";
 
 export interface RadarAxis {
   key: RadarKey;
@@ -635,6 +635,8 @@ interface RadarAcc {
   seconds: number;
   teamKills: number;
   wins: number;
+  damage: number;
+  gold: number;
 }
 
 interface RadarMetric {
@@ -646,8 +648,15 @@ interface RadarMetric {
 }
 
 const RADAR_METRICS: RadarMetric[] = [
-  { key: "kills", label: "击杀", hint: "场均击杀", pick: (r) => r.kills / r.games, display: (v) => v.toFixed(1) },
-  { key: "assists", label: "助攻", hint: "场均助攻", pick: (r) => r.assists / r.games, display: (v) => v.toFixed(1) },
+  { key: "damage", label: "输出", hint: "分均伤害", pick: (r) => r.damage / (r.seconds / 60), display: (v) => String(Math.round(v)) },
+  { key: "gold", label: "经济", hint: "分均经济", pick: (r) => r.gold / (r.seconds / 60), display: (v) => String(Math.round(v)) },
+  {
+    key: "der",
+    label: "伤转",
+    hint: "伤害 ÷ 经济",
+    pick: (r) => r.damage / Math.max(1, r.gold),
+    display: (v) => v.toFixed(2)
+  },
   {
     key: "survival",
     label: "生存",
@@ -655,7 +664,6 @@ const RADAR_METRICS: RadarMetric[] = [
     pick: (r) => -(r.deaths / r.games),
     display: (v) => (-v).toFixed(1)
   },
-  { key: "cs", label: "补刀", hint: "分均补刀", pick: (r) => r.cs / (r.seconds / 60), display: (v) => v.toFixed(1) },
   {
     key: "kp",
     label: "参团",
@@ -678,7 +686,7 @@ function radarTable(): Map<string, RadarAcc> {
       const key = playerKey(team?.name ?? p.team, p.name);
       let row = acc.get(key);
       if (!row) {
-        row = { games: 0, kills: 0, deaths: 0, assists: 0, cs: 0, seconds: 0, teamKills: 0, wins: 0 };
+        row = { games: 0, kills: 0, deaths: 0, assists: 0, cs: 0, seconds: 0, teamKills: 0, wins: 0, damage: 0, gold: 0 };
         acc.set(key, row);
       }
       row.games += 1;
@@ -689,6 +697,8 @@ function radarTable(): Map<string, RadarAcc> {
       row.seconds += game.duration_seconds;
       row.teamKills += team?.kills ?? 0;
       row.wins += team?.win ? 1 : 0;
+      row.damage += p.stats?.damage ?? 0;
+      row.gold += p.stats?.gold ?? 0;
     }
   }
   radarCache = acc;
