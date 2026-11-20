@@ -2938,3 +2938,162 @@ a.match-side-name:hover { color: var(--gold); }
 .sort-dir:hover { border-color: var(--ink-3); color: var(--ink); }
 .sort-dir-caret { font-family: var(--mono); font-size: 12px; color: var(--gold); }
 
+/* ---------- 队伍数据榜（战队巡礼内嵌） ---------- */
+
+.team-rank-section { padding-top: clamp(18px, 2.4vw, 30px); }
+
+.rank-podium {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+  margin: 10px 0 clamp(14px, 1.8vw, 20px);
+}
+
+.rank-podium-card {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: clamp(13px, 1.5vw, 17px) clamp(14px, 1.7vw, 18px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 160ms var(--ease), background 160ms var(--ease), transform 160ms var(--ease);
+}
+
+.rank-podium-card:hover {
+  border-color: var(--rule);
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.rank-podium-card.is-first {
+  border-color: rgba(138, 91, 24, 0.34);
+  background: linear-gradient(180deg, rgba(138, 91, 24, 0.075), rgba(138, 91, 24, 0.008) 62%, var(--paper-2));
+}
+
+.rank-podium-card.is-first:hover { border-color: rgba(138, 91, 24, 0.5); }
+
+.rank-podium-top {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.rank-podium-num {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  flex: 0 0 auto;
+}
+
+.rank-podium-card.is-first .rank-podium-num { color: var(--gold); }
+
+.rank-podium-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.rank-podium-logo-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: var(--raise);
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 8.5px;
+  flex: 0 0 auto;
+}
+
+.rank-podium-name {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.25;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-podium-top .team-card-run { margin-left: auto; flex: 0 0 auto; }
+
+.rank-podium-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.rank-podium-value b {
+  font-family: var(--mono);
+  font-size: clamp(20px, 2.1vw, 26px);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.rank-podium-card.is-first .rank-podium-value b { color: var(--gold); }
+
+.rank-podium-value small {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.rank-podium-foot {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 表格 */
+
+.team-rank-table th.num, .team-rank-table td.num { padding-left: 16px; }
+.team-rank-table th:first-child, .team-rank-table td:first-child { padding-left: 0; }
+.team-rank-table .team-cell-name { font-size: 14.5px; }
+.team-rank-table td.rank.is-top { color: var(--gold); }
+.team-rank-table .rate-bar { width: 40px; }
+.team-rank-table .delta-up { color: var(--win); }
+.team-rank-table .delta-down { color: var(--loss); }
+
+@media (max-width: 1080px) {
+  .team-rank-table th:nth-child(9), .team-rank-table td:nth-child(9),
+  .team-rank-table th:nth-child(10), .team-rank-table td:nth-child(10),
+  .team-rank-table th:nth-child(12), .team-rank-table td:nth-child(12),
+  .team-rank-table th:nth-child(13), .team-rank-table td:nth-child(13) { display: none; }
+  .team-rank-table th.num, .team-rank-table td.num { padding-left: 13px; }
+}
+
+@media (max-width: 900px) {
+  .rank-podium-name { font-size: 15px; }
+  .rank-podium-foot { white-space: normal; }
+}
+
+@media (max-width: 720px) {
+  .rank-podium { grid-template-columns: minmax(0, 1fr); gap: 9px; }
+  .rank-podium-card { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 6px 12px; }
+  .rank-podium-top { flex: 1 1 100%; }
+  .rank-podium-value b { font-size: 21px; }
+  .rank-podium-foot { flex: 1 1 100%; }
+  .team-rank-table th:nth-child(n + 7), .team-rank-table td:nth-child(n + 7) { display: none; }
+  .team-rank-table .rate-bar { display: none; }
+  .team-rank-table .chevron-cell { display: none; }
+  .team-rank-table th.num, .team-rank-table td.num { padding-left: 10px; }
+  .team-rank-table .team-cell-name { font-size: 13.5px; }
+}
+
+@media (max-width: 560px) {
+  .team-rank-table th:nth-child(3), .team-rank-table td:nth-child(3),
+  .team-rank-table th:nth-child(6), .team-rank-table td:nth-child(6) { display: none; }
+}
+
+

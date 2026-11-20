@@ -2,8 +2,17 @@ import { useMemo } from "react";
 import { useTrailEntry } from "../lib/trail";
 import { Link } from "react-router-dom";
 import type { Meta } from "../lib/types";
-import { buildPlayers, buildTeams, fmtPct, roleIndex, type PlayerRow, type TeamSummary } from "../lib/stats";
+import {
+  buildPlayers,
+  buildTeams,
+  buildTeamStats,
+  fmtPct,
+  roleIndex,
+  type PlayerRow,
+  type TeamSummary
+} from "../lib/stats";
 import { PlayerAvatar } from "../components/PlayerAvatar";
+import { TeamStandings } from "../components/TeamStandings";
 
 function TeamCard({ team, roster }: { team: TeamSummary; roster: PlayerRow[] }) {
   return (
@@ -54,6 +63,7 @@ function TeamCard({ team, roster }: { team: TeamSummary; roster: PlayerRow[] }) 
 export default function Teams({ meta }: { meta: Meta }) {
   useTrailEntry("战队巡礼");
   const teams = useMemo(() => buildTeams(meta), [meta]);
+  const rankRows = useMemo(() => buildTeamStats(meta), [meta]);
 
   const rosters = useMemo(() => {
     const map = new Map<string, PlayerRow[]>();
@@ -80,7 +90,15 @@ export default function Teams({ meta }: { meta: Meta }) {
         </p>
       </section>
 
-      <section className="section rise d4">
+      <section className="section team-rank-section rise d4">
+        <div className="subhead">
+          <h2 className="section-title">队伍数据榜</h2>
+          <span>点表头切换排序，默认按局胜率</span>
+        </div>
+        <TeamStandings rows={rankRows} />
+      </section>
+
+      <section className="section rise d5">
         <div className="subhead">
           <h2 className="section-title">参赛队伍</h2>
           <span>按赛事名次排序</span>

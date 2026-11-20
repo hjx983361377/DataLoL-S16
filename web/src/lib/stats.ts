@@ -1310,4 +1310,179 @@ export function findChampion(meta: Meta, slug: string): ChampionSummary | null {
   return buildChampions(meta).find((c) => c.slug === target) ?? null;
 }
 
+/* ---------- 队伍数据榜 ---------- */
+
+export interface TeamStatRow {
+  name: string;
+  slug: string;
+  code: string;
+  logo: string | null;
+  run: string;
+  /** 赛事名次分档：冠军 1、亚军 2、四强 3、八强 4、瑞士轮 5、入围赛 6。 */
+  placement: number;
+  games: number;
+  wins: number;
+  losses: number;
+  winRate: number;
+  seriesWins: number;
+  seriesLosses: number;
+  seriesWinRate: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number | null;
+  avgKills: number;
+  avgDeaths: number;
+  avgAssists: number;
+  towers: number;
+  avgTowers: number;
+  dragons: number;
+  avgDragons: number;
+  barons: number;
+  avgBarons: number;
+  gold: number;
+  avgGold: number;
+  /** 15 分钟经济差（己方减对手，取平均值）。 */
+  goldDiff15: number;
+  firstBloodRate: number;
+  firstTowerRate: number;
+  seconds: number;
+  avgSeconds: number;
+  blueGames: number;
+  blueWins: number;
+  blueWinRate: number;
+  redGames: number;
+  redWins: number;
+  redWinRate: number;
+  cs: number;
+  csPerMin: number;
+}
+
+interface TeamExtra {
+  assists: number;
+  cs: number;
+  gold: number;
+  goldDiff15: number;
+  goldDiff15Games: number;
+  firstBlood: number;
+  firstTower: number;
+}
+
+/** 取离指定分钟最近的经济差快照；差得太远（>2 分钟）视为缺失。 */
+function goldDiffAt(game: Game, minute: number): number | null {
+  const minutes = game.gold_diff?.minutes ?? [];
+  const diff = game.gold_diff?.diff ?? [];
+  let best = -1;
+  let bestGap = Number.POSITIVE_INFINITY;
+  for (let i = 0; i < minutes.length; i += 1) {
+    const gap = Math.abs(minutes[i] - minute);
+    if (gap < bestGap) {
+      bestGap = gap;
+      best = i;
+    }
+  }
+  if (best < 0 || bestGap > 2) return null;
+  return diff[best] ?? null;
+}
+
+function accumulateTeamExtras(): Map<string, TeamExtra> {
+  const acc = new Map<string, TeamExtra>();
+  const entry = (name: string): TeamExtra => {
+    let e = acc.get(name);
+    if (!e) {
+      e = { assists: 0, cs: 0, gold: 0, goldDiff15: 0, goldDiff15Games: 0, firstBlood: 0, firstTower: 0 };
+      acc.set(name, e);
+    }
+    return e;
+  };
+
+  for (const game of games) {
+    const sides = Object.fromEntries(game.teams.map((t) => [t.side, t])) as Record<
+      "blue" | "red",
+      TeamBlock | undefined
+    >;
+    const diff15 = goldDiffAt(game, 15);
+    for (const side of ["blue", "red"] as const) {
+      const team = sides[side];
+      if (!team) continue;
+      const e = entry(team.name);
+      e.gold += team.gold ?? 0;
+      if (team.first_blood) e.firstBlood += 1;
+      if (team.first_tower) e.firstTower += 1;
+      if (diff15 !== null) {
+        e.goldDiff15 += side === "blue" ? diff15 : -diff15;
+        e.goldDiff15Games += 1;
+      }
+    }
+    for (const p of game.players) {
+      const team = sides[p.team as "blue" | "red"];
+      if (!team) continue;
+      const e = entry(team.name);
+      e.assists += p.kda[2];
+      e.cs += p.cs;
+    }
+  }
+  return acc;
+}
+
+/** 全部队伍的数据行，按赛事名次排定；排序交给页面按指标重排。 */
+export function buildTeamStats(meta: Meta): TeamStatRow[] {
+  const extra = accumulateTeamExtras();
+  return buildTeams(meta)
+    .map((t) => {
+      const e = extra.get(t.name);
+      const gamesPlayed = Math.max(1, t.games);
+      return {
+        name: t.name,
+        slug: t.slug,
+        code: t.code,
+        logo: t.logo,
+        run: t.run,
+        placement: placementRank(t.run),
+        games: t.games,
+        wins: t.wins,
+        losses: t.losses,
+        winRate: t.winRate,
+        seriesWins: t.seriesWins,
+        seriesLosses: t.seriesLosses,
+        seriesWinRate: t.seriesWinRate,
+        kills: t.kills,
+        deaths: t.deaths,
+        assists: e?.assists ?? 0,
+        kda: t.deaths > 0 ? t.kills / t.deaths : null,
+        avgKills: t.kills / gamesPlayed,
+        avgDeaths: t.deaths / gamesPlayed,
+        avgAssists: (e?.assists ?? 0) / gamesPlayed,
+        towers: t.towers,
+        avgTowers: t.towers / gamesPlayed,
+        dragons: t.dragons,
+        avgDragons: t.dragons / gamesPlayed,
+        barons: t.barons,
+        avgBarons: t.barons / gamesPlayed,
+        gold: e?.gold ?? 0,
+        avgGold: (e?.gold ?? 0) / gamesPlayed,
+        goldDiff15: e && e.goldDiff15Games > 0 ? e.goldDiff15 / e.goldDiff15Games : 0,
+        firstBloodRate: (e?.firstBlood ?? 0) / gamesPlayed,
+        firstTowerRate: (e?.firstTower ?? 0) / gamesPlayed,
+        seconds: t.seconds,
+        avgSeconds: t.seconds / gamesPlayed,
+        blueGames: t.blueGames,
+        blueWins: t.blueWins,
+        blueWinRate: t.blueGames > 0 ? t.blueWins / t.blueGames : 0,
+        redGames: t.redGames,
+        redWins: t.redWins,
+        redWinRate: t.redGames > 0 ? t.redWins / t.redGames : 0,
+        cs: e?.cs ?? 0,
+        csPerMin: t.seconds > 0 ? (e?.cs ?? 0) / (t.seconds / 60) : 0
+      };
+    })
+    .sort(
+      (a, b) =>
+        a.placement - b.placement ||
+        b.seriesWins - a.seriesWins ||
+        b.winRate - a.winRate ||
+        a.name.localeCompare(b.name)
+    );
+}
+
 
