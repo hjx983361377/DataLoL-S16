@@ -1217,9 +1217,9 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .player-facts { font-size: 11px; }
   .stat-value.compact { font-size: 22px; }
   /* 閫夋墜姒滅獎灞忓彧淇濈暀鎺掑悕 / 閫夋墜 / 浣嶇疆 / 鍑哄満 / KDA锛屾暟瀛楀垪鐣欒冻闂磋窛 */
+  .players-table th:nth-child(4), .players-table td:nth-child(4),
   .players-table th:nth-child(5), .players-table td:nth-child(5),
-  .players-table th:nth-child(6), .players-table td:nth-child(6),
-  .players-table th:nth-child(n + 8), .players-table td:nth-child(n + 8) { display: none; }
+  .players-table th:nth-child(n + 7), .players-table td:nth-child(n + 7) { display: none; }
   .players-table .rate-bar { display: none; }
   .players-table th.num, .players-table td.num { padding-left: 14px; }
   .player-cell-name { font-size: 14.5px; }

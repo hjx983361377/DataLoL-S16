@@ -9,7 +9,6 @@ import {
   findPlayerKey,
   fmtPct,
   playerSlug,
-  roleIndex,
   roleLabel,
   type PlayerRow
 } from "../lib/stats";
@@ -35,8 +34,7 @@ type SortKey =
   | "wins"
   | "losses"
   | "championCount"
-  | "name"
-  | "role";
+  | "name";
 
 type SortDir = "asc" | "desc";
 
@@ -60,8 +58,7 @@ const SORTS: SortSpec[] = [
   { key: "wins", label: "胜场", dir: "desc", value: (row) => row.wins },
   { key: "losses", label: "负场", dir: "desc", value: (row) => row.losses },
   { key: "championCount", label: "使用英雄", dir: "desc", value: (row) => row.championCount },
-  { key: "name", label: "选手名", dir: "asc", value: (row) => row.name },
-  { key: "role", label: "位置", dir: "asc", value: (row) => roleIndex(row.role) }
+  { key: "name", label: "选手名", dir: "asc", value: (row) => row.name }
 ];
 
 const specOf = (key: SortKey) => SORTS.find((item) => item.key === key) ?? SORTS[0];
@@ -335,7 +332,6 @@ export default function Players({ meta }: { meta: Meta }) {
               <tr>
                 <th className="num">#</th>
                 <SortHeader label="选手" sortKey="name" sort={sort} dir={dir} onSort={pickSort} numeric={false} />
-                <SortHeader label="位置" sortKey="role" sort={sort} dir={dir} onSort={pickSort} numeric={false} />
                 <SortHeader label="出场" sortKey="games" sort={sort} dir={dir} onSort={pickSort} />
                 <SortHeader label="胜 – 负" sortKey="wins" sort={sort} dir={dir} onSort={pickSort} />
                 <SortHeader label="胜率" sortKey="winRate" sort={sort} dir={dir} onSort={pickSort} />
@@ -381,9 +377,6 @@ export default function Players({ meta }: { meta: Meta }) {
                         </span>
                         </Link>
                       </div>
-                    </td>
-                    <td>
-                      <span className="role-tag">{roleLabel(p.role)}</span>
                     </td>
                     <td className="num">{p.games}</td>
                     <td className="num">
