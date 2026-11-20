@@ -2199,8 +2199,8 @@ a.match-side-name:hover { color: var(--gold); }
   display: block;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  /* 全宽、按原图 3:2 比例：任何窗口宽度都完整显示整张照片，不裁切 */
-  aspect-ratio: 3 / 2;
+  /* 全宽横条：高度跟着窗口宽度走并封顶，宽屏下不再占满一屏 */
+  height: clamp(210px, 33vw, 470px);
   overflow: hidden;
   background: #0d0b09;
   color: #f6f1e7;
@@ -2212,7 +2212,7 @@ a.match-side-name:hover { color: var(--gold); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 50% 46%;
   filter: saturate(1.02) brightness(0.97);
   transition: filter 0.28s var(--ease);
 }
@@ -2225,17 +2225,17 @@ a.match-side-name:hover { color: var(--gold); }
   background:
     linear-gradient(
       180deg,
-      rgba(8, 6, 4, 0.88) 0%,
-      rgba(8, 6, 4, 0.62) 14%,
-      rgba(8, 6, 4, 0.2) 32%,
-      rgba(8, 6, 4, 0) 52%
+      rgba(8, 6, 4, 0.9) 0%,
+      rgba(8, 6, 4, 0.66) 18%,
+      rgba(8, 6, 4, 0.26) 44%,
+      rgba(8, 6, 4, 0) 72%
     ),
     linear-gradient(
       90deg,
-      rgba(8, 6, 4, 0.82) 0%,
-      rgba(8, 6, 4, 0.46) 26%,
-      rgba(8, 6, 4, 0.1) 48%,
-      rgba(8, 6, 4, 0) 60%
+      rgba(8, 6, 4, 0.86) 0%,
+      rgba(8, 6, 4, 0.5) 28%,
+      rgba(8, 6, 4, 0.12) 52%,
+      rgba(8, 6, 4, 0) 64%
     );
 }
 .champ-strip-inner {
@@ -2248,19 +2248,19 @@ a.match-side-name:hover { color: var(--gold); }
   height: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(46px, 5vw, 74px) 32px 0;
+  padding: clamp(24px, 2.6vw, 40px) 32px 0;
 }
 .champ-strip-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
+  gap: 6px;
   min-width: 0;
 }
 .champ-strip-label {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 10px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #e0b878;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
@@ -2269,20 +2269,20 @@ a.match-side-name:hover { color: var(--gold); }
 .champ-strip-title b {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(26px, 3vw, 44px);
+  font-size: clamp(21px, 2.1vw, 33px);
   letter-spacing: 0.005em;
   color: #fbf7ee;
   text-shadow: 0 2px 26px rgba(0, 0, 0, 0.62);
 }
 .champ-strip-score {
   font-family: var(--mono);
-  font-size: clamp(14px, 1.35vw, 19px);
+  font-size: clamp(12px, 0.95vw, 15px);
   letter-spacing: 0.02em;
   color: #eddcbb;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
 }
 .champ-strip-note {
-  font-size: 13.5px;
+  font-size: 12.5px;
   line-height: 1.45;
   color: rgba(248, 244, 236, 0.84);
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7);
@@ -2291,9 +2291,9 @@ a.match-side-name:hover { color: var(--gold); }
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 9px;
-  padding-bottom: 2px;
-  font-size: 13.5px;
+  margin-top: 6px;
+  padding-bottom: 1px;
+  font-size: 12.5px;
   color: #edd5ac;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(214, 182, 127, 0.5);
@@ -2303,10 +2303,10 @@ a.match-side-name:hover { color: var(--gold); }
 .champ-strip-credit {
   position: absolute;
   right: 32px;
-  bottom: 11px;
+  bottom: 9px;
   z-index: 2;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 9px;
   letter-spacing: 0.04em;
   color: rgba(246, 241, 231, 0.72);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75);
@@ -2530,7 +2530,8 @@ a.match-side-name:hover { color: var(--gold); }
   .search-field { height: 42px; }
   .search-panel { max-height: 60vh; }
 
-  /* 窄屏：整幅照片仍是背景，文字压在下方，加重底部墨色渐变保证可读 */
+  /* 窄屏：横条再压低一点，文字压在下方，加重底部墨色渐变保证可读 */
+  .champ-strip { height: clamp(206px, 52vw, 268px); }
   .champ-strip::after {
     background:
       linear-gradient(
@@ -2544,15 +2545,15 @@ a.match-side-name:hover { color: var(--gold); }
   }
   .champ-strip-inner {
     align-items: flex-end;
-    padding: 0 18px 26px;
+    padding: 0 18px 20px;
   }
-  .champ-strip-text { gap: 5px; }
-  .champ-strip-label { font-size: 9.5px; letter-spacing: 0.14em; }
-  .champ-strip-title { gap: 9px; }
-  .champ-strip-title b { font-size: 22px; }
-  .champ-strip-score { font-size: 12.5px; }
-  .champ-strip-note { font-size: 11.5px; max-width: 92%; }
-  .champ-strip-tail { font-size: 12px; margin-top: 6px; }
+  .champ-strip-text { gap: 4px; }
+  .champ-strip-label { font-size: 9px; letter-spacing: 0.13em; }
+  .champ-strip-title { gap: 8px; }
+  .champ-strip-title b { font-size: 20px; }
+  .champ-strip-score { font-size: 11.5px; }
+  .champ-strip-note { font-size: 11px; max-width: 92%; }
+  .champ-strip-tail { font-size: 11.5px; margin-top: 5px; }
   .champ-strip-credit { display: none; }
 
   /* 窄屏：原画单独成横带，文字落到下方的墨色块上，避免压在奖杯上 */
