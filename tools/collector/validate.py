@@ -59,6 +59,8 @@ def main():
           and all(p["champion_id"] for p in g["players"]))
     check("players_items", lambda g: all(p["items"] for p in g["players"]))
     check("timeline", lambda g: bool(g["timeline"]))
+    check("players_gold_damage", lambda g: len(g["players"]) == 10 and all(
+        p.get("stats", {}).get("gold") and p["stats"].get("dpm") for p in g["players"]))
 
     teams = collections.Counter(t["name"] for g in games for t in g["teams"])
     players = collections.Counter(p["name"] for g in games for p in g["players"])

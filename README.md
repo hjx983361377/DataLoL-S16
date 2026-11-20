@@ -58,7 +58,8 @@ python tools/assets/fetch_assets.py --splash   # 追加英雄原画（107 张，
 | teams | 两队：name / side / win / kills / towers / dragons / barons / gold / first_blood / first_tower / dragon_types |
 | bans | {blue:[10 个内前 5], red:[...]}，元素 {name, id}，保留顺序 |
 | picks | 同上，选人顺序 |
-| players | 10 人：team / name / champion / champion_id / kda[3] / cs / items[] / spells[] |
+| players | 10 人：team / name / champion / champion_id / kda[3] / cs / items[] / spells[] / stats |
+| players[].stats | 来自页面 Gold distribution / Damage distribution 两表：gold（总经济）/ gold_share（占全队 %）/ gpm / damage（总伤害）/ damage_share / dpm / damage_per_gold（伤转 = 伤害 ÷ 经济）。damage = DPM × 分钟数，gold = 队伍总经济 × 占比，两者已与原始占比交叉校验（98 局误差 < 0.1pp） |
 | timeline | 事件流：{time:"mm:ss", event:"First blood|Hextech Drake|...", side} |
 | series_id / stage / date / tournament / series_score / series_teams | 所属系列赛元信息 |
 

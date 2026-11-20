@@ -2,7 +2,8 @@
 
 Fields: duration, patch, gold-diff curve, both teams, bans/picks (ordered,
 with champion ids), all ten players (champion, KDA, CS, items, summoner
-spells) and the event timeline.
+spells, plus the gold/damage split from the distribution tabs) and the event
+timeline.
 """
 import json
 import os
@@ -16,6 +17,10 @@ PATCH_RE = re.compile(
     r"<h1>\s*\d+:\d+\s*</h1>\s*</div>\s*<div class=\"col-3 text-right\">\s*v(\d+\.\d+)")
 PATCH_FALLBACK_RE = re.compile(r"col-3 text-right\">\s*v(\d+\.\d+)")
 KDA_RE = re.compile(r"\d+/\d+/\d+")
+ROLES = ("TOP", "JUNGLE", "MID", "ADC", "SUPPORT")
+SHARE_RE = re.compile(r"(\d+(?:\.\d+)?)%")
+DPM_RE = re.compile(r"(\d+)\s*DPM")
+DIST_ROW_RE = re.compile(r"<tr>\s*<td>(TOP|JUNGLE|MID|ADC|SUPPORT)</td>(.*?)</tr>", re.S)
 
 
 def _num(text):
@@ -124,6 +129,68 @@ def _players(soup, picks):
     return players
 
 
+def _distribution(html, title):
+    """Per-role rows of a summary tab as {role: [(share per cent, dpm or None)] * 2}.
+
+    Index 0 is the blue team, index 1 the red one; the table prints the two
+    sides side by side. Returns None when the tab is missing or unparsable.
+    """
+    anchor = html.find(">" + title + "<")
+    if anchor == -1:
+        return None
+    start = html.find('<table class="small_table">', anchor)
+    if start == -1:
+        return None
+    segment = html[start:html.find("</table>", start)]
+    rows = {}
+    for match in DIST_ROW_RE.finditer(segment):
+        cells = re.findall(r"<td>(.*?)</td>", match.group(2), re.S)
+        if len(cells) < 2:
+            return None
+        values = []
+        for cell in cells[:2]:
+            share = SHARE_RE.search(cell)
+            dpm = DPM_RE.search(cell)
+            values.append((float(share.group(1)) if share else None,
+                           int(dpm.group(1)) if dpm else None))
+        rows[match.group(1)] = values
+    return rows if len(rows) == len(ROLES) else None
+
+
+def _attach_player_stats(html, record):
+    """Gold / damage split for every player from the summary tabs.
+
+    "Gold distribution" lists each role's share of the team's gold, so absolute
+    gold is team gold x share (team gold comes from the score boxes). "Damage
+    distribution" lists DPM per role, so damage is DPM x minutes; its percentage
+    column is that player's share of the team's total damage.
+    """
+    gold = _distribution(html, "Gold distribution")
+    damage = _distribution(html, "Damage distribution")
+    if gold is None or damage is None:
+        return
+    minutes = (record.get("duration_seconds") or 0) / 60.0
+    if minutes <= 0:
+        return
+    team_gold = {team["side"]: team.get("gold") for team in record["teams"]}
+    for index, player in enumerate(record["players"]):
+        side = player.get("team")
+        column = 0 if side == "blue" else 1
+        role = ROLES[index % len(ROLES)]
+        gold_share, _ = gold[role][column]
+        damage_share, dpm = damage[role][column]
+        stats = {"gold_share": gold_share, "damage_share": damage_share, "dpm": dpm}
+        side_gold = team_gold.get(side)
+        if side_gold and gold_share is not None:
+            stats["gold"] = int(round(side_gold * gold_share / 100.0))
+            stats["gpm"] = int(round(stats["gold"] / minutes))
+        if dpm is not None:
+            stats["damage"] = int(round(dpm * minutes))
+            if stats.get("gold"):
+                stats["damage_per_gold"] = round(stats["damage"] / stats["gold"], 3)
+        player["stats"] = stats
+
+
 def _timeline(soup):
     events = []
     for span in soup.find_all("span", class_=re.compile(r"^(blue|red)_action$")):
@@ -154,6 +221,7 @@ def parse_game(html, game_id):
     record["bans"] = bans
     record["picks"] = picks
     record["players"] = _players(soup, picks)
+    _attach_player_stats(html, record)
     record["timeline"] = _timeline(soup)
     return record
 
