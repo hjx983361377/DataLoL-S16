@@ -30,4 +30,5 @@ tools/assets/fetch.log
 
 # build output
 dist/
+_deploy/
 *.local
