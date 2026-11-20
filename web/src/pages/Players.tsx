@@ -9,6 +9,7 @@ import {
   findPlayerKey,
   fmtPct,
   playerSlug,
+  roleIndex,
   roleLabel,
   type PlayerRow
 } from "../lib/stats";
@@ -23,21 +24,98 @@ function Chevron() {
 
 
 
-const SORTS = [
-  { key: "kda", label: "KDA" },
-  { key: "games", label: "出场局数" },
-  { key: "winRate", label: "胜率" },
-  { key: "csPerMin", label: "分均补刀" }
-] as const;
+type SortKey =
+  | "kda"
+  | "winRate"
+  | "games"
+  | "csPerMin"
+  | "kills"
+  | "deaths"
+  | "assists"
+  | "wins"
+  | "losses"
+  | "championCount"
+  | "name"
+  | "role";
 
-type SortKey = (typeof SORTS)[number]["key"];
+type SortDir = "asc" | "desc";
 
-function sortRows(rows: PlayerRow[], key: SortKey): PlayerRow[] {
-  const copy = [...rows];
-  if (key === "kda") return copy.sort((a, b) => (b.kda ?? -1) - (a.kda ?? -1) || b.games - a.games);
-  if (key === "games") return copy.sort((a, b) => b.games - a.games || (b.kda ?? 0) - (a.kda ?? 0));
-  if (key === "winRate") return copy.sort((a, b) => b.winRate - a.winRate || b.games - a.games);
-  return copy.sort((a, b) => b.csPerMin - a.csPerMin || b.games - a.games);
+interface SortSpec {
+  key: SortKey;
+  label: string;
+  dir: SortDir;
+  value: (row: PlayerRow) => number | string | null;
+}
+
+const perGame = (total: number, row: PlayerRow) => total / Math.max(1, row.games);
+
+const SORTS: SortSpec[] = [
+  { key: "kda", label: "KDA", dir: "desc", value: (row) => row.kda },
+  { key: "winRate", label: "胜率", dir: "desc", value: (row) => row.winRate },
+  { key: "games", label: "出场局数", dir: "desc", value: (row) => row.games },
+  { key: "csPerMin", label: "分均补刀", dir: "desc", value: (row) => row.csPerMin },
+  { key: "kills", label: "场均击杀", dir: "desc", value: (row) => perGame(row.kills, row) },
+  { key: "deaths", label: "场均死亡", dir: "asc", value: (row) => perGame(row.deaths, row) },
+  { key: "assists", label: "场均助攻", dir: "desc", value: (row) => perGame(row.assists, row) },
+  { key: "wins", label: "胜场", dir: "desc", value: (row) => row.wins },
+  { key: "losses", label: "负场", dir: "desc", value: (row) => row.losses },
+  { key: "championCount", label: "使用英雄", dir: "desc", value: (row) => row.championCount },
+  { key: "name", label: "选手名", dir: "asc", value: (row) => row.name },
+  { key: "role", label: "位置", dir: "asc", value: (row) => roleIndex(row.role) }
+];
+
+const specOf = (key: SortKey) => SORTS.find((item) => item.key === key) ?? SORTS[0];
+const defaultDir = (key: SortKey): SortDir => specOf(key).dir;
+
+function sortRows(rows: PlayerRow[], key: SortKey, dir: SortDir): PlayerRow[] {
+  const spec = specOf(key);
+  const sign = dir === "asc" ? 1 : -1;
+  return [...rows].sort((a, b) => {
+    const va = spec.value(a);
+    const vb = spec.value(b);
+    if (va === null && vb === null) return b.games - a.games;
+    if (va === null) return 1;
+    if (vb === null) return -1;
+    const cmp =
+      typeof va === "string" || typeof vb === "string"
+        ? String(va).localeCompare(String(vb), "zh-Hans-CN")
+        : (va as number) - (vb as number);
+    if (cmp !== 0) return cmp * sign;
+    return b.games - a.games;
+  });
+}
+
+function SortHeader({
+  label,
+  sortKey,
+  sort,
+  dir,
+  onSort,
+  numeric = true
+}: {
+  label: string;
+  sortKey: SortKey;
+  sort: SortKey;
+  dir: SortDir;
+  onSort: (key: SortKey) => void;
+  numeric?: boolean;
+}) {
+  const active = sort === sortKey;
+  return (
+    <th
+      className={numeric ? "num" : undefined}
+      aria-sort={active ? (dir === "asc" ? "ascending" : "descending") : "none"}
+    >
+      <button
+        type="button"
+        className={"th-sort" + (active ? " is-on" : "")}
+        onClick={() => onSort(sortKey)}
+        title={"按" + label + "排序"}
+      >
+        {label}
+      </button>
+    </th>
+  );
 }
 
 export default function Players({ meta }: { meta: Meta }) {
@@ -46,6 +124,7 @@ export default function Players({ meta }: { meta: Meta }) {
   const [role, setRole] = useState("ALL");
   const [team, setTeam] = useState("ALL");
   const [sort, setSort] = useState<SortKey>("kda");
+  const [dir, setDir] = useState<SortDir>("desc");
   const [params, setParams] = useSearchParams();
   const vsSlugs = (params.get("vs") ?? "")
     .split(",")
@@ -92,14 +171,23 @@ export default function Players({ meta }: { meta: Meta }) {
     [all]
   );
 
+  const pickSort = (key: SortKey) => {
+    if (key === sort) {
+      setDir(dir === "asc" ? "desc" : "asc");
+      return;
+    }
+    setSort(key);
+    setDir(defaultDir(key));
+  };
+
   const rows = useMemo(() => {
     const filtered = all.filter(
       (p) => (role === "ALL" || p.role === role) && (team === "ALL" || p.team === team)
     );
-    return sortRows(filtered, sort);
-  }, [all, role, team, sort]);
+    return sortRows(filtered, sort, dir);
+  }, [all, role, team, sort, dir]);
 
-  const dirty = role !== "ALL" || team !== "ALL" || sort !== "kda";
+  const dirty = role !== "ALL" || team !== "ALL" || sort !== "kda" || dir !== "desc";
 
   return (
     <div className="page">
@@ -107,7 +195,7 @@ export default function Players({ meta }: { meta: Meta }) {
         <p className="eyebrow rise d1">2026 全球总决赛</p>
         <h1 className="rise d2">选手榜</h1>
         <p className="section-note rise d3">
-          96 位选手，逐局记录每位选手的英雄、KDA 与补刀。按位置与队伍筛选，点名字进入个人页；也可以挑两到三位选手做一次正面对比。
+          96 位选手，逐局记录每位选手的英雄、KDA 与补刀。按位置与队伍筛选，点表头任意数据列切换排序，点名字进入个人页；也可以挑两到三位选手做一次正面对比。
         </p>
       </section>
 
@@ -136,7 +224,14 @@ export default function Players({ meta }: { meta: Meta }) {
         </label>
         <label className="filter">
           <span>排序</span>
-          <select value={sort} onChange={(e) => setSort(e.target.value as SortKey)}>
+          <select
+            value={sort}
+            onChange={(e) => {
+              const key = e.target.value as SortKey;
+              setSort(key);
+              setDir(defaultDir(key));
+            }}
+          >
             {SORTS.map((s) => (
               <option key={s.key} value={s.key}>
                 {s.label}
@@ -144,6 +239,17 @@ export default function Players({ meta }: { meta: Meta }) {
             ))}
           </select>
         </label>
+        <button
+          type="button"
+          className="sort-dir"
+          onClick={() => setDir(dir === "asc" ? "desc" : "asc")}
+          title="切换升序 / 降序"
+        >
+          <span className="sort-dir-caret" aria-hidden="true">
+            {dir === "asc" ? "↑" : "↓"}
+          </span>
+          {dir === "asc" ? "升序" : "降序"}
+        </button>
         {dirty ? (
           <button
             className="reset"
@@ -151,6 +257,7 @@ export default function Players({ meta }: { meta: Meta }) {
               setRole("ALL");
               setTeam("ALL");
               setSort("kda");
+              setDir("desc");
             }}
           >
             重置
@@ -227,15 +334,15 @@ export default function Players({ meta }: { meta: Meta }) {
             <thead>
               <tr>
                 <th className="num">#</th>
-                <th>选手</th>
-                <th>位置</th>
-                <th className="num">出场</th>
-                <th className="num">胜 – 负</th>
-                <th className="num">胜率</th>
-                <th className="num">KDA</th>
-                <th className="num">场均 K / D / A</th>
-                <th className="num">分均补刀</th>
-                <th className="num">英雄</th>
+                <SortHeader label="选手" sortKey="name" sort={sort} dir={dir} onSort={pickSort} numeric={false} />
+                <SortHeader label="位置" sortKey="role" sort={sort} dir={dir} onSort={pickSort} numeric={false} />
+                <SortHeader label="出场" sortKey="games" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="胜 – 负" sortKey="wins" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="胜率" sortKey="winRate" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="KDA" sortKey="kda" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="场均 K / D / A" sortKey="kills" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="分均补刀" sortKey="csPerMin" sort={sort} dir={dir} onSort={pickSort} />
+                <SortHeader label="英雄" sortKey="championCount" sort={sort} dir={dir} onSort={pickSort} />
                 <th aria-hidden="true" />
               </tr>
             </thead>

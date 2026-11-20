@@ -2902,3 +2902,39 @@ a.match-side-name:hover { color: var(--gold); }
   .compare-table th, .compare-table td { padding-left: 7px; padding-right: 7px; }
 }
 
+/* ---------- 选手榜：全列排序 ---------- */
+
+.th-sort {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: color 150ms var(--ease);
+}
+.th-sort:hover { color: var(--ink); }
+.th-sort.is-on {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.sort-dir {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  border-radius: var(--r-xs);
+  padding: 8px 11px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: border-color 150ms var(--ease), color 150ms var(--ease);
+}
+.sort-dir:hover { border-color: var(--ink-3); color: var(--ink); }
+.sort-dir-caret { font-family: var(--mono); font-size: 12px; color: var(--gold); }
+
