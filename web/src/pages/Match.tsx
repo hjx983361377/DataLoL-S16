@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
+import { asset } from "../lib/data";
 import type { Game, Meta, PlayerStat, TeamBlock } from "../lib/types";
 import {
   EVENT_CN,
@@ -38,18 +39,18 @@ function ItemsCell({ items, meta }: { items: string[]; meta: Meta }) {
   return (
     <span className="equip-cell">
       {build.map((id, i) => (
-        <img key={id + "-" + i} src={"/assets/items/" + id + ".png"} alt="" title={label(id)} loading="lazy" />
+        <img key={id + "-" + i} src={asset("/assets/items/" + id + ".png")} alt="" title={label(id)} loading="lazy" />
       ))}
       {wards > 0 ? (
         <span className="ward">
-          <img src={"/assets/items/" + CONTROL_WARD + ".png"} alt="" title={label(CONTROL_WARD)} loading="lazy" />
+          <img src={asset("/assets/items/" + CONTROL_WARD + ".png")} alt="" title={label(CONTROL_WARD)} loading="lazy" />
           <span aria-hidden="true">×{wards}</span>
         </span>
       ) : null}
       {trinket ? (
         <img
           className="trinket"
-          src={"/assets/items/" + trinket + ".png"}
+          src={asset("/assets/items/" + trinket + ".png")}
           alt=""
           title={label(trinket)}
           loading="lazy"
@@ -63,7 +64,7 @@ function SpellsCell({ spells }: { spells: string[] }) {
   return (
     <span className="spell-cell">
       {spells.map((s) => (
-        <img key={s} src={"/assets/spells/" + s + ".png"} alt="" title={SPELL_CN[s] ?? s} loading="lazy" />
+        <img key={s} src={asset("/assets/spells/" + s + ".png")} alt="" title={SPELL_CN[s] ?? s} loading="lazy" />
       ))}
     </span>
   );

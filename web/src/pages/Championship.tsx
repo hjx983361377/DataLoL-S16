@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import type { Meta } from "../lib/types";
-import { series } from "../lib/data";
+import { asset, series } from "../lib/data";
 import {
   buildTeam,
   fmtDuration,
@@ -79,10 +79,10 @@ export default function Championship({ meta }: { meta: Meta }) {
 
       <section className="champ-hero">
         <picture>
-          <source media="(max-width: 720px)" srcSet="/assets/brand/blg-champions-hero-mobile.jpg" />
+          <source media="(max-width: 720px)" srcSet={asset("/assets/brand/blg-champions-hero-mobile.jpg")} />
           <img
             className="champ-hero-art"
-            src="/assets/brand/blg-champions-hero.jpg"
+            src={asset("/assets/brand/blg-champions-hero.jpg")}
             alt="Bilibili Gaming 六名选手在 2026 全球总决赛决赛舞台上共同举起召唤师杯"
             loading="eager"
             decoding="async"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
-import { loadMeta } from "./lib/data";
+import { asset, loadMeta } from "./lib/data";
 import type { Meta } from "./lib/types";
 import Overview from "./pages/Overview";
 import Matches from "./pages/Matches";
@@ -60,10 +60,10 @@ export default function App() {
             aria-label="Bilibili Gaming 夺得 2026 全球总决赛冠军，查看夺冠纪念"
           >
             <picture>
-              <source media="(max-width: 720px)" srcSet="/assets/brand/blg-champions-hero-mobile.jpg" />
+              <source media="(max-width: 720px)" srcSet={asset("/assets/brand/blg-champions-hero-mobile.jpg")} />
               <img
                 className="champ-strip-art"
-                src="/assets/brand/blg-champions-hero.jpg"
+                src={asset("/assets/brand/blg-champions-hero.jpg")}
                 alt="Bilibili Gaming 在 2026 全球总决赛举起召唤师杯"
                 loading="eager"
                 decoding="async"

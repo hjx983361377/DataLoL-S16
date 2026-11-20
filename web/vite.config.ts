@@ -10,6 +10,8 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 5173,
     strictPort: true,
+    // 允许通过隧道域名（trycloudflare 等）访问，方便临时对外演示
+    allowedHosts: true,
     fs: { allow: [".."] },
     watch: { usePolling: true, interval: 300 }
   }
