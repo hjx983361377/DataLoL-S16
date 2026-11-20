@@ -2860,3 +2860,45 @@ a.match-side-name:hover { color: var(--gold); }
   .radar-row-rank { font-size: 10.5px; }
 }
 
+/* ---------- 选手对比：三人 / 选手页入口 ---------- */
+
+.player-actions { margin-top: 14px; }
+.compare-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-xs);
+  font-size: 13.5px;
+  color: var(--ink-2);
+  transition: border-color 150ms var(--ease), color 150ms var(--ease), background 150ms var(--ease);
+}
+.compare-cta:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-soft); }
+.compare-cta-arrow { font-family: var(--mono); font-size: 12px; }
+
+.compare-versus.is-triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(12px, 2.2vw, 26px);
+}
+.compare-versus.is-triple .compare-side { align-items: flex-start; gap: 10px; }
+.compare-swatch {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.compare-legend { flex-wrap: wrap; row-gap: 6px; }
+
+@media (max-width: 720px) {
+  .compare-versus.is-triple { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .compare-versus.is-triple .compare-side { flex-direction: row; align-items: center; }
+  .compare-legend { gap: 10px 14px; }
+  .compare-table th, .compare-table td { padding-left: 7px; padding-right: 7px; }
+}
+

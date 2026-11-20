@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { Link } from "react-router-dom";
 import type { Meta } from "../lib/types";
 import {
@@ -15,8 +15,7 @@ import {
 import { AbilityRadar } from "./Radar";
 import { PlayerAvatar } from "./PlayerAvatar";
 
-const COLOR_A = "#8a5b18";
-const COLOR_B = "#3e5d78";
+const COLORS = ["#8a5b18", "#3e5d78", "#4d6b4a"];
 
 interface MetricCell {
   value: number | null;
@@ -27,15 +26,23 @@ interface Metric {
   label: string;
   hint?: string;
   better: "high" | "low";
-  a: MetricCell;
-  b: MetricCell;
+  cells: MetricCell[];
 }
 
-function leaderOf(metric: Metric): "a" | "b" | null {
-  if (metric.a.value === null || metric.b.value === null) return null;
-  if (Math.abs(metric.a.value - metric.b.value) < 1e-9) return null;
-  if (metric.better === "high") return metric.a.value > metric.b.value ? "a" : "b";
-  return metric.a.value < metric.b.value ? "a" : "b";
+interface SharedChampion {
+  champ: PlayerChampionRow;
+  cells: PlayerChampionRow[];
+}
+
+function leaderIndex(metric: Metric): number | null {
+  const values = metric.cells.map((cell) => cell.value);
+  if (values.some((value) => value === null)) return null;
+  const nums = values as number[];
+  const best = metric.better === "high" ? Math.max(...nums) : Math.min(...nums);
+  if (!Number.isFinite(best)) return null;
+  const hits = nums.filter((value) => Math.abs(value - best) < 1e-9).length;
+  if (hits !== 1) return null;
+  return nums.findIndex((value) => Math.abs(value - best) < 1e-9);
 }
 
 export function ComparePanel({ meta, keys }: { meta: Meta; keys: string[] }) {
@@ -50,165 +57,162 @@ export function ComparePanel({ meta, keys }: { meta: Meta; keys: string[] }) {
 
   const radars = useMemo(() => keys.map((key) => buildPlayerRadar(meta, key)), [meta, signal]);
   const champs = useMemo(() => keys.map((key) => playerChampions(meta, key)), [meta, signal]);
-  const shared = useMemo(() => {
-    if (champs.length < 2) return [] as { a: PlayerChampionRow; b: PlayerChampionRow }[];
-    const other = new Map(champs[1].map((c) => [c.name, c]));
-    return champs[0]
-      .filter((c) => other.has(c.name))
-      .map((c) => ({ a: c, b: other.get(c.name) as PlayerChampionRow }))
-      .sort((x, y) => y.a.games + y.b.games - (x.a.games + x.b.games));
+
+  const shared = useMemo<SharedChampion[]>(() => {
+    if (champs.length < 2) return [];
+    const maps = champs.map((list) => new Map(list.map((champ) => [champ.name, champ] as const)));
+    const out: SharedChampion[] = [];
+    for (const champ of champs[0]) {
+      const cells = maps.map((map) => map.get(champ.name));
+      if (cells.every((cell): cell is PlayerChampionRow => Boolean(cell))) {
+        out.push({ champ, cells });
+      }
+    }
+    const total = (item: SharedChampion) => item.cells.reduce((sum, cell) => sum + cell.games, 0);
+    return out.sort((x, y) => total(y) - total(x));
   }, [champs]);
 
-  if (rows.length < 2 || !radars[0] || !radars[1]) return null;
+  const radarList = radars.filter((radar): radar is NonNullable<(typeof radars)[number]> => Boolean(radar));
 
-  const [a, b] = rows;
-  const kp = (i: number) => radars[i]?.axes.find((axis) => axis.key === "kp")?.value ?? null;
-  const kpText = (i: number) => {
-    const value = kp(i);
+  if (rows.length < 2 || radarList.length !== rows.length || champs.length !== rows.length) return null;
+
+  const many = rows.length > 2;
+  const role = rows[0].role;
+  const sameRole = rows.every((row) => row.role === role);
+
+  const kp = (index: number) => radarList[index].axes.find((axis) => axis.key === "kp")?.value ?? null;
+  const kpText = (index: number) => {
+    const value = kp(index);
     return value === null ? "—" : Math.round(value * 100) + "%";
   };
   const per = (row: PlayerRow, total: number) => total / Math.max(1, row.games);
   const kdaText = (row: PlayerRow) => (row.kda === null ? "∞" : row.kda.toFixed(2));
+  const metric = (
+    label: string,
+    hint: string | undefined,
+    better: "high" | "low",
+    cells: MetricCell[]
+  ): Metric => ({ label, hint, better, cells });
 
   const metrics: Metric[] = [
-    {
-      label: "出场局数",
-      better: "high",
-      a: { value: a.games, text: String(a.games) },
-      b: { value: b.games, text: String(b.games) }
-    },
-    {
-      label: "胜率",
-      better: "high",
-      a: { value: a.winRate, text: fmtPct(a.winRate) },
-      b: { value: b.winRate, text: fmtPct(b.winRate) }
-    },
-    {
-      label: "KDA",
-      hint: "（击杀 + 助攻）÷ 死亡",
-      better: "high",
-      a: { value: a.kda ?? Number.POSITIVE_INFINITY, text: kdaText(a) },
-      b: { value: b.kda ?? Number.POSITIVE_INFINITY, text: kdaText(b) }
-    },
-    {
-      label: "场均击杀",
-      better: "high",
-      a: { value: per(a, a.kills), text: per(a, a.kills).toFixed(1) },
-      b: { value: per(b, b.kills), text: per(b, b.kills).toFixed(1) }
-    },
-    {
-      label: "场均死亡",
-      hint: "越低越好",
-      better: "low",
-      a: { value: per(a, a.deaths), text: per(a, a.deaths).toFixed(1) },
-      b: { value: per(b, b.deaths), text: per(b, b.deaths).toFixed(1) }
-    },
-    {
-      label: "场均助攻",
-      better: "high",
-      a: { value: per(a, a.assists), text: per(a, a.assists).toFixed(1) },
-      b: { value: per(b, b.assists), text: per(b, b.assists).toFixed(1) }
-    },
-    {
-      label: "分均补刀",
-      better: "high",
-      a: { value: a.csPerMin, text: a.csPerMin.toFixed(1) },
-      b: { value: b.csPerMin, text: b.csPerMin.toFixed(1) }
-    },
-    {
-      label: "参团率",
-      hint: "（击杀 + 助攻）÷ 队伍击杀",
-      better: "high",
-      a: { value: kp(0), text: kpText(0) },
-      b: { value: kp(1), text: kpText(1) }
-    },
-    {
-      label: "使用英雄",
-      better: "high",
-      a: { value: a.championCount, text: String(a.championCount) },
-      b: { value: b.championCount, text: String(b.championCount) }
-    }
+    metric("出场局数", undefined, "high", rows.map((row) => ({ value: row.games, text: String(row.games) }))),
+    metric("胜率", undefined, "high", rows.map((row) => ({ value: row.winRate, text: fmtPct(row.winRate) }))),
+    metric("KDA", "（击杀 + 助攻）÷ 死亡", "high", rows.map((row) => ({
+      value: row.kda === null ? Number.POSITIVE_INFINITY : row.kda,
+      text: kdaText(row)
+    }))),
+    metric("场均击杀", undefined, "high", rows.map((row) => ({
+      value: per(row, row.kills),
+      text: per(row, row.kills).toFixed(1)
+    }))),
+    metric("场均死亡", "越低越好", "low", rows.map((row) => ({
+      value: per(row, row.deaths),
+      text: per(row, row.deaths).toFixed(1)
+    }))),
+    metric("场均助攻", undefined, "high", rows.map((row) => ({
+      value: per(row, row.assists),
+      text: per(row, row.assists).toFixed(1)
+    }))),
+    metric("分均补刀", undefined, "high", rows.map((row) => ({
+      value: row.csPerMin,
+      text: row.csPerMin.toFixed(1)
+    }))),
+    metric("参团率", "（击杀 + 助攻）÷ 队伍击杀", "high", rows.map((row, index) => ({
+      value: kp(index),
+      text: kpText(index)
+    }))),
+    metric("使用英雄", undefined, "high", rows.map((row) => ({
+      value: row.championCount,
+      text: String(row.championCount)
+    })))
   ];
-
-  const onlyA = champs[0].length - shared.length;
-  const onlyB = champs[1].length - shared.length;
 
   return (
     <section className="section compare-panel">
       <div className="subhead">
         <h2 className="section-title">选手对比</h2>
         <span>
-          {a.role === b.role
-            ? "同位置对比，百分位按" + roleLabel(a.role) + "计算"
+          {sameRole
+            ? "同位置对比，百分位按" + roleLabel(role) + "计算"
             : "位置不同，百分位按各自位置计算，形状仍可比"}
         </span>
       </div>
 
-      <div className="compare-versus">
-        <div className="compare-side">
-          <PlayerAvatar row={a} size="compare-avatar" />
-          <div className="compare-ident">
-            <Link className="compare-name" to={"/player/" + playerSlug(a.team, a.name)}>
-              {a.name}
-            </Link>
-            <p className="compare-meta">
-              {a.team} · {roleLabel(a.role)} · {a.games} 场 {a.wins} 胜 {a.losses} 负
-            </p>
-          </div>
-        </div>
-        <div className="compare-vs" aria-hidden="true">
-          VS
-        </div>
-        <div className="compare-side is-right">
-          <PlayerAvatar row={b} size="compare-avatar" />
-          <div className="compare-ident">
-            <Link className="compare-name" to={"/player/" + playerSlug(b.team, b.name)}>
-              {b.name}
-            </Link>
-            <p className="compare-meta">
-              {b.team} · {roleLabel(b.role)} · {b.games} 场 {b.wins} 胜 {b.losses} 负
-            </p>
-          </div>
-        </div>
+      <div className={"compare-versus" + (many ? " is-triple" : "")}>
+        {rows.map((row, index) => (
+          <Fragment key={row.key}>
+            {!many && index === 1 ? (
+              <div className="compare-vs" aria-hidden="true">
+                VS
+              </div>
+            ) : null}
+            <div
+              className={
+                "compare-side" +
+                (!many && index === 1 ? " is-right" : "") +
+                (many ? " is-column" : "")
+              }
+            >
+              <PlayerAvatar row={row} size="compare-avatar" />
+              <div className="compare-ident">
+                <Link className="compare-name" to={"/player/" + playerSlug(row.team, row.name)}>
+                  {many ? (
+                    <span className="compare-swatch" style={{ background: COLORS[index] }} aria-hidden="true" />
+                  ) : null}
+                  {row.name}
+                </Link>
+                <p className="compare-meta">
+                  {row.team} · {roleLabel(row.role)} · {row.games} 场 {row.wins} 胜 {row.losses} 负
+                </p>
+              </div>
+            </div>
+          </Fragment>
+        ))}
       </div>
 
       <div className="compare-body">
         <div className="compare-chart">
           <AbilityRadar
-            series={[
-              { key: "a", label: a.name, color: COLOR_A, radar: radars[0] },
-              { key: "b", label: b.name, color: COLOR_B, radar: radars[1] }
-            ]}
+            series={rows.map((row, index) => ({
+              key: "p" + index,
+              label: row.name,
+              color: COLORS[index],
+              radar: radarList[index]
+            }))}
           />
           <ul className="compare-legend">
-            <li>
-              <span className="legend-dot" style={{ background: COLOR_A }} />
-              {a.name}
-            </li>
-            <li>
-              <span className="legend-dot" style={{ background: COLOR_B }} />
-              {b.name}
-            </li>
+            {rows.map((row, index) => (
+              <li key={row.key}>
+                <span className="legend-dot" style={{ background: COLORS[index] }} />
+                {row.name}
+              </li>
+            ))}
           </ul>
         </div>
         <table className="table compare-table">
           <thead>
             <tr>
               <th>指标</th>
-              <th className="num">{a.name}</th>
-              <th className="num">{b.name}</th>
+              {rows.map((row) => (
+                <th key={row.key} className="num">
+                  {row.name}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {metrics.map((metric) => {
-              const lead = leaderOf(metric);
+            {metrics.map((item) => {
+              const lead = leaderIndex(item);
               return (
-                <tr key={metric.label}>
-                  <td className="compare-metric" title={metric.hint}>
-                    {metric.label}
+                <tr key={item.label}>
+                  <td className="compare-metric" title={item.hint}>
+                    {item.label}
                   </td>
-                  <td className={"num" + (lead === "a" ? " lead" : "")}>{metric.a.text}</td>
-                  <td className={"num" + (lead === "b" ? " lead" : "")}>{metric.b.text}</td>
+                  {item.cells.map((cell, index) => (
+                    <td key={rows[index].key} className={"num" + (lead === index ? " lead" : "")}>
+                      {cell.text}
+                    </td>
+                  ))}
                 </tr>
               );
             })}
@@ -219,7 +223,13 @@ export function ComparePanel({ meta, keys }: { meta: Meta; keys: string[] }) {
       <div className="compare-champs">
         <div className="subhead subhead-slim">
           <h3 className="section-title">共同英雄</h3>
-          <span>{shared.length ? "按双方合计出场排序" : "两位选手本届没有使用过同一个英雄"}</span>
+          <span>
+            {shared.length
+              ? "按" + (many ? "三人" : "双方") + "合计出场排序"
+              : many
+                ? "三位选手本届没有共同使用过的英雄"
+                : "两位选手本届没有使用过同一个英雄"}
+          </span>
         </div>
         {shared.length ? (
           <div className="table-wrap">
@@ -227,28 +237,30 @@ export function ComparePanel({ meta, keys }: { meta: Meta; keys: string[] }) {
               <thead>
                 <tr>
                   <th>英雄</th>
-                  <th className="num">{a.name}</th>
-                  <th className="num">{b.name}</th>
+                  {rows.map((row) => (
+                    <th key={row.key} className="num">
+                      {row.name}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                {shared.map((pair) => (
-                  <tr key={pair.a.name}>
+                {shared.map((item) => (
+                  <tr key={item.champ.name}>
                     <td>
-                      <Link className="champ-cell" to={"/champion/" + championSlug(meta, pair.a.name)}>
-                        {pair.a.icon ? <img className="champ-icon" src={pair.a.icon} alt="" loading="lazy" /> : null}
+                      <Link className="champ-cell" to={"/champion/" + championSlug(meta, item.champ.name)}>
+                        {item.champ.icon ? <img className="champ-icon" src={item.champ.icon} alt="" loading="lazy" /> : null}
                         <span className="champ-cell-text">
-                          <span className="champ-cell-name">{pair.a.nameZh}</span>
-                          <span className="champ-cell-en">{pair.a.name}</span>
+                          <span className="champ-cell-name">{item.champ.nameZh}</span>
+                          <span className="champ-cell-en">{item.champ.name}</span>
                         </span>
                       </Link>
                     </td>
-                    <td className="num">
-                      {pair.a.games} 场 · {fmtPct(pair.a.winRate)}
-                    </td>
-                    <td className="num">
-                      {pair.b.games} 场 · {fmtPct(pair.b.winRate)}
-                    </td>
+                    {item.cells.map((cell, index) => (
+                      <td key={rows[index].key} className="num">
+                        {cell.games} 场 · {fmtPct(cell.winRate)}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -256,7 +268,12 @@ export function ComparePanel({ meta, keys }: { meta: Meta; keys: string[] }) {
           </div>
         ) : null}
         <p className="compare-note">
-          独有英雄：{a.name} {onlyA} 个 · {b.name} {onlyB} 个；两人本届共使用 {a.championCount} / {b.championCount} 个英雄。
+          独有英雄：
+          {rows
+            .map((row, index) => row.name + " " + (champs[index].length - shared.length) + " 个")
+            .join(" · ")}
+          ；{many ? "三人" : "两人"}本届共使用{" "}
+          {rows.map((row) => row.championCount).join(" / ")} 个英雄。
         </p>
       </div>
     </section>

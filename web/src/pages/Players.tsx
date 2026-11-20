@@ -51,7 +51,7 @@ export default function Players({ meta }: { meta: Meta }) {
     .split(",")
     .map((slug) => slug.trim())
     .filter(Boolean)
-    .slice(0, 2);
+    .slice(0, 3);
   const compareMode = params.get("compare") === "1";
   const picked = useMemo(
     () => vsSlugs.map((slug) => findPlayerKey(meta, slug)).filter((key): key is string => Boolean(key)),
@@ -76,7 +76,7 @@ export default function Players({ meta }: { meta: Meta }) {
       updateVs(vsSlugs.filter((item) => item !== slug));
       return;
     }
-    updateVs([...vsSlugs, slug].slice(-2));
+    updateVs([...vsSlugs, slug].slice(-3));
   };
 
   const openCompare = () => {
@@ -107,7 +107,7 @@ export default function Players({ meta }: { meta: Meta }) {
         <p className="eyebrow rise d1">2026 全球总决赛</p>
         <h1 className="rise d2">选手榜</h1>
         <p className="section-note rise d3">
-          96 位选手，逐局记录每位选手的英雄、KDA 与补刀。按位置与队伍筛选，点名字进入个人页；也可以挑两位选手做一次正面对比。
+          96 位选手，逐局记录每位选手的英雄、KDA 与补刀。按位置与队伍筛选，点名字进入个人页；也可以挑两到三位选手做一次正面对比。
         </p>
       </section>
 
@@ -169,12 +169,12 @@ export default function Players({ meta }: { meta: Meta }) {
       {compareMode ? (
         <div className="compare-dock">
           <span className="compare-dock-label">对比</span>
-          {[0, 1].map((index) => {
+          {[0, 1, 2].map((index) => {
             const pickedRow = pickedRows[index];
             if (!pickedRow) {
               return (
                 <span className="compare-slot" key={index}>
-                  {index === 0 ? "选手 A" : "选手 B"}
+                  {["选手 A", "选手 B", "选手 C"][index]}
                 </span>
               );
             }
@@ -197,10 +197,12 @@ export default function Players({ meta }: { meta: Meta }) {
           })}
           <span className="compare-dock-hint">
             {pickedRows.length === 0
-              ? "在下方列表点圆圈选两位选手"
+              ? "在下方列表点圆圈选两到三位选手"
               : pickedRows.length === 1
                 ? "再选一位就能对比"
-                : "两位都选好了"}
+                : pickedRows.length === 2
+                  ? "两位已就位，还可以再选一位做三人对比"
+                  : "三位都选好了"}
           </span>
           {pickedRows.length ? (
             <button type="button" className="reset" onClick={() => updateVs([])}>
@@ -210,7 +212,7 @@ export default function Players({ meta }: { meta: Meta }) {
         </div>
       ) : null}
 
-      {compareMode && picked.length === 2 ? (
+      {compareMode && picked.length >= 2 ? (
         <ComparePanel meta={meta} keys={picked} />
       ) : null}
 

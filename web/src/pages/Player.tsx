@@ -10,6 +10,7 @@ import {
   fmtPct,
   playerChampions,
   playerGames,
+  playerSlug,
   roleLabel,
   stageLabel,
   teamSlug
@@ -73,6 +74,12 @@ export default function Player({ meta }: { meta: Meta }) {
             <span>{roleLabel(row.role)}</span>
             <span className="dot" aria-hidden="true">·</span>
             <span>{row.championCount} 个英雄</span>
+          </p>
+          <p className="player-actions">
+            <Link className="compare-cta" to={"/players?compare=1&vs=" + playerSlug(row.team, row.name)}>
+              和谁比一比
+              <span className="compare-cta-arrow" aria-hidden="true"> →</span>
+            </Link>
           </p>
         </div>
         <div className="player-portrait">
