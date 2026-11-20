@@ -53,7 +53,7 @@ export default function App() {
       </header>
 
       <main className="main">
-        {location.pathname === "/championship" ? null : (
+        {location.pathname === "/" ? (
           <Link
             className="champ-strip"
             to="/championship"
@@ -94,7 +94,7 @@ export default function App() {
               <span className="champ-strip-credit">图：官方摄影</span>
             </span>
           </Link>
-        )}
+        ) : null}
         {error ? (
           <div className="page">
             <div className="state">
