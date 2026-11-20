@@ -9,71 +9,16 @@ import {
   fmtDuration,
   fmtPct,
   playerChampions,
-  type PlayerRadar,
   playerGames,
   roleLabel,
   stageLabel,
   teamSlug
 } from "../lib/stats";
-import { PlayerAvatar } from "./Players";
+import { PlayerAvatar } from "../components/PlayerAvatar";
 import { useCrumb, type Crumb } from "../lib/trail";
+import { AbilityRadar } from "../components/Radar";
 
 const PLAYERS_CRUMB: Crumb = { path: "/players", label: "选手榜" };
-
-const RADAR_CX = 180;
-const RADAR_CY = 166;
-const RADAR_R = 112;
-const RADAR_RINGS = [0.25, 0.5, 0.75, 1];
-
-function HexRadar({ radar }: { radar: PlayerRadar }) {
-  const angle = (i: number) => ((-90 + i * 60) * Math.PI) / 180;
-  const point = (i: number, ratio: number): [number, number] => [
-    RADAR_CX + Math.cos(angle(i)) * RADAR_R * ratio,
-    RADAR_CY + Math.sin(angle(i)) * RADAR_R * ratio
-  ];
-  const ring = (ratio: number) =>
-    radar.axes.map((_, i) => point(i, ratio).map((n) => n.toFixed(1)).join(",")).join(" ");
-  const shape = radar.axes
-    .map((axis, i) => {
-      const [x, y] = point(i, Math.max(0.08, axis.pct / 100));
-      return x.toFixed(1) + "," + y.toFixed(1);
-    })
-    .join(" ");
-  const dots = radar.axes.map((axis, i) => point(i, Math.max(0.08, axis.pct / 100)));
-
-  return (
-    <svg
-      className="radar-svg"
-      viewBox="0 0 360 336"
-      role="img"
-      aria-label={"能力雷达：" + radar.axes.map((a) => a.label + " " + a.pct + " 百分位").join("，")}
-    >
-      {RADAR_RINGS.map((ratio) => (
-        <polygon key={ratio} className={"radar-ring" + (ratio === 1 ? " outer" : "")} points={ring(ratio)} />
-      ))}
-      {radar.axes.map((axis, i) => {
-        const [x, y] = point(i, 1);
-        return <line key={axis.key} className="radar-spoke" x1={RADAR_CX} y1={RADAR_CY} x2={x} y2={y} />;
-      })}
-      <polygon className="radar-area" points={shape} />
-      {dots.map(([x, y], i) => (
-        <circle key={radar.axes[i].key} className="radar-dot" cx={x} cy={y} r={2.6} />
-      ))}
-      {radar.axes.map((axis, i) => {
-        const cos = Math.cos(angle(i));
-        const sin = Math.sin(angle(i));
-        const x = RADAR_CX + cos * (RADAR_R + 24);
-        const y = RADAR_CY + sin * (RADAR_R + 24);
-        const anchor = cos > 0.3 ? "start" : cos < -0.3 ? "end" : "middle";
-        return (
-          <text key={axis.key} className="radar-axis-label" x={x} y={y} textAnchor={anchor} dominantBaseline="middle">
-            {axis.label}
-          </text>
-        );
-      })}
-    </svg>
-  );
-}
 
 export default function Player({ meta }: { meta: Meta }) {
   const { slug } = useParams();
@@ -189,7 +134,7 @@ export default function Player({ meta }: { meta: Meta }) {
             </span>
           </div>
           <div className="radar-panel">
-            <HexRadar radar={radar} />
+            <AbilityRadar series={[{ key: row.name, label: row.name, color: "#8a5b18", radar }]} />
             <ul className="radar-list">
               {radar.axes.map((axis) => (
                 <li key={axis.key} className="radar-row" title={axis.hint}>

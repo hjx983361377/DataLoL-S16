@@ -3,7 +3,7 @@ import { useTrailEntry } from "../lib/trail";
 import { Link } from "react-router-dom";
 import type { Meta } from "../lib/types";
 import { buildPlayers, buildTeams, fmtPct, roleIndex, type PlayerRow, type TeamSummary } from "../lib/stats";
-import { PlayerAvatar } from "./Players";
+import { PlayerAvatar } from "../components/PlayerAvatar";
 
 function TeamCard({ team, roster }: { team: TeamSummary; roster: PlayerRow[] }) {
   return (

@@ -12,7 +12,7 @@ import {
   teamRoster,
   type TeamChampionRow
 } from "../lib/stats";
-import { PlayerAvatar } from "./Players";
+import { PlayerAvatar } from "../components/PlayerAvatar";
 import { useCrumb, type Crumb } from "../lib/trail";
 
 const TEAMS_CRUMB: Crumb = { path: "/teams", label: "战队巡礼" };
